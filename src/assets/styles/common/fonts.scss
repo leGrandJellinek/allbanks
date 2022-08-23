@@ -1,0 +1,44 @@
+$GothamPro: ('Light', 300),
+            ('Regular', 400),
+            ('Medium', 500),
+            ('Bold', 700),
+            ('Black',900);
+
+
+@each $name, $weight in $GothamPro {
+    @font-face {
+        font-family: 'GP';
+        src: url('@/assets/fonts/Gotham/GothamPro-#{$name}.ttf');
+        font-weight: $weight;
+    }
+}
+
+$SFPro: ('Regular', 400),
+        ('Semibold',600);
+
+@each $name, $weight in $SFPro {
+    @font-face {
+        font-family: 'SF';
+        src: url('@/assets/fonts/SFPro/SFProDisplay-#{$name}.ttf');
+        font-weight: $weight;
+    }
+}
+
+$Gilroy:('Medium',500),
+        ('Semibold',600),
+        ('Bold',700);
+
+@each $name, $weight in $Gilroy {
+    @font-face {
+        font-family: 'GR';
+        src: url('@/assets/fonts/Gilroy/Gilroy-#{$name}.ttf');
+        font-weight: $weight;
+    }
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url(('@/assets/fonts/Lato/Lato-Regular.ttf'));
+    font-weight: 400;
+}
+
