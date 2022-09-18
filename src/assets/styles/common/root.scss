@@ -15,7 +15,7 @@ body {
     font-weight: 400;
 }
 html, body {
-    overflow: hidden
+    overflow-x: hidden
 }
 .container {
     @include container();
