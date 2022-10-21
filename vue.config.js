@@ -2,7 +2,6 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
   chainWebpack: (config) => {
-    // Pug Loader
     config.module
       .rule('pug')
       .test(/\.pug$/)

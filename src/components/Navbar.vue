@@ -1,4 +1,5 @@
 <template>
+<div class="container">
 <nav class="header__nav">
     <div class="bg" @click="burger = false" :class="{active : burger && width <= 1160}"></div>
     <div class="header__nav-block">
@@ -14,6 +15,7 @@
         <a href="#!" class="header__nav-button">Войти</a>
     </div>
 </nav>
+</div>
 </template>
 
 <script>

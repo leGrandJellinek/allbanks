@@ -1,0 +1,101 @@
+.main
+    margin-top: 80px
+    &__container
+        @extend .container
+    
+    &__categories 
+        margin-bottom: 80px
+        &-container 
+            @extend .container
+        
+        &-block 
+            display: flex
+            justify-content: space-between
+        
+        &-item 
+            width: 159px
+            height: 146px
+            position: relative
+            border-radius: 10px
+            padding: 18px 15px
+        
+        &-title 
+            font-size: 16px
+            line-height: 15px
+            font-weight: 400
+        
+        &-img
+            position: absolute
+            bottom: 0
+            right: 0
+            border-radius: inherit
+         
+    &__сurrency 
+        &-container 
+            @extend .container
+    
+    &__banks
+        display: flex
+        flex-direction: column
+        gap: 28px
+        &-block 
+            display: grid
+            grid-template-columns: repeat(3,1fr)
+            gap: 30px
+        &-text 
+            font-weight: 400
+            color: rgba(184, 184, 184, 0.8)
+            font-size: 14px
+            line-height: 14px
+        &-item 
+            padding: 25px
+            background: rgba(235, 235, 235, 0.4)
+            border-radius: 14px
+            &-up 
+                display: flex
+                justify-content: space-between
+                padding-bottom: 22px
+                border-bottom: 1px solid #9E9E9E
+            &-name 
+                text-align: right
+                margin-bottom: 10px
+                font-weight: 400
+                font-size: 16px
+                line-height: 15px
+                color: #000000
+            &-license 
+                font-size: 10px
+                line-height: 10px
+                color: rgba(0, 0, 0, 0.5)
+            &-bottom 
+                padding-top: 20px
+                width: 100%
+                display: flex
+                flex-direction: column
+                align-items: flex-end
+            &-list 
+                list-style: disc
+                display: flex
+                flex-direction: column
+                gap: 18px
+            &-loc
+                font-weight: 400
+                font-size: 14px
+                line-height: 18px
+                color: #000000
+            &-text 
+                font-weight: 400
+                font-size: 14px
+                line-height: 13px
+                color: #000000
+            &-btn 
+                font-weight: 400
+                font-size: 14px
+                line-height: 13px
+                text-align: center
+                text-decoration-line: underline
+                color: #FF8A16
+            
+                
+        
+    

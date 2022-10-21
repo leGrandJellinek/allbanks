@@ -5,9 +5,6 @@
             <h2 class="main__сurrency-title">
                 Лучшие курсы валют 
             </h2>
-            <select name="" id="">
-                <option value="">Алматы</option>
-            </select>
             <div class="main__сurrency-block">
                 <p class="main__сurrency-text">
                     Обменники

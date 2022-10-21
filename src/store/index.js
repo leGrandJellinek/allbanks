@@ -81,6 +81,62 @@ export default createStore({
         sellPrice: "437.50",
         buyPrice: "430.50",
       },
+    ],
+    banks: [
+      {
+        id:1,
+        name: "Altyn Bank",
+        icon: "altyn_bank.png",
+        license:"лицензия №1.2.23/194/33",
+        location: "Республика Казахстан, A05A1B9, Алматы, пр. Абая 109 «В»",
+        phoneNumber: "+7(727)35-65-777",
+        website: "altynbank.kz"
+      },
+      {
+        id:2,
+        name: "Bank RBK",
+        icon: "rbk_bank.png",
+        license:"лицензия №1.2.23/194/33",
+        location: "Республика Казахстан, A05A1B9, Алматы, пр. Абая 109 «В»",
+        phoneNumber: "+7(727)35-65-777",
+        website: "altynbank.kz"
+      },
+      {
+        id:3,
+        name: "Jýsan Bank",
+        icon: "jusan_bank.png",
+        license:"лицензия №1.2.23/194/33",
+        location: "Республика Казахстан, A05A1B9, Алматы, пр. Абая 109 «В»",
+        phoneNumber: "+7(727)35-65-777",
+        website: "altynbank.kz"
+      },
+      {
+        id:4,
+        name: "Altyn Bank",
+        icon: "forte_bank.png",
+        license:"лицензия №1.2.23/194/33",
+        location: "Республика Казахстан, A05A1B9, Алматы, пр. Абая 109 «В»",
+        phoneNumber: "+7(727)35-65-777",
+        website: "altynbank.kz"
+      },
+      {
+        id:5,
+        name: "Bank RBK",
+        icon: "rbk_bank.png",
+        license:"лицензия №1.2.23/194/33",
+        location: "Республика Казахстан, A05A1B9, Алматы, пр. Абая 109 «В»",
+        phoneNumber: "+7(727)35-65-777",
+        website: "altynbank.kz"
+      },
+      {
+        id:6,
+        name: "Jýsan Bank",
+        icon: "jusan_bank.png",
+        license:"лицензия №1.2.23/194/33",
+        location: "Республика Казахстан, A05A1B9, Алматы, пр. Абая 109 «В»",
+        phoneNumber: "+7(727)35-65-777",
+        website: "altynbank.kz"
+      },
     ]
   },
   getters: {
@@ -89,6 +145,9 @@ export default createStore({
     },
     getCategoriesList(state){
       return state.categoriesList;
+    },
+    getBanksList(state){
+      return state.banks
     }
   },
   mutations: {

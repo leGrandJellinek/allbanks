@@ -1,0 +1,48 @@
+@include media(1199px)
+    .header
+        &__content
+            &-block
+                margin-right: 20px
+    .main
+        &__categories
+            &-block
+                &.pc
+                    display: grid
+                    grid-template-columns: repeat(3,1fr)
+                    row-gap: 30px
+                    column-gap: 20px
+                    justify-items: center
+
+@include media(991px)
+    .footer
+        &__top
+            &-menu 
+                flex-wrap: wrap
+@include media(767px)
+    .header
+        &__content
+            &-block 
+                align-items: flex-start
+                justify-content: space-evenly
+                margin-right: 0px
+                margin-left: 20px
+            &-title 
+                text-align: left
+    .main 
+        &__categories
+            &-block 
+                &.pc
+                    display: none
+    .main-categories-swiper
+        display: block !important
+    .footer 
+        &__top
+            &-tel 
+                font-size: 20px
+        &__bottom
+            &-container
+                display: flex
+                flex-direction: column
+        
+    
+
