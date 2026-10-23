@@ -1,27 +1,27 @@
 {
   "name": "allbanks",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "core-js": "^3.8.3",
-    "pug": "^3.0.2",
-    "pug-plain-loader": "^1.1.0",
-    "swiper": "^8.4.4",
-    "vue": "^3.2.13",
-    "vue-router": "^4.0.3",
-    "vuex": "^4.0.0"
+    "pinia": "^2.3.1",
+    "pug": "^3.0.3",
+    "swiper": "^11.2.4",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-plugin-vuex": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
-    "group-css-media-queries-loader": "^4.3.0",
-    "sass": "^1.32.7",
-    "sass-loader": "^12.0.0"
+    "@types/node": "^22.13.1",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "sass": "^1.85.0",
+    "typescript": "^5.7.3",
+    "unplugin-vue-router": "^0.11.2",
+    "vite": "^6.1.0",
+    "vue-tsc": "^2.2.0"
   }
 }
