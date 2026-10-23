@@ -1,36 +1,52 @@
 .main
-    margin-top: 80px
+    margin-top: 50px
     &__container
         @extend .container
     
     &__categories 
-        margin-bottom: 80px
+        margin-bottom: 50px
         &-container 
             @extend .container
         
-        &-block 
-            display: flex
-            justify-content: space-between
-        
         &-item 
-            width: 159px
-            height: 146px
+            width: 100%
+            min-height: 140px
             position: relative
-            border-radius: 10px
-            padding: 18px 15px
+            border-radius: 12px
+            padding: 16px 14px
+            display: flex
+            flex-direction: column
+            justify-content: flex-start
+            overflow: hidden
+
+            @media (max-width: 767px)
+                min-height: 100px
+                padding: 10px 8px
         
         &-title 
-            font-size: 16px
-            line-height: 15px
-            font-weight: 400
+            font-size: 15px
+            line-height: 1.2
+            font-weight: 500
+            color: #1E1E1E
+            z-index: 2
+
+            @media (max-width: 767px)
+                font-size: 12px
         
         &-img
             position: absolute
             bottom: 0
             right: 0
-            border-radius: inherit
+            max-width: 65%
+            max-height: 70%
+            object-fit: contain
+            z-index: 1
+
+            @media (max-width: 767px)
+                max-width: 75%
+                max-height: 75%
          
-    &__сurrency 
+    &__currency 
         &-container 
             @extend .container
     
@@ -40,62 +56,85 @@
         gap: 28px
         &-block 
             display: grid
-            grid-template-columns: repeat(3,1fr)
-            gap: 30px
+            grid-template-columns: repeat(3, 1fr)
+            gap: 24px
+
+            @media (max-width: 991px)
+                grid-template-columns: repeat(2, 1fr)
+
+            @media (max-width: 576px)
+                grid-template-columns: 1fr
         &-text 
             font-weight: 400
             color: rgba(184, 184, 184, 0.8)
             font-size: 14px
-            line-height: 14px
+            line-height: 1.5
         &-item 
-            padding: 25px
+            padding: 24px
             background: rgba(235, 235, 235, 0.4)
             border-radius: 14px
+            border: 1px solid rgba(0, 0, 0, 0.05)
+            display: flex
+            flex-direction: column
+            justify-content: space-between
             &-up 
                 display: flex
                 justify-content: space-between
-                padding-bottom: 22px
-                border-bottom: 1px solid #9E9E9E
+                align-items: flex-start
+                padding-bottom: 20px
+                border-bottom: 1px solid #E0E0E0
+
+                img
+                    width: 44px
+                    height: 44px
+                    object-fit: contain
+            &-info
+                display: flex
+                flex-direction: column
+                align-items: flex-end
             &-name 
                 text-align: right
-                margin-bottom: 10px
-                font-weight: 400
+                margin-bottom: 6px
+                font-weight: 700
                 font-size: 16px
-                line-height: 15px
                 color: #000000
             &-license 
-                font-size: 10px
-                line-height: 10px
+                font-size: 11px
                 color: rgba(0, 0, 0, 0.5)
             &-bottom 
-                padding-top: 20px
+                padding-top: 18px
                 width: 100%
                 display: flex
                 flex-direction: column
                 align-items: flex-end
+                gap: 16px
             &-list 
-                list-style: disc
+                width: 100%
                 display: flex
                 flex-direction: column
-                gap: 18px
+                gap: 10px
+                list-style: none
+                padding: 0
             &-loc
-                font-weight: 400
-                font-size: 14px
-                line-height: 18px
-                color: #000000
+                font-size: 13px
+                line-height: 1.4
+                color: #444444
             &-text 
-                font-weight: 400
-                font-size: 14px
-                line-height: 13px
-                color: #000000
+                font-size: 13px
+                color: #222222
+
+                a
+                    color: inherit
+                    text-decoration: none
+                    &:hover
+                        color: #FF8A16
             &-btn 
-                font-weight: 400
+                font-weight: 600
                 font-size: 14px
-                line-height: 13px
                 text-align: center
-                text-decoration-line: underline
                 color: #FF8A16
-            
-                
-        
-    
+                text-decoration: underline
+                transition: color 0.2s
+
+                &:hover
+                    color: #d86f07

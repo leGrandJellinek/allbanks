@@ -1,20 +1,15 @@
 <template lang="pug">
 .main__banks-block
-    BanksItem(
-    v-for="item in getBanksList" 
+  BanksItem(
+    v-for="item in banksStore.banks"
     :key="item.id"
-    :item="item")
+    :item="item"
+  )
 </template>
 
-<script>
-import {mapGetters} from "vuex"
-import BanksItem from "@/components/Main/BanksItem.vue";
-export default {
-    computed: {
-        ...mapGetters(["getBanksList"])
-    },
-    components: {
-        BanksItem
-    }
-}
+<script setup lang="ts">
+import { useBanksStore } from '@/stores/banks'
+import BanksItem from '@/components/Main/BanksItem.vue'
+
+const banksStore = useBanksStore()
 </script>

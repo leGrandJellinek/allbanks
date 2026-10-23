@@ -1,0 +1,251 @@
+<template>
+  <section class="main__currency">
+    <div class="container main__currency-container">
+      <div class="main__currency-header">
+        <h2 class="main__currency-title">Лучшие курсы валют</h2>
+
+        <!-- Tabs: Обменники / Банки -->
+        <div class="main__currency-tabs">
+          <button 
+            class="main__currency-tab" 
+            :class="{ active: banksStore.activeCurrencyTab === 'exchangers' }"
+            @click="banksStore.setCurrencyTab('exchangers')"
+          >
+            Обменники
+          </button>
+          <button 
+            class="main__currency-tab" 
+            :class="{ active: banksStore.activeCurrencyTab === 'banks' }"
+            @click="banksStore.setCurrencyTab('banks')"
+          >
+            Банки
+          </button>
+        </div>
+      </div>
+
+      <!-- City Selector Dropdown (Exact 1:1 match from Figma components) -->
+      <div class="main__currency-filter">
+        <div class="city-select">
+          <button 
+            class="city-select__button" 
+            :class="{ open: banksStore.isCityDropdownOpen }"
+            @click="banksStore.toggleCityDropdown"
+          >
+            <span>{{ banksStore.selectedCity }}</span>
+            <svg 
+              class="city-select__arrow" 
+              :class="{ rotated: banksStore.isCityDropdownOpen }"
+              width="12" 
+              height="8" 
+              viewBox="0 0 12 8" 
+              fill="none"
+            >
+              <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+
+          <ul v-if="banksStore.isCityDropdownOpen" class="city-select__menu">
+            <li 
+              v-for="city in banksStore.cities" 
+              :key="city" 
+              class="city-select__item"
+              :class="{ selected: banksStore.selectedCity === city }"
+              @click="banksStore.setCity(city)"
+            >
+              {{ city }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Currency Table Card -->
+      <div class="main__currency-card">
+        <div class="main__currency-table-head">
+          <span class="head-col currency">Валюта</span>
+          <span class="head-col price">Покупка</span>
+          <span class="head-col price">Продажа</span>
+        </div>
+
+        <div class="main__currency-list">
+          <CurrencyItem 
+            v-for="currency in banksStore.currencyList" 
+            :key="currency.id" 
+            :item="currency" 
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script setup lang="ts">
+import { useBanksStore } from '@/stores/banks'
+import CurrencyItem from '@/components/Main/CurrencyItem.vue'
+
+const banksStore = useBanksStore()
+</script>
+
+<style lang="scss" scoped>
+.main__currency {
+  margin-top: 50px;
+  margin-bottom: 60px;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  &-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.2;
+
+    @media (max-width: 768px) {
+      font-size: 22px;
+    }
+  }
+
+  &-tabs {
+    display: flex;
+    gap: 24px;
+  }
+
+  &-tab {
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.5);
+    padding-bottom: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease;
+
+    &.active {
+      color: #000000;
+      font-weight: 700;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #ff8a16;
+      }
+    }
+  }
+
+  &-filter {
+    margin-bottom: 20px;
+  }
+
+  &-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f2f2f2;
+
+    @media (max-width: 576px) {
+      padding: 16px 14px;
+    }
+  }
+
+  &-table-head {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eeeeee;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.4);
+    font-weight: 500;
+
+    .currency {
+      flex: 1.5;
+    }
+
+    .price {
+      flex: 1;
+      text-align: right;
+    }
+  }
+}
+
+.city-select {
+  position: relative;
+  display: inline-block;
+  min-width: 180px;
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 16px;
+    background: #fef2e3;
+    border: 1px solid #ff8a16;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #ff8a16;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.open {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &__arrow {
+    transition: transform 0.2s ease;
+
+    &.rotated {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #ff8a16;
+    border-top: none;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    box-shadow: 0 4px 12px rgba(255, 138, 22, 0.15);
+    z-index: 50;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__item {
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #1e1e1e;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: #fef2e3;
+      color: #ff8a16;
+    }
+
+    &.selected {
+      font-weight: 600;
+      background: #fef2e3;
+      color: #ff8a16;
+    }
+  }
+}
+</style>

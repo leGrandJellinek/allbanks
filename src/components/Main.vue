@@ -1,18 +1,13 @@
 <template>
-<main class="main">
+  <main class="main">
     <Categories />
     <Currency />
-</main>
+    <CreditOffers />
+  </main>
 </template>
 
-<script>
-import Categories from "@/components/Main/Categories.vue"
-import Currency from "@/components/Main/Сurrency.vue"
-export default {
-    components: {
-        Categories,
-        Currency,
-    }
-}
-
+<script setup lang="ts">
+import Categories from '@/components/Main/Categories.vue'
+import Currency from '@/components/Main/Currency.vue'
+import CreditOffers from '@/components/Main/CreditOffers.vue'
 </script>
