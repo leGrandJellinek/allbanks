@@ -13,6 +13,7 @@
           v-for="offer in banksStore.creditOffers" 
           :key="offer.id" 
           class="credit-card"
+          :style="{ backgroundColor: offer.bgcolor || '#ffffff' }"
         >
           <div class="credit-card__header">
             <span 

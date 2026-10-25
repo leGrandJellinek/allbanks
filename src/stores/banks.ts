@@ -46,6 +46,7 @@ export interface CreditOffer {
   name: string
   logoText?: string
   logoColor?: string
+  bgcolor?: string
   age: string
   sum: string
   term: string
@@ -170,9 +171,10 @@ export const useBanksStore = defineStore('banks', {
     creditOffers: [
       {
         id: 1,
-        name: 'Home Credit',
-        logoText: 'HOME CREDIT',
-        logoColor: '#DE251D',
+        name: 'Сбербанк',
+        logoText: 'СБЕР БАНК',
+        logoColor: '#21A038',
+        bgcolor: '#EAF8E6',
         age: 'от 23 лет',
         sum: '8 000 000 ₸',
         term: '60 мес',
@@ -181,10 +183,11 @@ export const useBanksStore = defineStore('banks', {
       },
       {
         id: 2,
-        name: 'Kviku',
-        logoText: 'Kviku',
-        logoColor: '#0094FF',
-        age: 'от 21 года',
+        name: 'Home Credit',
+        logoText: 'HOME CREDIT',
+        logoColor: '#DE251D',
+        bgcolor: '#FDF2F2',
+        age: 'от 23 лет',
         sum: '8 000 000 ₸',
         term: '60 мес',
         rate: '8,00 %',
@@ -193,24 +196,26 @@ export const useBanksStore = defineStore('banks', {
       {
         id: 3,
         name: 'MoneyMan',
-        logoText: 'MoneyMan',
+        logoText: 'MONEYMAN',
         logoColor: '#5FB451',
-        age: 'от 21 года',
-        sum: '130 000 ₸',
-        term: 'до 30 дней',
-        rate: 'от 1.00% в день',
-        responseTime: '15 мин'
+        bgcolor: '#FDF2F2',
+        age: 'от 23 лет',
+        sum: '8 000 000 ₸',
+        term: '60 мес',
+        rate: '8,00 %',
+        responseTime: '30 мин'
       },
       {
         id: 4,
-        name: 'Займер',
-        logoText: 'РОБОТ ЗАЙМЕР',
-        logoColor: '#FF8A16',
-        age: 'от 21 года',
-        sum: '130 000 ₸',
-        term: 'до 30 дней',
-        rate: 'от 1.00% в день',
-        responseTime: '15 мин'
+        name: 'Kviku',
+        logoText: 'KVIKU',
+        logoColor: '#0094FF',
+        bgcolor: '#EBF5FE',
+        age: 'от 23 лет',
+        sum: '8 000 000 ₸',
+        term: '60 мес',
+        rate: '8,00 %',
+        responseTime: '30 мин'
       }
     ] as CreditOffer[],
 
