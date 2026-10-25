@@ -179,6 +179,10 @@ const consumerLoans = ref([
   padding: 24px;
   margin-bottom: 30px;
 
+  @media (max-width: 576px) {
+    padding: 16px;
+  }
+
   .filter-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -186,7 +190,8 @@ const consumerLoans = ref([
     margin-bottom: 20px;
 
     @media (max-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
     }
   }
 
@@ -194,6 +199,7 @@ const consumerLoans = ref([
     display: flex;
     flex-direction: column;
     gap: 6px;
+    min-width: 0;
 
     label {
       font-size: 13px;
@@ -202,7 +208,10 @@ const consumerLoans = ref([
     }
 
     input, select {
-      padding: 10px 14px;
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      padding: 10px 12px;
       border: 1px solid #ff8a16;
       border-radius: 6px;
       background: #ffffff;

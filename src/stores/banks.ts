@@ -127,7 +127,7 @@ export const useBanksStore = defineStore('banks', {
       },
       {
         id: 6,
-        title: 'Банки Рк',
+        title: 'Банки РК',
         bgcolor: 'rgba(214, 213, 254, 0.7)',
         img: 'bank.png',
         path: '/banks'

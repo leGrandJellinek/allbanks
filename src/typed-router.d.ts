@@ -22,6 +22,7 @@ declare module 'vue-router/auto-routes' {
     '/banks/': RouteRecordInfo<'/banks/', '/banks', Record<never, never>, Record<never, never>>,
     '/banks/[id]': RouteRecordInfo<'/banks/[id]', '/banks/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/credits/': RouteRecordInfo<'/credits/', '/credits', Record<never, never>, Record<never, never>>,
+    '/credits/[id]': RouteRecordInfo<'/credits/[id]', '/credits/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/credits/apply': RouteRecordInfo<'/credits/apply', '/credits/apply', Record<never, never>, Record<never, never>>,
     '/credits/cash': RouteRecordInfo<'/credits/cash', '/credits/cash', Record<never, never>, Record<never, never>>,
     '/credits/mortgage': RouteRecordInfo<'/credits/mortgage', '/credits/mortgage', Record<never, never>, Record<never, never>>,
