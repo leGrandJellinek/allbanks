@@ -159,33 +159,29 @@ const banksStore = useBanksStore()
 
   &-tabs {
     display: flex;
-    gap: 24px;
+    gap: 20px;
+    align-items: center;
   }
 
   &-tab {
     background: none;
     border: none;
-    font-size: 16px;
+    font-size: 22px;
     font-weight: 500;
-    color: #C4C4C4;
-    padding-bottom: 6px;
+    color: rgba(184, 184, 184, 0.6);
+    padding: 0 0 2px 0;
     cursor: pointer;
     position: relative;
-    transition: color 0.2s ease;
+    border-bottom: 1px solid rgba(184, 184, 184, 0.6);
+    transition: all 0.2s ease;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
 
     &.active {
       color: #ff8a16;
-      font-weight: 700;
-
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: #ff8a16;
-      }
+      border-bottom: 1px solid #ff8a16;
     }
   }
 
