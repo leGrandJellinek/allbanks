@@ -1,36 +1,44 @@
 <template>
-  <div>
+  <div class="mortgage-page-wrapper">
     <Navbar />
     <main class="main mortgage-page">
       <div class="container">
+        <router-link to="/credits" class="mortgage-page__back">‹ Назад к кредитам</router-link>
         <h1 class="mortgage-page__title section-title">
           Кредиты под залог недвижимости
         </h1>
         <p class="mortgage-page__desc">
-          В нашем каталоге собраны предложения кредитов под залог недвижимости в Казахстане от ведущих банков.
+          В нашем каталоге собрана достоверная информация о кредитах под залог недвижимости в Казахстане от ведущих банков.
         </p>
 
         <div class="mortgage-grid">
           <div v-for="item in mortgageList" :key="item.id" class="mortgage-card">
-            <h3 class="bank-name">{{ item.bank }}</h3>
-            <p class="program-title">{{ item.program }}</p>
-            <div class="specs">
-              <div><span>Мин. ставка:</span> <strong>{{ item.rate }}</strong></div>
-              <div><span>Срок:</span> <strong>{{ item.term }}</strong></div>
-              <div><span>Валюта:</span> <strong>{{ item.currency }}</strong></div>
-              <div><span>Макс. сумма:</span> <strong>{{ item.maxSum }}</strong></div>
+            <div class="mortgage-card__head">
+              <h3 class="bank-name">{{ item.bank }}</h3>
+              <p class="program-title">{{ item.program }}</p>
             </div>
-            <router-link to="/credits/apply" class="btn">Получить кредит</router-link>
+            <div class="mortgage-card__divider"></div>
+            <ul class="mortgage-card__list">
+              <li><span class="dot"></span><span>Мин. ставка: <strong>{{ item.rate }}</strong></span></li>
+              <li><span class="dot"></span><span>Срок: <strong>{{ item.term }}</strong></span></li>
+              <li><span class="dot"></span><span>Валюта: <strong>{{ item.currency }}</strong></span></li>
+              <li><span class="dot"></span><span>Макс. сумма: <strong>{{ item.maxSum }}</strong></span></li>
+            </ul>
+            <div class="mortgage-card__action">
+              <router-link to="/credits/apply" class="btn">Получить кредит</router-link>
+            </div>
           </div>
         </div>
       </div>
     </main>
+    <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import Navbar from '@/components/Navbar.vue'
+import Footer from '@/components/Footer.vue'
 
 const mortgageList = ref([
   {
@@ -64,24 +72,50 @@ const mortgageList = ref([
 </script>
 
 <style lang="scss" scoped>
+.mortgage-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .main {
+    flex: 1;
+    padding-bottom: 70px;
+  }
+}
+
 .mortgage-page {
-  padding-bottom: 70px;
+  &__back {
+    display: inline-block;
+    color: #ff8a16;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
 
   &__title {
-    margin-bottom: 8px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin-bottom: 10px;
+
+    @media (max-width: 767px) {
+      font-size: 20px;
+    }
   }
 
   &__desc {
     font-size: 14px;
-    color: #666666;
+    color: #828282;
     margin-bottom: 28px;
+    max-width: 850px;
   }
 }
 
 .mortgage-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 22px;
 
   @media (max-width: 991px) {
     grid-template-columns: 1fr;
@@ -89,41 +123,59 @@ const mortgageList = ref([
 }
 
 .mortgage-card {
-  background: #ffffff;
-  border: 1px solid #eeeeee;
+  background: rgba(235, 235, 235, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 12px;
-  padding: 24px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 220px;
 
-  .bank-name {
-    font-size: 18px;
-    font-weight: 700;
-    color: #ff8a16;
-    margin-bottom: 6px;
+  &__head {
+    .bank-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1e1e1e;
+      margin: 0 0 6px 0;
+    }
+
+    .program-title {
+      font-size: 12.5px;
+      color: #666666;
+      margin: 0;
+      line-height: 1.35;
+      min-height: 34px;
+    }
   }
 
-  .program-title {
-    font-size: 13px;
-    color: #444444;
-    margin-bottom: 16px;
-    line-height: 1.4;
+  &__divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 14px 0;
   }
 
-  .specs {
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    font-size: 13px;
-    margin-bottom: 20px;
+    gap: 7px;
 
-    div {
+    li {
       display: flex;
-      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      color: #4f4f4f;
 
-      span {
-        color: #777777;
+      .dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #828282;
+        flex-shrink: 0;
       }
 
       strong {
@@ -132,16 +184,20 @@ const mortgageList = ref([
     }
   }
 
-  .btn {
-    display: block;
-    text-align: center;
-    background: #ff8a16;
-    color: #ffffff;
-    padding: 11px 0;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
+  &__action {
+    display: flex;
+    justify-content: flex-end;
+
+    .btn {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #ff8a16;
+      text-decoration: underline;
+
+      &:hover {
+        color: #e67508;
+      }
+    }
   }
 }
 </style>

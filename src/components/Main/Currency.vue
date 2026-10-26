@@ -4,62 +4,95 @@
       <div class="main__currency-header">
         <h2 class="main__currency-title">Лучшие курсы валют</h2>
 
-        <!-- Tabs: Обменники / Банки -->
-        <div class="main__currency-tabs">
-          <button 
-            class="main__currency-tab" 
-            :class="{ active: banksStore.activeCurrencyTab === 'exchangers' }"
-            @click="banksStore.setCurrencyTab('exchangers')"
+        <!-- City Selector Dropdown (Shown in center on desktop / below header on mobile when exchangers active) -->
+        <div class="main__currency-controls">
+          <div 
+            class="city-select"
+            :class="{ 'mobile-hidden': banksStore.activeCurrencyTab === 'banks' }"
           >
-            Обменники
-          </button>
-          <button 
-            class="main__currency-tab" 
-            :class="{ active: banksStore.activeCurrencyTab === 'banks' }"
-            @click="banksStore.setCurrencyTab('banks')"
-          >
-            Банки
-          </button>
+            <button 
+              class="city-select__button" 
+              :class="{ open: banksStore.isCityDropdownOpen }"
+              @click="banksStore.toggleCityDropdown"
+            >
+              <span>{{ banksStore.selectedCity }}</span>
+              <svg 
+                class="city-select__arrow" 
+                :class="{ rotated: banksStore.isCityDropdownOpen }"
+                width="12" 
+                height="8" 
+                viewBox="0 0 12 8" 
+                fill="none"
+              >
+                <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+
+            <ul v-if="banksStore.isCityDropdownOpen" class="city-select__menu">
+              <li 
+                v-for="city in banksStore.cities" 
+                :key="city" 
+                class="city-select__item"
+                :class="{ selected: banksStore.selectedCity === city }"
+                @click="banksStore.setCity(city)"
+              >
+                {{ city }}
+              </li>
+            </ul>
+          </div>
+
+          <!-- Tabs: Обменники / Банки -->
+          <div class="main__currency-tabs">
+            <button 
+              class="main__currency-tab" 
+              :class="{ active: banksStore.activeCurrencyTab === 'exchangers' }"
+              @click="banksStore.setCurrencyTab('exchangers')"
+            >
+              Обменники
+            </button>
+            <button 
+              class="main__currency-tab" 
+              :class="{ active: banksStore.activeCurrencyTab === 'banks' }"
+              @click="banksStore.setCurrencyTab('banks')"
+            >
+              Банки
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- City Selector Dropdown (Shown for exchangers tab matching Figma) -->
-      <div v-if="banksStore.activeCurrencyTab === 'exchangers'" class="main__currency-filter">
-        <div class="city-select">
-          <button 
-            class="city-select__button" 
-            :class="{ open: banksStore.isCityDropdownOpen }"
-            @click="banksStore.toggleCityDropdown"
-          >
-            <span>{{ banksStore.selectedCity }}</span>
-            <svg 
-              class="city-select__arrow" 
-              :class="{ rotated: banksStore.isCityDropdownOpen }"
-              width="12" 
-              height="8" 
-              viewBox="0 0 12 8" 
-              fill="none"
-            >
-              <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </button>
+      <!-- Desktop Currency Pills (1:1 from Figma Desktop Frame 1: Group 229) -->
+      <div class="main__currency-desktop-grid">
+        <div 
+          v-for="currency in banksStore.currencyList" 
+          :key="currency.id" 
+          class="currency-pill"
+        >
+          <div class="currency-pill__badge" :style="{ backgroundColor: currency.color }">
+            <span>{{ currency.symbol }}</span>
+          </div>
 
-          <ul v-if="banksStore.isCityDropdownOpen" class="city-select__menu">
-            <li 
-              v-for="city in banksStore.cities" 
-              :key="city" 
-              class="city-select__item"
-              :class="{ selected: banksStore.selectedCity === city }"
-              @click="banksStore.setCity(city)"
-            >
-              {{ city }}
-            </li>
-          </ul>
+          <div class="currency-pill__info">
+            <span class="currency-pill__code">{{ currency.currencySymbol }}</span>
+            <span class="currency-pill__name">{{ currency.currencyName }}</span>
+          </div>
+
+          <div class="currency-pill__divider"></div>
+
+          <div class="currency-pill__rate">
+            <span class="rate-label">Покупка</span>
+            <span class="rate-val">{{ currency.buyPrice }}</span>
+          </div>
+
+          <div class="currency-pill__rate">
+            <span class="rate-label">Продажа</span>
+            <span class="rate-val">{{ currency.sellPrice }}</span>
+          </div>
         </div>
       </div>
 
-      <!-- Currency Table Card -->
-      <div class="main__currency-card">
+      <!-- Mobile Currency Table Card (1:1 from Figma Mobile Frame 230:622) -->
+      <div class="main__currency-card mobile-only">
         <div class="main__currency-table-head">
           <span class="head-col currency">Валюта</span>
           <span class="head-col price">Покупка</span>
@@ -96,7 +129,7 @@ const banksStore = useBanksStore()
     align-items: center;
     margin-bottom: 24px;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 20px;
   }
 
   &-title {
@@ -110,6 +143,20 @@ const banksStore = useBanksStore()
     }
   }
 
+  &-controls {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      justify-content: space-between;
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  }
+
   &-tabs {
     display: flex;
     gap: 24px;
@@ -120,8 +167,8 @@ const banksStore = useBanksStore()
     border: none;
     font-size: 16px;
     font-weight: 500;
-    color: #8E8E93;
-    padding-bottom: 8px;
+    color: #C4C4C4;
+    padding-bottom: 6px;
     cursor: pointer;
     position: relative;
     transition: color 0.2s ease;
@@ -142,10 +189,86 @@ const banksStore = useBanksStore()
     }
   }
 
-  &-filter {
-    margin-bottom: 20px;
+  // Desktop Currency Pills Grid (1:1 from Figma Desktop Frame 1: Group 229)
+  &-desktop-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-top: 24px;
+    padding: 10px 0;
+
+    @media (max-width: 991px) {
+      display: none;
+    }
   }
 
+  .currency-pill {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+
+    &__badge {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 24px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      min-width: 50px;
+    }
+
+    &__code {
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+      line-height: 1.1;
+    }
+
+    &__name {
+      font-size: 11px;
+      color: rgba(0, 0, 0, 0.55);
+      margin-top: 2px;
+    }
+
+    &__divider {
+      width: 1px;
+      height: 32px;
+      background: #E0E0E0;
+      margin: 0 4px;
+    }
+
+    &__rate {
+      display: flex;
+      flex-direction: column;
+      min-width: 65px;
+
+      .rate-label {
+        font-size: 11px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+
+      .rate-val {
+        font-size: 18px;
+        font-weight: 700;
+        color: #000000;
+        font-variant-numeric: tabular-nums;
+        line-height: 1.2;
+      }
+    }
+  }
+
+  // Mobile Table Card
   &-card {
     background: #ffffff;
     border-radius: 12px;
@@ -155,6 +278,14 @@ const banksStore = useBanksStore()
 
     @media (max-width: 576px) {
       padding: 16px 14px;
+    }
+
+    &.mobile-only {
+      display: none;
+
+      @media (max-width: 991px) {
+        display: block;
+      }
     }
   }
 
@@ -181,18 +312,24 @@ const banksStore = useBanksStore()
 .city-select {
   position: relative;
   display: inline-block;
-  min-width: 180px;
+  min-width: 170px;
+
+  &.mobile-hidden {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
 
   &__button {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 10px 16px;
+    padding: 9px 16px;
     background: #fef2e3;
     border: 1px solid #ff8a16;
     border-radius: 6px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     color: #ff8a16;
     cursor: pointer;

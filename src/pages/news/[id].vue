@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="news-detail-wrapper">
     <Navbar />
     <main class="main news-detail">
       <div class="container">
@@ -7,23 +7,23 @@
 
         <article class="news-detail__article">
           <div class="news-detail__meta">
-            <span class="category">Финансовые рынки</span>
-            <span class="date">Сегодня, 14:20</span>
+            <span class="category">Новости экономики</span>
+            <span class="date">16 февраля 2022</span>
           </div>
 
           <h1 class="news-detail__title">
-            Национальный банк РК сохранил базовую ставку на уровне 14,5%
+            Philip Morris работает над вариантами выхода с российского рынка
           </h1>
 
           <div class="news-detail__body">
             <p>
-              Комитет по денежно-кредитной политике Национального Банка Республики Казахстан принял решение сохранить базовую ставку на уровне 14,50% годовых с процентным коридором +/- 1,00 процентных пункта. Соответственно, ставка по операциям постоянного доступа по предоставлению ликвидности составит 15,50%, а по операциям постоянного доступа по изъятию ликвидности — 13,50%.
+              Совет директоров и топ-менеджеры табачной компании Philip Morris International (PMI) работают над вариантами упорядоченного выхода с российского рынка в связи с изменением регуляторной и операционной среды.
             </p>
             <p>
-              Решение принято с учетом баланса рисков инфляции во внутренней и внешней среде. Годовая инфляция складывается в рамках траектории прогнозов Национального Банка. Сохраняются проинфляционные факторы со стороны внешнего сектора из-за высокой инфляции в странах — торговых партнерах и глобальных логистических цепочек.
+              В заявлении компании отмечается, что процесс выхода является сложным и требует соблюдения всех юридических требований как в юрисдикциях присутствия, так и на международном уровне, при этом приоритетом остается безопасность сотрудников и выполнение обязательств перед клиентами и контрагентами.
             </p>
             <p>
-              Дальнейшие решения по базовой ставке будут зависеть от соответствия фактической динамики инфляции прогнозным оценкам, а также от рисков достижения среднесрочной цели в 5%.
+              Ранее компания уже приостановила запланированные инвестиции в Российской Федерации, включая запуск новых продуктов, а также сократила масштабы производственных операций.
             </p>
           </div>
 
@@ -31,19 +31,34 @@
             <router-link to="/news" class="back-btn">Все новости</router-link>
           </div>
         </article>
+
+        <!-- Comments & Discussion (Frame 56) -->
+        <CommentsBlock />
       </div>
     </main>
+    <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
 import Navbar from '@/components/Navbar.vue'
+import Footer from '@/components/Footer.vue'
+import CommentsBlock from '@/components/CommentsBlock.vue'
 </script>
 
 <style lang="scss" scoped>
-.news-detail {
-  padding-bottom: 70px;
+.news-detail-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 
+  .main {
+    flex: 1;
+    padding-bottom: 70px;
+  }
+}
+
+.news-detail {
   &__back {
     display: inline-block;
     color: #ff8a16;
@@ -51,15 +66,19 @@ import Navbar from '@/components/Navbar.vue'
     font-size: 14px;
     margin-bottom: 20px;
     font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__article {
     background: #ffffff;
-    border: 1px solid #eeeeee;
+    border: 1px solid #e8e8e8;
     border-radius: 14px;
     padding: 36px 32px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-    max-width: 820px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    margin-bottom: 40px;
   }
 
   &__meta {
@@ -88,7 +107,11 @@ import Navbar from '@/components/Navbar.vue'
     font-weight: 700;
     line-height: 1.35;
     color: #1e1e1e;
-    margin-bottom: 24px;
+    margin: 0 0 24px 0;
+
+    @media (max-width: 767px) {
+      font-size: 20px;
+    }
   }
 
   &__body {
@@ -116,6 +139,11 @@ import Navbar from '@/components/Navbar.vue'
       text-decoration: none;
       font-weight: 600;
       font-size: 14px;
+      transition: background 0.2s;
+
+      &:hover {
+        background: #e67508;
+      }
     }
   }
 }

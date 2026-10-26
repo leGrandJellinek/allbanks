@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nbk-page-wrapper">
     <Navbar />
     <main class="main nbk-page">
       <div class="container">
@@ -13,10 +13,10 @@
         <div class="nbk-card">
           <div class="nbk-table">
             <div class="nbk-table__row header">
-              <span class="col name">Название валюты</span>
+              <span class="col name">Название валюта</span>
               <span class="col code">Код валюты</span>
               <span class="col rate">Курс</span>
-              <span class="col change">Динамика</span>
+              <span class="col movement">Движение</span>
             </div>
 
             <div 
@@ -24,13 +24,18 @@
               :key="item.code" 
               class="nbk-table__row"
             >
-              <span class="col name">{{ item.name }}</span>
+              <div class="col name">
+                <span class="curr-icon">$</span>
+                <span class="curr-title">{{ item.name }}</span>
+              </div>
               <span class="col code">{{ item.code }}</span>
               <span class="col rate">{{ item.rate }} ₸</span>
-              <span class="col change" :class="item.trend">
-                <span class="arrow">{{ item.trend === 'up' ? '↑' : '↓' }}</span>
-                {{ item.diff }}
-              </span>
+              <div class="col movement">
+                <div class="movement-pill" :class="item.trend">
+                  <span class="arrow">{{ item.trend === 'up' ? '▲' : '▼' }}</span>
+                  <span class="diff">{{ item.diff }}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -42,12 +47,14 @@
         </div>
       </div>
     </main>
+    <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import Navbar from '@/components/Navbar.vue'
+import Footer from '@/components/Footer.vue'
 
 const nbkList = ref([
   { name: 'АВСТРАЛИЙСКИЙ ДОЛЛАР', code: 'AUD', rate: '310.45', diff: '0.25', trend: 'up' },
@@ -66,17 +73,33 @@ const nbkList = ref([
 </script>
 
 <style lang="scss" scoped>
-.nbk-page {
-  padding-bottom: 70px;
+.nbk-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 
+  .main {
+    flex: 1;
+    padding-bottom: 70px;
+  }
+}
+
+.nbk-page {
   &__title {
-    margin-bottom: 8px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin-bottom: 10px;
+
+    @media (max-width: 767px) {
+      font-size: 20px;
+    }
   }
 
   &__subtitle {
     font-size: 14px;
-    line-height: 1.5;
-    color: rgba(0, 0, 0, 0.6);
+    line-height: 1.6;
+    color: #828282;
     margin-bottom: 24px;
     max-width: 840px;
   }
@@ -85,19 +108,19 @@ const nbkList = ref([
     margin-top: 24px;
     font-size: 13px;
     line-height: 1.6;
-    color: rgba(0, 0, 0, 0.5);
+    color: #828282;
   }
 }
 
 .nbk-card {
   background: #ffffff;
-  border: 1px solid #eeeeee;
+  border: 1px solid #e8e8e8;
   border-radius: 12px;
-  padding: 20px 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  padding: 24px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
 
   @media (max-width: 576px) {
-    padding: 16px 12px;
+    padding: 16px 14px;
   }
 }
 
@@ -107,31 +130,33 @@ const nbkList = ref([
   &__row {
     display: flex;
     align-items: center;
-    padding: 13px 0;
+    padding: 14px 0;
     border-bottom: 1px solid #f2f2f2;
-    font-size: 14px;
-    gap: 6px;
+    gap: 12px;
 
     &:last-child {
       border-bottom: none;
     }
 
     &.header {
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 600;
-      color: rgba(0, 0, 0, 0.4);
+      color: #828282;
       border-bottom: 1px solid #e0e0e0;
-      padding-bottom: 10px;
+      padding-bottom: 12px;
 
       .col.rate {
         font-weight: 600;
-        font-size: 13px;
-        padding-right: 14px;
+        font-size: 13.5px;
+        color: #828282;
+        padding-right: 12px;
       }
 
-      .col.change {
+      .col.movement {
         font-weight: 600;
-        font-size: 13px;
+        font-size: 13.5px;
+        color: #828282;
+        justify-content: center;
       }
     }
 
@@ -139,56 +164,88 @@ const nbkList = ref([
       &.name {
         flex: 1;
         min-width: 0;
-        font-weight: 500;
-        color: #1e1e1e;
-        line-height: 1.25;
+        display: flex;
+        align-items: center;
+        gap: 10px;
 
-        @media (max-width: 768px) {
-          font-size: 13px;
+        .curr-icon {
+          color: #ff8a16;
+          font-weight: 700;
+          font-size: 16px;
+        }
+
+        .curr-title {
+          font-weight: 500;
+          color: #1e1e1e;
+          font-size: 14px;
+          letter-spacing: 0.3px;
+
+          @media (max-width: 768px) {
+            font-size: 13px;
+          }
         }
       }
+
       &.code {
-        width: 44px;
+        width: 70px;
         flex-shrink: 0;
         text-align: center;
-        color: #888888;
-        font-weight: 700;
-        font-size: 13px;
+        color: #828282;
+        font-weight: 500;
+        font-size: 14px;
       }
-      &.rate {
-        width: 82px;
-        flex-shrink: 0;
-        text-align: right;
-        font-weight: 700;
-        color: #000000;
-        white-space: nowrap;
 
-        @media (max-width: 576px) {
-          font-size: 13px;
-          width: 76px;
-        }
-      }
-      &.change {
-        width: 65px;
+      &.rate {
+        width: 90px;
         flex-shrink: 0;
         text-align: right;
         font-weight: 600;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 3px;
+        font-size: 15px;
+        color: #1e1e1e;
         white-space: nowrap;
+        padding-right: 12px;
 
         @media (max-width: 576px) {
-          font-size: 13px;
-          width: 58px;
+          font-size: 13.5px;
+          width: 76px;
+          padding-right: 4px;
         }
+      }
 
-        &.up {
-          color: #5fb451;
-        }
-        &.down {
-          color: #de251d;
+      &.movement {
+        width: 75px;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+
+        .movement-pill {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          width: 65px;
+          height: 28px;
+          border-radius: 3px;
+          font-size: 13px;
+          font-weight: 600;
+
+          &.up {
+            background: rgba(96, 178, 88, 0.12);
+            color: #5fb451;
+
+            .arrow {
+              font-size: 9px;
+            }
+          }
+
+          &.down {
+            background: rgba(222, 37, 29, 0.12);
+            color: #de251d;
+
+            .arrow {
+              font-size: 9px;
+            }
+          }
         }
       }
     }

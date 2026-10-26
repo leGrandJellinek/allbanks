@@ -1,102 +1,163 @@
 <template>
-  <div>
+  <div class="credits-page-wrapper">
     <Navbar />
     <main class="main credits-page">
       <div class="container">
         <h1 class="credits-page__title section-title">Кредит в Казахстане</h1>
         <p class="credits-page__desc">
-          В каталоге AllBanks собраны достоверные предложения о потребительских кредитах, которые предоставляют банки Казахстана. На странице представлены 86 лучших кредитов на любые цели.
+          В каталоге AllBanks собрана достоверная информация о потребительских кредитах, которые предоставляют 24 банка в Казахстане. На странице 86 лучших предложений и условий по оформлению.
         </p>
 
-        <!-- Calculator / Filter Card -->
-        <div class="credit-filter-card">
-          <div class="filter-grid">
-            <div class="filter-field">
-              <label>Валюта</label>
+        <!-- Horizontal Filter Bar (Figma Frame 49 Group 254) -->
+        <div class="credit-filter-bar">
+          <div class="filter-item">
+            <label>Валюта</label>
+            <div class="select-wrap">
               <select v-model="filterCurrency">
                 <option value="KZT">KZT (Тенге)</option>
                 <option value="USD">USD (Доллар)</option>
               </select>
             </div>
-            <div class="filter-field">
-              <label>Сумма кредита (₸)</label>
-              <input v-model="filterSum" type="number" placeholder="500 000" />
+          </div>
+          <div class="filter-item">
+            <label>Сумма</label>
+            <div class="select-wrap">
+              <input v-model="filterSum" type="text" placeholder="500 000 ₸" />
             </div>
-            <div class="filter-field">
-              <label>Без залога</label>
+          </div>
+          <div class="filter-item">
+            <label>Без залога</label>
+            <div class="select-wrap">
               <select v-model="filterWithoutCollateral">
                 <option value="yes">Да</option>
                 <option value="no">Нет</option>
               </select>
             </div>
-            <div class="filter-field">
-              <label>Город</label>
+          </div>
+          <div class="filter-item">
+            <label>Город</label>
+            <div class="select-wrap">
               <select v-model="banksStore.selectedCity">
                 <option v-for="c in banksStore.cities" :key="c" :value="c">{{ c }}</option>
               </select>
             </div>
           </div>
-          <button class="filter-submit-btn" @click="applyFilter">Найти кредит</button>
+          <button class="filter-submit-btn" @click="applyFilter">
+            Найти кредит
+          </button>
         </div>
 
-        <!-- Best Offers -->
+        <!-- Top 3 Best Offers (Figma Frame 49 & Frame 1) -->
         <h2 class="credits-page__section-subtitle">Лучшие кредитные предложения</h2>
-        <div class="offers-grid">
+        <div class="best-offers-row">
           <div 
-            v-for="offer in banksStore.creditOffers" 
+            v-for="offer in banksStore.creditOffers.slice(0, 3)" 
             :key="offer.id" 
-            class="offer-item"
+            class="best-offer-card"
+            :style="{ backgroundColor: offer.bgcolor || '#EAF8E6' }"
           >
-            <h3 class="offer-name" :style="{ color: offer.logoColor }">
-              {{ offer.logoText || offer.name }}
-            </h3>
-            <div class="offer-specs">
-              <div><span>Возраст:</span> <strong>{{ offer.age }}</strong></div>
-              <div><span>Сумма:</span> <strong>{{ offer.sum }}</strong></div>
-              <div><span>Срок:</span> <strong>{{ offer.term }}</strong></div>
-              <div><span>Ставка:</span> <strong>{{ offer.rate }}</strong></div>
-              <div><span>Ответ:</span> <strong>{{ offer.responseTime }}</strong></div>
+            <div class="best-offer-card__logo-wrap">
+              <img 
+                v-if="offer.logoImg" 
+                :src="getMainImage(offer.logoImg)" 
+                :alt="offer.name" 
+                class="best-offer-card__logo-img" 
+              />
+              <span v-else class="best-offer-card__logo-text" :style="{ color: offer.logoColor }">
+                {{ offer.logoText || offer.name }}
+              </span>
             </div>
-            <router-link to="/credits/apply" class="offer-btn">Получить кредит</router-link>
+
+            <div class="best-offer-card__specs-grid">
+              <div class="spec-col">
+                <span class="spec-line">Сумма: <strong>{{ offer.sum }}</strong></span>
+                <span class="spec-line">Срок: <strong>{{ offer.term }}</strong></span>
+              </div>
+              <div class="spec-col">
+                <span class="spec-line">Ставка: <strong>{{ offer.rate }}</strong></span>
+                <span class="spec-line">Время ответа: <strong>{{ offer.responseTime }}</strong></span>
+              </div>
+            </div>
+
+            <router-link to="/credits/apply" class="best-offer-card__btn">
+              Получить кредит
+            </router-link>
           </div>
         </div>
 
-        <!-- Comparative Table of Consumer Loans -->
-        <h2 class="credits-page__section-subtitle">Сравнительная таблица потребительских кредитов</h2>
-        <div class="loans-table-card">
+        <!-- Comparative Catalog (Figma Frame 49 3-column cards) -->
+        <h2 class="credits-page__section-subtitle">
+          Сравнительная таблица потребительских кредитов во все банки в Казахстане
+        </h2>
+        <div class="catalog-grid">
           <div 
             v-for="loan in consumerLoans" 
             :key="loan.id" 
-            class="loan-row"
+            class="catalog-card"
           >
-            <div class="loan-row__header">
-              <h4 class="bank-title">{{ loan.bank }}</h4>
-              <span class="loan-name">{{ loan.title }}</span>
+            <div class="catalog-card__head">
+              <h4 class="catalog-card__bank">{{ loan.bank }}</h4>
+              <p class="catalog-card__title">{{ loan.title }}</p>
             </div>
-            <div class="loan-row__params">
-              <div><span>Мин. ставка:</span> <strong>{{ loan.minRate }}</strong></div>
-              <div><span>Срок:</span> <strong>{{ loan.term }}</strong></div>
-              <div><span>Валюта:</span> <strong>{{ loan.currency }}</strong></div>
-              <div><span>Залог:</span> <strong>{{ loan.collateral }}</strong></div>
-              <div><span>Макс. сумма:</span> <strong>{{ loan.maxSum }}</strong></div>
+            <div class="catalog-card__divider"></div>
+            <ul class="catalog-card__list">
+              <li>
+                <span class="dot"></span>
+                <span>Мин. ставка: <strong>{{ loan.minRate }}</strong></span>
+              </li>
+              <li>
+                <span class="dot"></span>
+                <span>Срок: <strong>{{ loan.term }}</strong></span>
+              </li>
+              <li>
+                <span class="dot"></span>
+                <span>Валюта: <strong>{{ loan.currency }}</strong></span>
+              </li>
+              <li>
+                <span class="dot"></span>
+                <span>Залог: <strong>{{ loan.collateral }}</strong></span>
+              </li>
+              <li>
+                <span class="dot"></span>
+                <span>Макс. сумма: <strong>{{ loan.maxSum }}</strong></span>
+              </li>
+            </ul>
+            <div class="catalog-card__action">
+              <router-link :to="`/credits/${loan.id}`" class="catalog-card__btn">
+                Получить кредит
+              </router-link>
             </div>
-            <router-link to="/credits/apply" class="loan-row__btn">Оформить</router-link>
           </div>
+        </div>
+
+        <!-- Pagination (Figma 1, 2, 3... 30) -->
+        <div class="pagination-container">
+          <div class="pagination">
+            <button class="page-num active">1</button>
+            <button class="page-num">2</button>
+            <button class="page-num">3</button>
+            <span class="page-dots">...</span>
+            <button class="page-num">30</button>
+          </div>
+          <span class="pagination-info">Кредитов 1—6 из 68</span>
         </div>
       </div>
     </main>
+    <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import Navbar from '@/components/Navbar.vue'
+import Footer from '@/components/Footer.vue'
 import { useBanksStore } from '@/stores/banks'
+import { getMainImage } from '@/utils/assets'
 
 const banksStore = useBanksStore()
 
 const filterCurrency = ref('KZT')
-const filterSum = ref(500000)
+const filterSum = ref('500 000')
 const filterWithoutCollateral = ref('yes')
 
 function applyFilter() {
@@ -107,9 +168,9 @@ const consumerLoans = ref([
   {
     id: 1,
     bank: 'Bank RBK',
-    title: '«Нужный кредит» под залог (без комиссии и без подтверждения дохода)',
+    title: '«Нужный кредит» под залог (без комиссии и с подтверждением дохода)',
     minRate: 'от 3%',
-    term: 'до 60 мес.',
+    term: 'до 120 мес.',
     currency: 'KZT',
     collateral: 'нет',
     maxSum: 'неогр.'
@@ -117,7 +178,7 @@ const consumerLoans = ref([
   {
     id: 2,
     bank: 'Банк ЦентрКредит',
-    title: '«Кредит наличными»',
+    title: '“Кредит наличными”',
     minRate: 'от 5% до 42%',
     term: 'до 60 мес.',
     currency: 'KZT',
@@ -143,24 +204,60 @@ const consumerLoans = ref([
     currency: 'KZT',
     collateral: 'нет',
     maxSum: '8 млн'
+  },
+  {
+    id: 5,
+    bank: 'Altyn Bank',
+    title: 'Заем под залог денег на сберегательном счете (без комиссий)',
+    minRate: 'от 3%',
+    term: 'до 60 мес.',
+    currency: 'KZT',
+    collateral: 'нет',
+    maxSum: 'неогр.'
+  },
+  {
+    id: 6,
+    bank: 'Сбербанк России',
+    title: 'Потребительский кредит без обеспечения',
+    minRate: 'от 8%',
+    term: 'до 60 мес.',
+    currency: 'KZT',
+    collateral: 'нет',
+    maxSum: '8 млн'
   }
 ])
 </script>
 
 <style lang="scss" scoped>
-.credits-page {
-  padding-bottom: 70px;
+.credits-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 
+  .main {
+    flex: 1;
+    padding-bottom: 70px;
+  }
+}
+
+.credits-page {
   &__title {
-    margin-bottom: 8px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin-bottom: 10px;
+
+    @media (max-width: 767px) {
+      font-size: 20px;
+    }
   }
 
   &__desc {
     font-size: 14px;
     line-height: 1.6;
-    color: rgba(0, 0, 0, 0.6);
-    margin-bottom: 28px;
-    max-width: 800px;
+    color: #828282;
+    margin-bottom: 24px;
+    max-width: 900px;
   }
 
   &__section-subtitle {
@@ -169,72 +266,71 @@ const consumerLoans = ref([
     color: #1e1e1e;
     margin-top: 40px;
     margin-bottom: 20px;
+
+    @media (max-width: 767px) {
+      font-size: 18px;
+    }
   }
 }
 
-.credit-filter-card {
-  background: #fef2e3;
-  border: 1px solid #ff8a16;
-  border-radius: 12px;
-  padding: 24px;
+/* Horizontal Filter Bar (Figma Frame 49 Group 254) */
+.credit-filter-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 16px 20px;
   margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 
-  @media (max-width: 576px) {
-    padding: 16px;
+  @media (max-width: 991px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
   }
 
-  .filter-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 20px;
-
-    @media (max-width: 768px) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-  }
-
-  .filter-field {
+  .filter-item {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 6px;
-    min-width: 0;
 
     label {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      color: #333333;
+      color: #828282;
     }
 
-    input, select {
-      width: 100%;
-      min-width: 0;
-      box-sizing: border-box;
-      padding: 10px 12px;
-      border: 1px solid #ff8a16;
-      border-radius: 6px;
-      background: #ffffff;
-      font-size: 14px;
-      font-family: inherit;
-
-      &:focus {
+    .select-wrap {
+      select, input {
+        width: 100%;
+        padding: 9px 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        font-size: 13.5px;
+        background: #ffffff;
         outline: none;
-        box-shadow: 0 0 0 2px rgba(255, 138, 22, 0.2);
+
+        &:focus {
+          border-color: #ff8a16;
+        }
       }
     }
   }
 
   .filter-submit-btn {
-    width: 100%;
     background: #ff8a16;
     color: #ffffff;
     border: none;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: 700;
-    border-radius: 6px;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
     cursor: pointer;
+    white-space: nowrap;
+    height: 38px;
     transition: background 0.2s;
 
     &:hover {
@@ -243,116 +339,59 @@ const consumerLoans = ref([
   }
 }
 
-.offers-grid {
+/* Best Offers (3 in row) */
+.best-offers-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
 
   @media (max-width: 991px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 576px) {
     grid-template-columns: 1fr;
   }
 }
 
-.offer-item {
-  background: #ffffff;
-  border: 1px solid #eeeeee;
+.best-offer-card {
   border-radius: 10px;
-  padding: 20px;
+  padding: 22px 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 220px;
 
-  .offer-name {
-    font-size: 16px;
-    font-weight: 800;
-    margin-bottom: 14px;
-  }
-
-  .offer-specs {
+  &__logo-wrap {
+    height: 40px;
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    font-size: 13px;
+    align-items: center;
     margin-bottom: 16px;
-
-    div {
-      display: flex;
-      justify-content: space-between;
-
-      span {
-        color: #777777;
-      }
-
-      strong {
-        color: #1e1e1e;
-      }
-    }
   }
 
-  .offer-btn {
-    display: block;
-    background: #ff8a16;
-    color: #ffffff;
-    text-align: center;
-    padding: 10px 0;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-  }
-}
-
-.loans-table-card {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.loan-row {
-  background: #ffffff;
-  border: 1px solid #eeeeee;
-  border-radius: 10px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-
-  &__header {
-    .bank-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: #ff8a16;
-      margin-bottom: 4px;
-    }
-
-    .loan-name {
-      font-size: 13px;
-      color: #555555;
-    }
+  &__logo-img {
+    max-height: 38px;
+    max-width: 150px;
+    object-fit: contain;
   }
 
-  &__params {
+  &__logo-text {
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  &__specs-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
-    font-size: 13px;
+    margin-bottom: 18px;
 
-    @media (max-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    div {
+    .spec-col {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 6px;
+    }
 
-      span {
-        color: #888888;
-      }
+    .spec-line {
+      font-size: 12.5px;
+      color: #4f4f4f;
 
       strong {
         color: #1e1e1e;
@@ -362,13 +401,153 @@ const consumerLoans = ref([
 
   &__btn {
     align-self: flex-start;
-    padding: 8px 24px;
-    background: #ff8a16;
-    color: #ffffff;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 600;
+    color: #ff8a16;
+    text-decoration: underline;
+
+    &:hover {
+      color: #e67508;
+    }
   }
+}
+
+/* Comparative Catalog Grid (3-column) */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 30px;
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.catalog-card {
+  background: rgba(235, 235, 235, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+
+  &__bank {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin: 0 0 6px 0;
+  }
+
+  &__title {
+    font-size: 12.5px;
+    color: #666666;
+    margin: 0;
+    line-height: 1.35;
+    min-height: 34px;
+  }
+
+  &__divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 14px 0;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      color: #4f4f4f;
+
+      .dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #828282;
+        flex-shrink: 0;
+      }
+
+      strong {
+        color: #1e1e1e;
+      }
+    }
+  }
+
+  &__action {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__btn {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #ff8a16;
+    text-decoration: underline;
+
+    &:hover {
+      color: #e67508;
+    }
+  }
+}
+
+/* Pagination */
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid #f0f0f0;
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  .page-num {
+    width: 31px;
+    height: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #1e1e1e;
+    transition: all 0.2s;
+
+    &.active, &:hover {
+      background: #ff8a16;
+      border-color: #ff8a16;
+      color: #ffffff;
+    }
+  }
+
+  .page-dots {
+    color: #828282;
+    padding: 0 4px;
+  }
+}
+
+.pagination-info {
+  font-size: 12px;
+  color: #828282;
 }
 </style>

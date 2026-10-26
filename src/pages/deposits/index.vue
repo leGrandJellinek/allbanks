@@ -1,280 +1,335 @@
 <template>
-  <div>
+  <div class="deposits-page-wrapper">
     <Navbar />
     <main class="main deposits-page">
       <div class="container">
         <h1 class="deposits-page__title section-title">Вклады для физических лиц</h1>
         <p class="deposits-page__desc">
-          Подберите самый выгодный банковский депозит в тенге или инвалюте с максимальной ставкой вознаграждения.
+          Подберите самый выгодный банковский депозит в тенге или инвалюте с максимальной ставкой вознаграждения в банках Казахстана.
         </p>
 
-        <!-- Deposits Filter -->
-        <div class="deposit-filter-card">
-          <div class="filter-grid">
-            <div class="filter-field">
-              <label>Валюта</label>
+        <!-- Filter bar (Figma Frame 53) -->
+        <div class="deposit-filter-bar">
+          <div class="filter-item">
+            <label>Валюта</label>
+            <div class="select-wrap">
               <select v-model="depositCurrency">
                 <option value="KZT">KZT (Тенге)</option>
                 <option value="USD">USD (Доллар)</option>
-              </select>
-            </div>
-            <div class="filter-field">
-              <label>Сумма вклада (₸)</label>
-              <input v-model="depositSum" type="number" placeholder="100000" />
-            </div>
-            <div class="filter-field">
-              <label>Срок (мес.)</label>
-              <select v-model="depositTerm">
-                <option value="6">6 месяцев</option>
-                <option value="12">12 месяцев</option>
-                <option value="24">24 месяца</option>
-              </select>
-            </div>
-            <div class="filter-field">
-              <label>Пополнение</label>
-              <select v-model="allowRefill">
-                <option value="yes">С пополнением</option>
-                <option value="no">Без пополнения</option>
+                <option value="EUR">EUR (Евро)</option>
               </select>
             </div>
           </div>
-          <button class="filter-submit-btn" @click="searchDeposits">Найти депозит</button>
+          <div class="filter-item">
+            <label>Сумма вклада</label>
+            <div class="select-wrap">
+              <input v-model="depositSum" type="text" placeholder="100 000 ₸" />
+            </div>
+          </div>
+          <div class="filter-item">
+            <label>Срок вклада</label>
+            <div class="select-wrap">
+              <select v-model="depositTerm">
+                <option value="6">6 месяцев</option>
+                <option value="12">12 месяцев</option>
+                <option value="24">2 года</option>
+                <option value="36">3 года</option>
+              </select>
+            </div>
+          </div>
+          <button class="filter-submit-btn" @click="searchDeposits">
+            Найти вклад
+          </button>
         </div>
 
-        <!-- Deposits Grid -->
+        <!-- 3-Column Deposits Grid (Figma Frame 53) -->
         <div class="deposits-grid">
           <div v-for="d in depositList" :key="d.id" class="deposit-card">
             <div class="deposit-card__head">
               <h3 class="bank-name">{{ d.bank }}</h3>
-              <span class="deposit-title">{{ d.title }}</span>
+              <p class="deposit-title">{{ d.title }}</p>
             </div>
-            <div class="deposit-card__rate">
-              <span class="rate-val">{{ d.rate }}</span>
-              <span class="rate-label">годовая ставка</span>
+            <div class="deposit-card__divider"></div>
+            <ul class="deposit-card__list">
+              <li>
+                <span class="dot"></span>
+                <span>Ставка: <strong>{{ d.rate }}</strong></span>
+              </li>
+              <li>
+                <span class="dot"></span>
+                <span>Валюта: <strong>{{ d.currency }}</strong></span>
+              </li>
+              <li>
+                <span class="dot"></span>
+                <span>Мин. сумма: <strong>{{ d.minSum }}</strong></span>
+              </li>
+              <li>
+                <span class="dot"></span>
+                <span>Срок вклада: <strong>{{ d.term }}</strong></span>
+              </li>
+            </ul>
+            <div class="deposit-card__footer">
+              <router-link :to="`/deposits/${d.id}`" class="deposit-btn">
+                Узнать больше
+              </router-link>
             </div>
-            <div class="deposit-card__params">
-              <div><span>Мин. сумма:</span> <strong>{{ d.minSum }}</strong></div>
-              <div><span>Срок вклада:</span> <strong>{{ d.term }}</strong></div>
-              <div><span>Валюта:</span> <strong>{{ d.currency }}</strong></div>
-              <div><span>Выплата:</span> <strong>{{ d.payout }}</strong></div>
-            </div>
-            <router-link :to="`/deposits/${d.id}`" class="deposit-btn">
-              Узнать больше
-            </router-link>
           </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container">
+          <div class="pagination">
+            <button class="page-num active">1</button>
+            <button class="page-num">2</button>
+            <button class="page-num">3</button>
+            <span class="page-dots">...</span>
+            <button class="page-num">30</button>
+          </div>
+          <span class="pagination-info">Вкладов 1—6 из 32</span>
         </div>
       </div>
     </main>
+    <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import Navbar from '@/components/Navbar.vue'
+import Footer from '@/components/Footer.vue'
 
 const depositCurrency = ref('KZT')
-const depositSum = ref(100000)
-const depositTerm = ref('12')
-const allowRefill = ref('yes')
+const depositSum = ref('100 000')
+const depositTerm = ref('24')
 
 function searchDeposits() {
-  alert(`Поиск депозитов на сумму ${depositSum.value} ${depositCurrency.value}`)
+  alert(`Поиск депозитов на сумму ${depositSum.value} ₸`)
 }
 
 const depositList = ref([
   {
     id: 1,
     bank: 'Altyn Bank',
-    title: 'Вклад «Управляй Онлайн»',
-    rate: '14.5%',
+    title: '«Резерв»',
+    rate: '11.2%',
     minSum: 'от 10 000 ₸',
-    term: '12 месяцев',
-    currency: 'KZT',
-    payout: 'Ежемесячно'
+    term: '2 года',
+    currency: 'KZT'
   },
   {
     id: 2,
-    bank: 'Bank RBK',
-    title: 'Вклад «Safe Deposit»',
-    rate: '13.8%',
-    minSum: 'от 15 000 ₸',
-    term: '24 месяца',
-    currency: 'KZT',
-    payout: 'В конце срока'
+    bank: 'Altyn Bank',
+    title: '«Заем под залог денег на сберегательном счете (без комиссий)»',
+    rate: '11.2%',
+    minSum: 'от 10 000 ₸',
+    term: '2 года',
+    currency: 'KZT'
   },
   {
     id: 3,
-    bank: 'Halyk Bank',
-    title: 'Вклад «Максимальный»',
-    rate: '14.2%',
-    minSum: 'от 50 000 ₸',
-    term: '12 месяцев',
-    currency: 'KZT',
-    payout: 'Ежемесячно'
+    bank: 'Bank RBK',
+    program: 'Вклад «Safe Deposit»',
+    title: '«Safe Deposit» с капитализацией',
+    rate: '14.0%',
+    minSum: 'от 15 000 ₸',
+    term: '1 год',
+    currency: 'KZT'
   },
   {
     id: 4,
+    bank: 'Halyk Bank',
+    title: '«Максимальный доход»',
+    rate: '14.2%',
+    minSum: 'от 50 000 ₸',
+    term: '12 месяцев',
+    currency: 'KZT'
+  },
+  {
+    id: 5,
     bank: 'ForteBank',
     title: 'Депозит «Forte Флекс»',
     rate: '13.5%',
     minSum: 'от 20 000 ₸',
     term: '6 месяцев',
-    currency: 'KZT',
-    payout: 'Капитализация'
+    currency: 'KZT'
+  },
+  {
+    id: 6,
+    bank: 'Jýsan Bank',
+    title: '«Jýsan Выгодный»',
+    rate: '13.8%',
+    minSum: 'от 10 000 ₸',
+    term: '2 года',
+    currency: 'KZT'
   }
 ])
 </script>
 
 <style lang="scss" scoped>
-.deposits-page {
-  padding-bottom: 70px;
+.deposits-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 
+  .main {
+    flex: 1;
+    padding-bottom: 70px;
+  }
+}
+
+.deposits-page {
   &__title {
-    margin-bottom: 8px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin-bottom: 10px;
+
+    @media (max-width: 767px) {
+      font-size: 20px;
+    }
   }
 
   &__desc {
     font-size: 14px;
-    color: #666666;
+    line-height: 1.6;
+    color: #828282;
     margin-bottom: 24px;
+    max-width: 900px;
   }
 }
 
-.deposit-filter-card {
-  background: #e2edfe;
-  border: 1px solid #7ea8f8;
-  border-radius: 12px;
-  padding: 24px;
+/* Horizontal Filter Bar */
+.deposit-filter-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 16px 20px;
   margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 
-  @media (max-width: 576px) {
-    padding: 16px;
+  @media (max-width: 991px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
   }
 
-  .filter-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 16px;
-
-    @media (max-width: 768px) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-  }
-
-  .filter-field {
+  .filter-item {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 6px;
-    min-width: 0;
 
     label {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      color: #1e3a8a;
+      color: #828282;
     }
 
-    input, select {
-      width: 100%;
-      min-width: 0;
-      box-sizing: border-box;
-      padding: 10px 12px;
-      border: 1px solid #7ea8f8;
-      border-radius: 6px;
-      background: #ffffff;
-      font-size: 14px;
-      font-family: inherit;
-
-      &:focus {
+    .select-wrap {
+      select, input {
+        width: 100%;
+        padding: 9px 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        font-size: 13.5px;
+        background: #ffffff;
         outline: none;
-        box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+
+        &:focus {
+          border-color: #ff8a16;
+        }
       }
     }
   }
 
   .filter-submit-btn {
-    width: 100%;
     background: #ff8a16;
     color: #ffffff;
     border: none;
-    padding: 13px;
-    font-size: 16px;
-    font-weight: 700;
-    border-radius: 6px;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
     cursor: pointer;
+    white-space: nowrap;
+    height: 38px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #e67508;
+    }
   }
 }
 
+/* 3-column Grid (Frame 53) */
 .deposits-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 30px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 991px) {
     grid-template-columns: 1fr;
   }
 }
 
 .deposit-card {
-  background: #ffffff;
-  border: 1px solid #eeeeee;
+  background: rgba(235, 235, 235, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 12px;
-  padding: 24px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 200px;
 
   &__head {
-    margin-bottom: 14px;
-
     .bank-name {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
-      color: #ff8a16;
-      margin-bottom: 4px;
+      color: #1e1e1e;
+      margin: 0 0 6px 0;
     }
 
     .deposit-title {
-      font-size: 14px;
-      color: #555555;
-    }
-  }
-
-  &__rate {
-    background: #fdf6ec;
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-
-    .rate-val {
-      font-size: 26px;
-      font-weight: 800;
-      color: #ff8a16;
-    }
-
-    .rate-label {
-      font-size: 12px;
+      font-size: 12.5px;
       color: #666666;
+      margin: 0;
+      line-height: 1.35;
+      min-height: 34px;
     }
   }
 
-  &__params {
+  &__divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 14px 0;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    font-size: 13px;
-    margin-bottom: 20px;
+    gap: 7px;
 
-    div {
+    li {
       display: flex;
-      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      color: #4f4f4f;
 
-      span {
-        color: #777777;
+      .dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #828282;
+        flex-shrink: 0;
       }
 
       strong {
@@ -283,16 +338,70 @@ const depositList = ref([
     }
   }
 
-  .deposit-btn {
-    display: block;
-    background: #ff8a16;
-    color: #ffffff;
-    text-align: center;
-    padding: 11px 0;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
   }
+
+  .deposit-btn {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #ff8a16;
+    text-decoration: underline;
+
+    &:hover {
+      color: #e67508;
+    }
+  }
+}
+
+/* Pagination */
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid #f0f0f0;
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  .page-num {
+    width: 31px;
+    height: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #1e1e1e;
+    transition: all 0.2s;
+
+    &.active, &:hover {
+      background: #ff8a16;
+      border-color: #ff8a16;
+      color: #ffffff;
+    }
+  }
+
+  .page-dots {
+    color: #828282;
+    padding: 0 4px;
+  }
+}
+
+.pagination-info {
+  font-size: 12px;
+  color: #828282;
 }
 </style>

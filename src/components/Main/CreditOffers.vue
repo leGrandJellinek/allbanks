@@ -8,7 +8,63 @@
         </router-link>
       </div>
 
-      <div class="main__credits-grid">
+      <!-- Desktop View: 3 cards matching Figma Desktop Frame 1 (Sber, Kaspi, RBK) -->
+      <div class="main__credits-grid desktop-grid">
+        <div 
+          v-for="offer in desktopOffers" 
+          :key="offer.id" 
+          class="credit-card desktop-card"
+          :style="{ backgroundColor: offer.bgcolor || '#ffffff' }"
+        >
+          <div class="credit-card__header">
+            <img 
+              v-if="offer.logoImg" 
+              :src="getMainImage(offer.logoImg)" 
+              :alt="offer.name" 
+              class="credit-card__brand-logo" 
+            />
+            <span 
+              v-else 
+              class="credit-card__logo" 
+              :style="{ color: offer.logoColor || '#FF8A16' }"
+            >
+              {{ offer.logoText || offer.name }}
+            </span>
+          </div>
+
+          <div class="credit-card__body-desktop">
+            <div class="credit-card__specs-col">
+              <div class="spec-row">
+                <span class="label">Сумма:</span>
+                <strong class="value">{{ offer.sum }}</strong>
+              </div>
+              <div class="spec-row">
+                <span class="label">Срок:</span>
+                <strong class="value">{{ offer.term }}</strong>
+              </div>
+            </div>
+            <div class="credit-card__specs-col">
+              <div class="spec-row">
+                <span class="label">Ставка:</span>
+                <strong class="value">{{ offer.rate }}</strong>
+              </div>
+              <div class="spec-row">
+                <span class="label">Время ответа:</span>
+                <strong class="value">{{ offer.responseTime }}</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="credit-card__footer">
+            <router-link to="/credits/apply" class="credit-card__btn">
+              Получить кредит
+            </router-link>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile View: 4 cards matching Figma Mobile Frame 230:622 -->
+      <div class="main__credits-grid mobile-grid">
         <div 
           v-for="offer in banksStore.creditOffers" 
           :key="offer.id" 
@@ -67,9 +123,14 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useBanksStore } from '@/stores/banks'
+import { getMainImage } from '@/utils/assets'
 
 const banksStore = useBanksStore()
+
+// Desktop Frame 1 in Figma has 3 cards: Sberbank, Kaspi, RBK
+const desktopOffers = computed(() => banksStore.creditOffers.slice(0, 3))
 </script>
 
 <style lang="scss" scoped>
@@ -111,27 +172,38 @@ const banksStore = useBanksStore()
   }
 
   &-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    &.desktop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
 
-    @media (max-width: 991px) {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      @media (max-width: 991px) {
+        display: none;
+      }
     }
 
-    @media (max-width: 576px) {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+    &.mobile-grid {
+      display: none;
+
+      @media (max-width: 991px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      @media (max-width: 576px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
     }
   }
 }
 
 .credit-card {
   background: #fdfdfd;
-  border: 1px solid #eeeeee;
-  border-radius: 12px;
-  padding: 20px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 24px 22px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -143,10 +215,16 @@ const banksStore = useBanksStore()
   }
 
   &__header {
-    margin-bottom: 16px;
-    min-height: 36px;
+    margin-bottom: 18px;
+    min-height: 42px;
     display: flex;
     align-items: center;
+  }
+
+  &__brand-logo {
+    max-height: 40px;
+    max-width: 170px;
+    object-fit: contain;
   }
 
   &__sber-logo {
@@ -162,6 +240,40 @@ const banksStore = useBanksStore()
     text-transform: uppercase;
   }
 
+  // Desktop 2-column specs
+  &__body-desktop {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 22px;
+
+    .credit-card__specs-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+
+      .spec-row {
+        display: flex;
+        gap: 6px;
+        align-items: baseline;
+        font-size: 14px;
+        color: #1e1e1e;
+
+        .label {
+          color: rgba(0, 0, 0, 0.55);
+          font-weight: 400;
+        }
+
+        .value {
+          font-weight: 600;
+          color: #000000;
+        }
+      }
+    }
+  }
+
+  // Mobile column specs
   &__body {
     display: flex;
     flex-direction: column;
@@ -173,7 +285,7 @@ const banksStore = useBanksStore()
     display: flex;
     justify-content: space-between;
     font-size: 13px;
-    border-bottom: 1px dashed #f0f0f0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
     padding-bottom: 4px;
 
     .label {
@@ -191,15 +303,14 @@ const banksStore = useBanksStore()
   }
 
   &__btn {
-    display: block;
-    width: 100%;
+    display: inline-block;
     background: #ff8a16;
     color: #ffffff;
     text-align: center;
-    padding: 11px 0;
+    padding: 11px 24px;
     border-radius: 6px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
     border: 1px solid #ff8a16;
     transition: all 0.2s ease;
@@ -207,6 +318,11 @@ const banksStore = useBanksStore()
     &:hover {
       background: #fef2e3;
       color: #ff8a16;
+    }
+
+    @media (max-width: 991px) {
+      display: block;
+      width: 100%;
     }
   }
 }
