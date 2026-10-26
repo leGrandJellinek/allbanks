@@ -23,8 +23,8 @@
         </div>
       </div>
 
-      <!-- City Selector Dropdown (Exact 1:1 match from Figma components) -->
-      <div class="main__currency-filter">
+      <!-- City Selector Dropdown (Shown for exchangers tab matching Figma) -->
+      <div v-if="banksStore.activeCurrencyTab === 'exchangers'" class="main__currency-filter">
         <div class="city-select">
           <button 
             class="city-select__button" 
@@ -120,14 +120,14 @@ const banksStore = useBanksStore()
     border: none;
     font-size: 16px;
     font-weight: 500;
-    color: rgba(0, 0, 0, 0.5);
+    color: #8E8E93;
     padding-bottom: 8px;
     cursor: pointer;
     position: relative;
     transition: color 0.2s ease;
 
     &.active {
-      color: #000000;
+      color: #ff8a16;
       font-weight: 700;
 
       &::after {

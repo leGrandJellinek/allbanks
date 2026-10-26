@@ -16,7 +16,15 @@
           :style="{ backgroundColor: offer.bgcolor || '#ffffff' }"
         >
           <div class="credit-card__header">
+            <div v-if="offer.name === 'Сбербанк'" class="credit-card__sber-logo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="11" stroke="#21A038" stroke-width="2"/>
+                <path d="M7 12.5L10.5 16L17 8.5" stroke="#21A038" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="credit-card__logo" style="color: #21A038;">СБЕР БАНК</span>
+            </div>
             <span 
+              v-else
               class="credit-card__logo" 
               :style="{ color: offer.logoColor || '#FF8A16' }"
             >
@@ -93,6 +101,10 @@ const banksStore = useBanksStore()
     text-decoration: none;
     font-weight: 500;
 
+    @media (max-width: 576px) {
+      display: none;
+    }
+
     &:hover {
       text-decoration: underline;
     }
@@ -135,6 +147,12 @@ const banksStore = useBanksStore()
     min-height: 36px;
     display: flex;
     align-items: center;
+  }
+
+  &__sber-logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 
   &__logo {

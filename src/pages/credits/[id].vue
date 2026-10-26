@@ -65,6 +65,9 @@
               </ol>
             </div>
           </div>
+
+          <!-- Comments and reviews section matching Figma Artboards 10 & 11 -->
+          <CommentsBlock />
         </div>
       </div>
     </main>
@@ -73,6 +76,7 @@
 
 <script setup lang="ts">
 import Navbar from '@/components/Navbar.vue'
+import CommentsBlock from '@/components/CommentsBlock.vue'
 </script>
 
 <style lang="scss" scoped>

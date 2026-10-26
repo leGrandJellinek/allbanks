@@ -44,6 +44,9 @@
           <div class="deposit-detail__action">
             <a href="tel:77075789999" class="open-deposit-btn">Открыть вклад в отделении</a>
           </div>
+
+          <!-- Comments and reviews section matching Figma Artboards 10 & 11 -->
+          <CommentsBlock />
         </div>
       </div>
     </main>
@@ -52,6 +55,7 @@
 
 <script setup lang="ts">
 import Navbar from '@/components/Navbar.vue'
+import CommentsBlock from '@/components/CommentsBlock.vue'
 </script>
 
 <style lang="scss" scoped>

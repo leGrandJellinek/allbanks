@@ -160,6 +160,29 @@
           </div>
         </div>
       </div>
+
+      <!-- Login Modal Dialog -->
+      <Teleport to="body">
+        <div v-if="isLoginModalOpen" class="login-modal-overlay" @click.self="closeLoginModal">
+          <div class="login-modal">
+            <button class="login-modal__close" @click="closeLoginModal" aria-label="Закрыть">✕</button>
+            <div class="login-modal__header">
+              <h3 class="login-modal__title">Вход в AllBanks</h3>
+              <p class="login-modal__desc">Введите номер телефона для входа в личный кабинет</p>
+            </div>
+            <form class="login-modal__form" @submit.prevent="submitLogin">
+              <div class="form-group">
+                <label>Номер телефона</label>
+                <input type="tel" v-model="loginPhone" placeholder="+7 (7XX) XXX-XX-XX" required />
+              </div>
+              <button type="submit" class="login-modal__btn">Получить код по SMS</button>
+            </form>
+            <div class="login-modal__footer">
+              <p>Нет аккаунта? <a href="#" @click.prevent="registerAlert">Зарегистрироваться</a></p>
+            </div>
+          </div>
+        </div>
+      </Teleport>
     </nav>
   </div>
 </template>
@@ -171,6 +194,8 @@ import { useBanksStore } from '@/stores/banks'
 const banksStore = useBanksStore()
 const isMenuOpen = ref(false)
 const activeSubmenu = ref<'exchangers' | 'credits' | null>(null)
+const isLoginModalOpen = ref(false)
+const loginPhone = ref('')
 
 function openMenu() {
   isMenuOpen.value = true
@@ -195,7 +220,22 @@ function selectCityMenu(city: string) {
 }
 
 function openLoginModal() {
-  alert('Форма входа в личный кабинет AllBanks')
+  closeMenu()
+  isLoginModalOpen.value = true
+}
+
+function closeLoginModal() {
+  isLoginModalOpen.value = false
+  loginPhone.value = ''
+}
+
+function submitLogin() {
+  alert(`Код подтверждения отправлен на номер ${loginPhone.value || '+7 (707) 578 99 99'}`)
+  closeLoginModal()
+}
+
+function registerAlert() {
+  alert('Регистрация доступна для клиентов банков-партнеров')
 }
 </script>
 
@@ -404,6 +444,118 @@ function openLoginModal() {
   &__arrow {
     color: #a0a0a0;
     font-size: 18px;
+  }
+}
+
+.login-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.login-modal {
+  position: relative;
+  background: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 380px;
+  padding: 32px 24px 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+  &__close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #999999;
+    cursor: pointer;
+    padding: 6px;
+
+    &:hover {
+      color: #1e1e1e;
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin-bottom: 6px;
+  }
+
+  &__desc {
+    font-size: 13px;
+    color: #777777;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #555555;
+      }
+
+      input {
+        padding: 12px 14px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 15px;
+        outline: none;
+        transition: border-color 0.2s;
+
+        &:focus {
+          border-color: #ff8a16;
+        }
+      }
+    }
+  }
+
+  &__btn {
+    background: #ff8a16;
+    color: #ffffff;
+    border: none;
+    padding: 13px 0;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #e67508;
+    }
+  }
+
+  &__footer {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 13px;
+    color: #777777;
+
+    a {
+      color: #ff8a16;
+      font-weight: 600;
+      text-decoration: underline;
+    }
   }
 }
 </style>

@@ -70,7 +70,7 @@ export const useBanksStore = defineStore('banks', {
   state: () => ({
     selectedCity: 'Алматы',
     isCityDropdownOpen: false,
-    activeCurrencyTab: 'exchangers' as 'exchangers' | 'banks',
+    activeCurrencyTab: 'banks' as 'exchangers' | 'banks',
     cities: [
       'Алматы',
       'Караганда',
@@ -159,7 +159,7 @@ export const useBanksStore = defineStore('banks', {
       {
         id: 3,
         currencyName: 'Рубль',
-        currencySymbol: 'RUB',
+        currencySymbol: 'RUR',
         img: 'ruble.svg',
         symbol: '₽',
         color: '#DE251D',
