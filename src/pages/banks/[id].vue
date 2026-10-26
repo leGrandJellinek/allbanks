@@ -87,7 +87,6 @@
         <CommentsBlock />
       </div>
     </main>
-    <Footer />
   </div>
 </template>
 
@@ -95,7 +94,6 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import Navbar from '@/components/Navbar.vue'
-import Footer from '@/components/Footer.vue'
 import CommentsBlock from '@/components/CommentsBlock.vue'
 import { useBanksStore } from '@/stores/banks'
 import { getMainImage } from '@/utils/assets'

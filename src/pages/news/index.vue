@@ -55,14 +55,12 @@
         </div>
       </div>
     </main>
-    <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import Navbar from '@/components/Navbar.vue'
-import Footer from '@/components/Footer.vue'
 
 const categories = [
   'Все категории',
