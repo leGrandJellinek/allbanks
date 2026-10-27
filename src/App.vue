@@ -1,7 +1,8 @@
-<template lang="pug">
-.wrapper
-  router-view
-  Footer
+<template>
+  <div class="wrapper">
+    <router-view />
+    <Footer />
+  </div>
 </template>
 
 <script setup lang="ts">

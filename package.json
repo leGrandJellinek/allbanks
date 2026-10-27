@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "pinia": "^2.3.1",
-    "pug": "^3.0.3",
     "swiper": "^11.2.4",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
@@ -18,7 +17,6 @@
   "devDependencies": {
     "@types/node": "^22.13.1",
     "@vitejs/plugin-vue": "^6.0.10",
-    "rolldown": "^1.2.15",
     "sass": "^1.85.0",
     "typescript": "^5.7.3",
     "unplugin-vue-router": "^0.11.2",

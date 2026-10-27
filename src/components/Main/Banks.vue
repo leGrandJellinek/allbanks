@@ -1,10 +1,11 @@
-<template lang="pug">
-.main__banks-block
-  BanksItem(
-    v-for="item in banksStore.banks"
-    :key="item.id"
-    :item="item"
-  )
+<template>
+  <div class="main__banks-block">
+    <BanksItem
+      v-for="item in banksStore.banks"
+      :key="item.id"
+      :item="item"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
