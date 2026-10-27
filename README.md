@@ -14,9 +14,10 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Vue-3.5-42b883?style=flat-square&logo=vue.js&logoColor=white" alt="Vue 3" />
+  <img src="https://img.shields.io/badge/Vue_Router-5.4-3eaf7c?style=flat-square&logo=vue.js&logoColor=white" alt="Vue Router 5" />
   <img src="https://img.shields.io/badge/Vite-8.3-646cff?style=flat-square&logo=vite&logoColor=white" alt="Vite 8" />
   <img src="https://img.shields.io/badge/TypeScript-5.7-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Pinia-2.3-ffd859?style=flat-square&logo=pinia&logoColor=black" alt="Pinia" />
+  <img src="https://img.shields.io/badge/Pinia-3.0-ffd859?style=flat-square&logo=pinia&logoColor=black" alt="Pinia" />
   <img src="https://img.shields.io/badge/Figma-100%25_Pixel_Perfect-F24E1E?style=flat-square&logo=figma&logoColor=white" alt="Pixel Perfect" />
   <img src="https://img.shields.io/badge/Deploy-GitHub_Pages-222222?style=flat-square&logo=github&logoColor=white" alt="GitHub Pages" />
 </p>
@@ -31,7 +32,7 @@
 - 🎯 **100% Pixel-to-Pixel верстка** по Figma (Desktop & Mobile viewports).
 - 🧱 **БЭМ-методология** (`block__element--modifier`) и чистая компонентная декомпозиция.
 - 📱 **Mobile-First адаптивность** без компромиссов в функционале.
-- ⚡ **Типизированный роутинг** на базе `unplugin-vue-router` с динамическими страницами `[id].vue`.
+- ⚡ **Типизированный роутинг** на базе нативной файловой маршрутизации `vue-router/vite` с динамическими страницами `[id].vue`.
 - 🌐 **Глобальный City Picker**: синхронизация выбранного города (Алматы, Астана, Шымкент и др.) по всему приложению через Pinia.
 - 🎨 **Фирменная дизайн-система**: шрифты Gotham Pro и Gilroy, аккуратная типографика и цветовая палитра.
 - 🛡️ **Полная типизация TypeScript**: строгая проверка `vue-tsc` на этапе сборки.
@@ -45,8 +46,8 @@
 | **Frontend Framework** | [Vue 3](https://vuejs.org/) (Composition API, `<script setup lang="ts">`, чистый HTML-синтаксис без Pug) |
 | **Сборщик и бандлер** | [Vite 8](https://vite.dev/) (со встроенным движком Rolldown) |
 | **Язык** | [TypeScript 5](https://www.typescriptlang.org/) |
-| **Стейт-менеджмент** | [Pinia 2](https://pinia.vuejs.org/) |
-| **Маршрутизация** | [Vue Router 4](https://router.vuejs.org/) + [unplugin-vue-router](https://github.com/posva/unplugin-vue-router) |
+| **Стейт-менеджмент** | [Pinia 3](https://pinia.vuejs.org/) |
+| **Маршрутизация** | [Vue Router 5](https://router.vuejs.org/) (со встроенным нативным плагином `vue-router/vite` без отдельного `unplugin-vue-router`) |
 | **Стили и препроцессоры** | SCSS / Sass, методология БЭМ, адаптивная сетка |
 | **Слайдеры и UI** | [Swiper 11](https://swiperjs.com/) |
 | **Фавиконы и ассеты** | Мультиразмерный `.ico`, PNG (16x16, 32x32), Retina `apple-touch-icon` (180x180) |
@@ -142,7 +143,7 @@ allbanks/
 │   │   ├── CommentsBlock.vue     # Блок комментариев и отзывов
 │   │   ├── Footer.vue            # Глобальный футер сайта
 │   │   └── Navbar.vue            # Адаптивное навигационное меню
-│   ├── pages/                    # Файловая маршрутизация (unplugin-vue-router)
+│   ├── pages/                    # Файловая маршрутизация (нативный vue-router 5)
 │   │   ├── banks/                # /banks, /banks/:id
 │   │   ├── credits/              # /credits, /credits/cash, /credits/mortgage, ...
 │   │   ├── deposits/             # /deposits, /deposits/:id
