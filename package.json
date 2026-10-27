@@ -17,11 +17,12 @@
   },
   "devDependencies": {
     "@types/node": "^22.13.1",
-    "@vitejs/plugin-vue": "^5.2.1",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "rolldown": "^1.2.15",
     "sass": "^1.85.0",
     "typescript": "^5.7.3",
     "unplugin-vue-router": "^0.11.2",
-    "vite": "^6.1.0",
+    "vite": "^8.3.5",
     "vue-tsc": "^2.2.0"
   }
 }

@@ -14,7 +14,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Vue-3.5-42b883?style=flat-square&logo=vue.js&logoColor=white" alt="Vue 3" />
-  <img src="https://img.shields.io/badge/Vite-6.1-646cff?style=flat-square&logo=vite&logoColor=white" alt="Vite 6" />
+  <img src="https://img.shields.io/badge/Vite-8.3_(Rolldown)-646cff?style=flat-square&logo=vite&logoColor=white" alt="Vite 8 (Rolldown)" />
+  <img src="https://img.shields.io/badge/Rolldown-1.2-ff6b4a?style=flat-square&logo=rust&logoColor=white" alt="Rolldown" />
   <img src="https://img.shields.io/badge/TypeScript-5.7-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Pinia-2.3-ffd859?style=flat-square&logo=pinia&logoColor=black" alt="Pinia" />
   <img src="https://img.shields.io/badge/Figma-100%25_Pixel_Perfect-F24E1E?style=flat-square&logo=figma&logoColor=white" alt="Pixel Perfect" />
@@ -43,7 +44,7 @@
 | Категория | Технологии |
 |---|---|
 | **Frontend Framework** | [Vue 3](https://vuejs.org/) (Composition API, `<script setup lang="ts">`) |
-| **Сборщик** | [Vite 6](https://vitejs.dev/) (мгновенный HMR, оптимизированный production-билд) |
+| **Сборщик и бандлер** | [Vite 8](https://vite.dev/) (на базе сверхбыстрого бандлера [Rolldown](https://rolldown.rs/) на Rust) + [Rolldown 1.2](https://rolldown.rs/) |
 | **Язык** | [TypeScript 5](https://www.typescriptlang.org/) |
 | **Стейт-менеджмент** | [Pinia 2](https://pinia.vuejs.org/) |
 | **Маршрутизация** | [Vue Router 4](https://router.vuejs.org/) + [unplugin-vue-router](https://github.com/posva/unplugin-vue-router) |
