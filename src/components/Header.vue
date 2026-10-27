@@ -1,7 +1,7 @@
 <template>
   <header class="header">
+    <Navbar />
     <div class="header__container">
-      <Navbar />
       <div class="header__content">
         <div class="header__content-block">
           <h1 class="header__content-title">

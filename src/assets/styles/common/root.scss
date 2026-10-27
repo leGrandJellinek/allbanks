@@ -15,7 +15,10 @@ body {
     font-weight: 400;
 }
 html, body {
-    overflow-x: hidden
+    overflow-x: hidden;
+}
+html {
+    scrollbar-gutter: stable;
 }
 .container {
     @include container();
