@@ -2,48 +2,55 @@
   <div class="nbk-page-wrapper">
     <Navbar />
     <main class="main nbk-page">
-      <div class="container">
-        <h1 class="nbk-page__title section-title">
-          Курсы валют Национального Банка Казахстана на 16.02.2022
+      <div class="container nbk-page__container">
+        <!-- Main page title (1:1 from Figma Desktop Frame 48 & Mobile Frame 263:671) -->
+        <h1 class="nbk-page__title">
+          Курсы валют Национального<br class="nbk-page__br-mobile" /> Банка Казахстана на 16.02.2022
         </h1>
-        <p class="nbk-page__subtitle">
-          Официальные расчетные курсы иностранных валют к казахстанскому тенге, установленные Национальным Банком Республики Казахстан.
-        </p>
 
-        <div class="nbk-card">
-          <div class="nbk-table">
-            <div class="nbk-table__row header">
-              <span class="col name">Название валюта</span>
-              <span class="col code">Код валюты</span>
-              <span class="col rate">Курс</span>
-              <span class="col movement">Движение</span>
+        <!-- Table Container (741px on Desktop, 100% on Mobile per Figma) -->
+        <div class="nbk-page__table">
+          <!-- Table Header -->
+          <div class="nbk-page__table-header">
+            <span class="nbk-page__col nbk-page__col--name">Название валюты</span>
+            <span class="nbk-page__col nbk-page__col--code">Код валюты</span>
+            <span class="nbk-page__col nbk-page__col--rate">Курс</span>
+            <span class="nbk-page__col nbk-page__col--movement">Движение</span>
+          </div>
+
+          <!-- Table Rows -->
+          <div 
+            v-for="item in nbkList" 
+            :key="item.code" 
+            class="nbk-page__table-row"
+          >
+            <div class="nbk-page__col nbk-page__col--name">
+              <span class="nbk-page__currency-name">{{ item.name }}</span>
             </div>
-
-            <div 
-              v-for="item in nbkList" 
-              :key="item.code" 
-              class="nbk-table__row"
-            >
-              <div class="col name">
-                <span class="curr-icon">$</span>
-                <span class="curr-title">{{ item.name }}</span>
-              </div>
-              <span class="col code">{{ item.code }}</span>
-              <span class="col rate">{{ item.rate }} ₸</span>
-              <div class="col movement">
-                <div class="movement-pill" :class="item.trend">
-                  <span class="arrow">{{ item.trend === 'up' ? '▲' : '▼' }}</span>
-                  <span class="diff">{{ item.diff }}</span>
-                </div>
+            <div class="nbk-page__col nbk-page__col--code">
+              <span class="nbk-page__currency-code">{{ item.code }}</span>
+            </div>
+            <div class="nbk-page__col nbk-page__col--rate">
+              <span class="nbk-page__currency-rate">{{ item.rate }}</span>
+            </div>
+            <div class="nbk-page__col nbk-page__col--movement">
+              <div 
+                class="nbk-page__pill" 
+                :class="item.trend === 'up' ? 'nbk-page__pill--up' : 'nbk-page__pill--down'"
+              >
+                <svg 
+                  class="nbk-page__pill-arrow" 
+                  :class="{ 'nbk-page__pill-arrow--down': item.trend === 'down' }"
+                  viewBox="0 0 10 13" 
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M5 0L10 6.5H6.5V13H3.5V6.5H0L5 0Z" />
+                </svg>
+                <span class="nbk-page__pill-val">{{ item.diff }}</span>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="nbk-page__disclaimer">
-          <p>
-            Официальные курсы Национального Банка РК вступают в силу со следующего рабочего дня после дня их установления и действуют до установления следующих официальных курсов.
-          </p>
         </div>
       </div>
     </main>
@@ -54,15 +61,24 @@
 import { ref } from 'vue'
 import Navbar from '@/components/Navbar.vue'
 
-const nbkList = ref([
+interface NbkCurrency {
+  name: string
+  code: string
+  rate: string
+  diff: string
+  trend: 'up' | 'down'
+}
+
+const nbkList = ref<NbkCurrency[]>([
   { name: 'АВСТРАЛИЙСКИЙ ДОЛЛАР', code: 'AUD', rate: '310.45', diff: '0.25', trend: 'up' },
-  { name: 'АЗЕРБАЙДЖАНСКИЙ МАНАТ', code: 'AZN', rate: '254.30', diff: '0.53', trend: 'up' },
-  { name: 'АРМЯНСКИЙ ДРАМ', code: 'AMD', rate: '0.90', diff: '0.05', trend: 'up' },
-  { name: 'БРАЗИЛЬСКИЙ РЕАЛ', code: 'BRL', rate: '83.20', diff: '2.43', trend: 'down' },
-  { name: 'АНГЛИЙСКИЙ ФУНТ СТЕРЛИНГОВ', code: 'GBP', rate: '585.10', diff: '2.43', trend: 'down' },
-  { name: 'БЕЛОРУССКИЙ РУБЛЬ', code: 'BYN', rate: '169.50', diff: '2.43', trend: 'down' },
-  { name: 'ВЕНГЕРСКИЙ ФОРИНТ', code: 'HUF', rate: '1.38', diff: '2.43', trend: 'up' },
-  { name: 'ГРУЗИНСКИЙ ЛАРИ', code: 'GEL', rate: '141.50', diff: '2.43', trend: 'up' },
+  { name: 'АЗЕРБАЙДЖАНСКИЙ МАНАТ', code: 'AZN', rate: '254.30', diff: '0.25', trend: 'up' },
+  { name: 'АРМЯНСКИЙ ДРАМ', code: 'AMD', rate: '0.90', diff: '0.25', trend: 'down' },
+  { name: 'БРАЗИЛЬСКИЙ РЕАЛ', code: 'BRL', rate: '83.20', diff: '0.25', trend: 'up' },
+  { name: 'АНГЛИЙСКИЙ ФУНТ СТЕРЛИНГОВ', code: 'GBP', rate: '585.10', diff: '0.25', trend: 'up' },
+  { name: 'БЕЛОРУССКИЙ РУБЛЬ', code: 'BYN', rate: '169.50', diff: '0.25', trend: 'down' },
+  { name: 'ВЕНГЕРСКИЙ ФОРИНТ', code: 'HUF', rate: '1.38', diff: '0.25', trend: 'down' },
+  { name: 'ГРУЗИНСКИЙ ЛАРИ', code: 'GEL', rate: '141.50', diff: '0.25', trend: 'up' },
+  { name: 'ГОНКОНГСКИЙ ДОЛЛАР', code: 'HKD', rate: '55.40', diff: '0.25', trend: 'up' },
   { name: 'ДОЛЛАР США', code: 'USD', rate: '431.20', diff: '0.25', trend: 'up' },
   { name: 'ЕВРО', code: 'EUR', rate: '488.50', diff: '0.53', trend: 'down' },
   { name: 'РОССИЙСКИЙ РУБЛЬ', code: 'RUB', rate: '5.62', diff: '0.03', trend: 'up' },
@@ -83,168 +99,220 @@ const nbkList = ref([
 }
 
 .nbk-page {
-  &__title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #1e1e1e;
-    margin-bottom: 10px;
+  &__container {
+    padding-top: 53px;
 
     @media (max-width: 767px) {
-      font-size: 20px;
+      padding-top: 26px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
   }
 
-  &__subtitle {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #828282;
-    margin-bottom: 24px;
-    max-width: 840px;
+  &__title {
+    font-family: 'GP', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 35px;
+    color: #000000;
+    margin-bottom: 60px;
+    letter-spacing: 0;
+
+    @media (max-width: 767px) {
+      font-size: 18px;
+      line-height: 23px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
   }
 
-  &__disclaimer {
-    margin-top: 24px;
-    font-size: 13px;
-    line-height: 1.6;
-    color: #828282;
+  &__br-mobile {
+    display: none;
+
+    @media (max-width: 767px) {
+      display: block;
+    }
   }
-}
 
-.nbk-card {
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  &__table {
+    width: 100%;
+    max-width: 741px;
 
-  @media (max-width: 576px) {
-    padding: 16px 14px;
+    @media (max-width: 767px) {
+      max-width: 100%;
+    }
   }
-}
 
-.nbk-table {
-  width: 100%;
-
-  &__row {
+  &__table-header {
     display: flex;
     align-items: center;
-    padding: 14px 0;
-    border-bottom: 1px solid #f2f2f2;
-    gap: 12px;
+    padding-bottom: 22px;
 
-    &:last-child {
-      border-bottom: none;
+    @media (max-width: 767px) {
+      padding-bottom: 14px;
     }
 
-    &.header {
-      font-size: 13.5px;
-      font-weight: 600;
-      color: #828282;
-      border-bottom: 1px solid #e0e0e0;
-      padding-bottom: 12px;
+    .nbk-page__col {
+      font-family: 'GP', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #000000;
+      line-height: 1;
 
-      .col.rate {
-        font-weight: 600;
-        font-size: 13.5px;
-        color: #828282;
-        padding-right: 12px;
+      @media (max-width: 767px) {
+        font-size: 10px;
       }
+    }
+  }
 
-      .col.movement {
-        font-weight: 600;
-        font-size: 13.5px;
-        color: #828282;
-        justify-content: center;
+  &__table-row {
+    display: flex;
+    align-items: center;
+    height: 61px;
+    border-bottom: 1px solid rgba(184, 184, 184, 0.5);
+
+    @media (max-width: 767px) {
+      height: auto;
+      min-height: 44px;
+      padding: 10px 0;
+    }
+  }
+
+  &__col {
+    &--name {
+      flex: 0 0 365px;
+      max-width: 365px;
+      text-align: left;
+
+      @media (max-width: 767px) {
+        flex: 0 0 125px;
+        max-width: 125px;
+        padding-right: 6px;
       }
     }
 
-    .col {
-      &.name {
-        flex: 1;
-        min-width: 0;
-        display: flex;
-        align-items: center;
-        gap: 10px;
+    &--code {
+      flex: 0 0 150px;
+      text-align: center;
 
-        .curr-icon {
-          color: #ff8a16;
-          font-weight: 700;
-          font-size: 16px;
-        }
+      @media (max-width: 767px) {
+        flex: 0 0 55px;
+        max-width: 55px;
+      }
+    }
 
-        .curr-title {
-          font-weight: 500;
-          color: #1e1e1e;
-          font-size: 14px;
-          letter-spacing: 0.3px;
+    &--rate {
+      flex: 0 0 120px;
+      text-align: center;
 
-          @media (max-width: 768px) {
-            font-size: 13px;
-          }
-        }
+      @media (max-width: 767px) {
+        flex: 0 0 75px;
+        max-width: 75px;
+      }
+    }
+
+    &--movement {
+      flex: 0 0 106px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media (max-width: 767px) {
+        flex: 0 0 80px;
+        max-width: 80px;
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  &__currency-name {
+    font-family: 'GP', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #000000;
+    text-transform: uppercase;
+
+    @media (max-width: 767px) {
+      font-size: 10px;
+      line-height: 12px;
+      font-weight: 500;
+    }
+  }
+
+  &__currency-code {
+    font-family: 'GP', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000000;
+    line-height: 1;
+
+    @media (max-width: 767px) {
+      font-size: 12px;
+    }
+  }
+
+  &__currency-rate {
+    font-family: 'GP', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000000;
+    line-height: 1;
+
+    @media (max-width: 767px) {
+      font-size: 12px;
+    }
+  }
+
+  &__pill {
+    width: 65px;
+    height: 28px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    &--up {
+      background-color: rgba(96, 178, 88, 0.1);
+      color: #60B258;
+    }
+
+    &--down {
+      background-color: rgba(222, 19, 6, 0.1);
+      color: #DE1306;
+    }
+
+    &-arrow {
+      width: 10px;
+      height: 13px;
+      flex-shrink: 0;
+
+      &--down {
+        transform: rotate(180deg);
+      }
+    }
+
+    &-val {
+      font-family: 'GP', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1;
+      color: inherit;
+    }
+
+    @media (max-width: 767px) {
+      width: 49px;
+      height: 23px;
+      gap: 4px;
+
+      &-arrow {
+        width: 7px;
+        height: 9px;
       }
 
-      &.code {
-        width: 70px;
-        flex-shrink: 0;
-        text-align: center;
-        color: #828282;
-        font-weight: 500;
-        font-size: 14px;
-      }
-
-      &.rate {
-        width: 90px;
-        flex-shrink: 0;
-        text-align: right;
-        font-weight: 600;
-        font-size: 15px;
-        color: #1e1e1e;
-        white-space: nowrap;
-        padding-right: 12px;
-
-        @media (max-width: 576px) {
-          font-size: 13.5px;
-          width: 76px;
-          padding-right: 4px;
-        }
-      }
-
-      &.movement {
-        width: 75px;
-        flex-shrink: 0;
-        display: flex;
-        justify-content: center;
-
-        .movement-pill {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 4px;
-          width: 65px;
-          height: 28px;
-          border-radius: 3px;
-          font-size: 13px;
-          font-weight: 600;
-
-          &.up {
-            background: rgba(96, 178, 88, 0.12);
-            color: #5fb451;
-
-            .arrow {
-              font-size: 9px;
-            }
-          }
-
-          &.down {
-            background: rgba(222, 37, 29, 0.12);
-            color: #de251d;
-
-            .arrow {
-              font-size: 9px;
-            }
-          }
-        }
+      &-val {
+        font-size: 12px;
       }
     }
   }

@@ -209,10 +209,3 @@ npm run preview
 ### Автоматический деплой
 При каждом пуше в ветку `main` срабатывает GitHub Actions workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), который автоматически собирает проект и публикует актуальную версию на GitHub Pages:
 🔗 **[https://legrandjellinek.github.io/allbanks/](https://legrandjellinek.github.io/allbanks/)**
-
----
-
-## 👥 Авторство и поддержка
-
-- **Разработчик**: [Jellinek](https://github.com/leGrandJellinek) (`jellinekbraus@gmail.com`)
-- **Проект**: AllBanks.kz — Все банки Казахстана
