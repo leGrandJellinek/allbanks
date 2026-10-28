@@ -37,10 +37,6 @@
             class="header__content" 
             :class="`header__content--${slide.theme}`"
           >
-            <div v-if="slide.decor" class="header__content-decor">
-              <img :src="slide.decor" :alt="slide.alt || ''" />
-            </div>
-
             <div class="header__content-block">
               <h2 class="header__content-title">
                 {{ slide.title }}
@@ -53,7 +49,10 @@
               </div>
             </div>
 
-            <div v-if="slide.theme === 'pink'" class="header__content-block-shadow"></div>
+            <div 
+              class="header__content-block-shadow"
+              :class="`header__content-block-shadow--${slide.theme}`"
+            ></div>
           </div>
         </SwiperSlide>
       </Swiper>
@@ -67,18 +66,14 @@ import Navbar from '@/components/Navbar.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
-import creditCardImg from '@/assets/images/main/credit_card.png'
-import safeImg from '@/assets/images/main/safe_and_coin.png'
 
 const modules = [Autoplay]
 
 interface SlideData {
   id: number
-  theme: 'pink' | 'blue' | 'peach'
+  theme: 'pink' | 'blue' | 'peach' | 'purple'
   title: string
   timeText: string
-  decor?: string
-  alt?: string
 }
 
 const baseSlides: SlideData[] = [
@@ -92,25 +87,19 @@ const baseSlides: SlideData[] = [
     id: 2,
     theme: 'blue',
     title: 'Выгодные кредиты и депозиты в банках Казахстана',
-    timeText: 'Онлайн',
-    decor: creditCardImg,
-    alt: 'Кредиты'
+    timeText: 'Онлайн'
   },
   {
     id: 3,
     theme: 'peach',
     title: 'Мониторинг курсов и обменных пунктов',
-    timeText: 'AllBanks',
-    decor: safeImg,
-    alt: 'Депозиты'
+    timeText: 'AllBanks'
   },
   {
     id: 4,
-    theme: 'blue',
+    theme: 'purple',
     title: 'Лучшие предложения по вкладам и займам',
-    timeText: 'ТОП-2024',
-    decor: creditCardImg,
-    alt: 'Вклады'
+    timeText: 'ТОП-2024'
   }
 ]
 
@@ -196,11 +185,21 @@ const allSlides = computed(() => [
   }
 
   &--blue {
-    background: linear-gradient(135deg, #CFDEF0 0%, #8EB6E0 100%);
+    background: url("@/assets/images/header/header__content-bg-blue.png") no-repeat center right;
+    background-size: cover;
+    background-color: #CFDEF0;
   }
 
   &--peach {
-    background: linear-gradient(135deg, #FDECE3 0%, #E69D80 100%);
+    background: url("@/assets/images/header/header__content-bg-peach.png") no-repeat center right;
+    background-size: cover;
+    background-color: #F6D6C8;
+  }
+
+  &--purple {
+    background: url("@/assets/images/header/header__content-bg-purple.png") no-repeat center right;
+    background-size: cover;
+    background-color: #DCD0F0;
   }
 
   &-block {
@@ -227,7 +226,23 @@ const allSlides = computed(() => [
     bottom: 0;
     right: 0;
     width: 60px;
-    background: rgba(239, 206, 217, 0.4);
+    pointer-events: none;
+
+    &--pink {
+      background: rgba(239, 206, 217, 0.4);
+    }
+
+    &--blue {
+      background: rgba(207, 222, 240, 0.4);
+    }
+
+    &--peach {
+      background: rgba(246, 214, 200, 0.4);
+    }
+
+    &--purple {
+      background: rgba(220, 208, 240, 0.4);
+    }
 
     @media (max-width: 1160px) {
       display: none;
@@ -275,48 +290,21 @@ const allSlides = computed(() => [
     }
 
     &--blue {
-      background: #6D9ACD;
+      background: #89AEDB;
     }
 
     &--peach {
-      background: #D8825F;
+      background: #E8A185;
+    }
+
+    &--purple {
+      background: #B6A2DC;
     }
 
     @media (max-width: 767px) {
       font-size: 16px;
       padding: 6px 14px;
       border-radius: 4px;
-    }
-  }
-
-  &-decor {
-    position: absolute;
-    left: 80px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    z-index: 1;
-
-    img {
-      width: 160px;
-      height: 160px;
-      object-fit: contain;
-      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
-    }
-
-    @media (max-width: 991px) {
-      left: 30px;
-      img {
-        width: 110px;
-        height: 110px;
-      }
-    }
-
-    @media (max-width: 767px) {
-      display: none;
     }
   }
 }
