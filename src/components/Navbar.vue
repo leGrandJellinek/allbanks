@@ -105,7 +105,10 @@
             </a>
           </div>
         </div>
+      </div>
 
+      <!-- Teleport Bottom Sheets to body to prevent bloating mobile-drawer scrollHeight -->
+      <Teleport to="body">
         <!-- Submenu Sheet: Выберите город (Обменники) -->
         <div class="bottom-sheet" :class="{ active: activeSubmenu === 'exchangers' }">
           <div class="bottom-sheet__overlay" @click="activeSubmenu = null"></div>
@@ -159,7 +162,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </Teleport>
 
       <!-- Login Modal Dialog -->
       <Teleport to="body">
@@ -188,7 +191,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch, onUnmounted } from 'vue'
 import { useBanksStore } from '@/stores/banks'
 
 const banksStore = useBanksStore()
@@ -196,6 +199,25 @@ const isMenuOpen = ref(false)
 const activeSubmenu = ref<'exchangers' | 'credits' | null>(null)
 const isLoginModalOpen = ref(false)
 const loginPhone = ref('')
+
+watch(isMenuOpen, (isOpen) => {
+  if (typeof document !== 'undefined') {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.touchAction = 'none'
+    } else {
+      document.body.style.overflow = ''
+      document.body.style.touchAction = ''
+    }
+  }
+})
+
+onUnmounted(() => {
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = ''
+    document.body.style.touchAction = ''
+  }
+})
 
 function openMenu() {
   isMenuOpen.value = true
@@ -246,6 +268,7 @@ function registerAlert() {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background: #ffffff;
   z-index: 1000000;
   display: flex;
@@ -253,12 +276,15 @@ function registerAlert() {
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 
   &.open {
     transform: translateX(0);
   }
 
   &__header {
+    flex-shrink: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -294,8 +320,10 @@ function registerAlert() {
   }
 
   &__list {
-    flex: 1;
+    flex: 1 0 auto;
     padding: 12px 20px;
+    margin: 0;
+    list-style: none;
   }
 
   &__item {
@@ -335,6 +363,8 @@ function registerAlert() {
   }
 
   &__footer {
+    flex-shrink: 0;
+    margin-top: auto;
     padding: 24px 20px;
     border-top: 1px solid #f0f0f0;
     display: flex;
@@ -362,21 +392,20 @@ function registerAlert() {
 
 .bottom-sheet {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   z-index: 1000002;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 
   &.active {
     pointer-events: auto;
     opacity: 1;
+    visibility: visible;
 
     .bottom-sheet__content {
       transform: translateY(0);
@@ -385,10 +414,7 @@ function registerAlert() {
 
   &__overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0, 0, 0, 0.4);
   }
 
