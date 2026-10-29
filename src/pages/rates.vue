@@ -1,6 +1,5 @@
 <template>
   <div class="rates-wrapper">
-    <Navbar />
     <main class="main rates-page">
       <div class="container rates-container">
         <!-- Main page title (1:1 from Figma Desktop Frame 46 & Mobile Frame 261:410) -->
@@ -230,7 +229,6 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import Navbar from '@/components/Navbar.vue'
 
 // Currency tab on mobile: USD | EUR | RUR
 const selectedCurrency = ref<'USD' | 'EUR' | 'RUR'>('USD')

@@ -1,6 +1,5 @@
 <template>
   <div class="bank-detail-wrapper">
-    <Navbar />
     <main class="main bank-detail">
       <div class="container">
         <!-- Breadcrumb / back link -->
@@ -93,7 +92,6 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import Navbar from '@/components/Navbar.vue'
 import CommentsBlock from '@/components/CommentsBlock.vue'
 import { useBanksStore } from '@/stores/banks'
 import { getMainImage } from '@/utils/assets'

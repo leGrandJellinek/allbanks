@@ -1,6 +1,5 @@
 <template>
   <div class="nbk-page-wrapper">
-    <Navbar />
     <main class="main nbk-page">
       <div class="container nbk-page__container">
         <!-- Main page title (1:1 from Figma Desktop Frame 48 & Mobile Frame 263:671) -->
@@ -59,7 +58,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import Navbar from '@/components/Navbar.vue'
 
 interface NbkCurrency {
   name: string

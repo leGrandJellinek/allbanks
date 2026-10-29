@@ -1,6 +1,5 @@
 <template>
   <header class="header">
-    <Navbar />
     <div class="header__slider-wrapper">
       <Swiper
         :modules="modules"
@@ -62,7 +61,6 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import Navbar from '@/components/Navbar.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'

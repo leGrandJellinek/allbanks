@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Navbar />
     <main class="main credit-detail">
       <div class="container">
         <router-link to="/credits" class="credit-detail__back">‹ Назад к кредитам</router-link>
@@ -80,7 +79,6 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import Navbar from '@/components/Navbar.vue'
 import CommentsBlock from '@/components/CommentsBlock.vue'
 import { useBanksStore } from '@/stores/banks'
 

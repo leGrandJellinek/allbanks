@@ -1,6 +1,5 @@
 <template>
   <div class="cash-page-wrapper">
-    <Navbar />
     <main class="main cash-page">
       <div class="container">
         <router-link to="/credits" class="cash-page__back">‹ Назад к кредитам</router-link>
@@ -60,7 +59,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import Navbar from '@/components/Navbar.vue'
 import { useBanksStore } from '@/stores/banks'
 
 const banksStore = useBanksStore()

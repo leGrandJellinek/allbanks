@@ -1,6 +1,5 @@
 <template>
   <div class="microloans-page-wrapper">
-    <Navbar />
     <main class="main microloans-page">
       <div class="container microloans-page__container">
         <!-- Title: 1:1 from Figma Frame 52 & 320:1895 -->
@@ -64,7 +63,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import Navbar from '@/components/Navbar.vue'
 import MicroloanCard, { type MicroloanItem } from '@/components/Microloans/MicroloanCard.vue'
 
 import creditplusLogo from '@/assets/images/microloans/creditplus.png'

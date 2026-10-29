@@ -1,6 +1,5 @@
 <template>
   <div class="news-detail-wrapper">
-    <Navbar />
     <main class="main news-detail">
       <div class="container news-detail__container">
         <!-- Main title: 1:1 from Figma Desktop Frame 56 (421:1740) & Mobile Frame 367:2018 -->
@@ -53,7 +52,6 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import Navbar from '@/components/Navbar.vue'
 import { NEWS_ITEMS, type NewsItem } from '@/data/news'
 import defaultHero from '@/assets/images/news/news-hero.png'
 

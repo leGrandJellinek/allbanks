@@ -1,6 +1,5 @@
 <template>
   <div class="banks-page-wrapper">
-    <Navbar />
     <main class="main">
       <div class="main__container">
         <section class="main__banks">
@@ -16,7 +15,6 @@
 </template>
 
 <script setup lang="ts">
-import Navbar from '@/components/Navbar.vue'
 import Banks from '@/components/Main/Banks.vue'
 </script>
 

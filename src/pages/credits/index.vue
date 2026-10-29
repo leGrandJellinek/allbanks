@@ -1,6 +1,5 @@
 <template>
   <div class="credits-page">
-    <Navbar />
     <main class="credits-page__main">
       <div class="container credits-page__container">
         <!-- Main Title & Description -->
@@ -61,7 +60,6 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import Navbar from '@/components/Navbar.vue'
 import CreditBanner from '@/components/Credits/CreditBanner.vue'
 import CreditFilters from '@/components/Credits/CreditFilters.vue'
 import CreditOfferCard, { type CreditOfferItem } from '@/components/Credits/CreditOfferCard.vue'

@@ -1,6 +1,5 @@
 <template>
   <div class="news-page-wrapper">
-    <Navbar />
     <main class="main news-page">
       <div class="container news-page__container">
         <!-- Title: 1:1 from Figma Frame 54 & 353:1212 -->
@@ -35,7 +34,6 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import Navbar from '@/components/Navbar.vue'
 import NewsCard from '@/components/News/NewsCard.vue'
 import NewsFilter from '@/components/News/NewsFilter.vue'
 import NewsPagination from '@/components/News/NewsPagination.vue'

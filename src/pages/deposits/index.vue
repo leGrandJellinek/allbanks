@@ -1,6 +1,5 @@
 <template>
   <div class="deposits-page">
-    <Navbar />
     <main class="deposits-page__main">
       <div class="container deposits-page__container">
         <!-- Main Title -->
@@ -30,7 +29,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import Navbar from '@/components/Navbar.vue'
 import DepositFilters from '@/components/Deposits/DepositFilters.vue'
 import DepositCard from '@/components/Deposits/DepositCard.vue'
 import DepositPagination from '@/components/Deposits/DepositPagination.vue'

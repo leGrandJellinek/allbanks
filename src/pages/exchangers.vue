@@ -1,7 +1,5 @@
 <template>
   <div class="exchangers-page">
-    <Navbar />
-
     <main class="exchangers-page__main">
       <div class="container exchangers-page__container">
         <!-- Main Title (Figma Frame 47 393:1830 & Mobile Frame 292:1407) -->
@@ -59,7 +57,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useBanksStore } from '@/stores/banks'
-import Navbar from '@/components/Navbar.vue'
 import ExchangerRateCards from '@/components/Exchangers/ExchangerRateCards.vue'
 import ExchangerFilter from '@/components/Exchangers/ExchangerFilter.vue'
 import ExchangerTable from '@/components/Exchangers/ExchangerTable.vue'

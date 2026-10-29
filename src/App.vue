@@ -1,10 +1,9 @@
 <template>
-  <div class="wrapper">
+  <DefaultLayout>
     <router-view />
-    <Footer />
-  </div>
+  </DefaultLayout>
 </template>
 
 <script setup lang="ts">
-import Footer from '@/components/Footer.vue'
+import DefaultLayout from '@/layouts/DefaultLayout.vue'
 </script>

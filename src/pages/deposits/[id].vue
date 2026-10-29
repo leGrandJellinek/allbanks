@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Navbar />
     <main class="main deposit-detail">
       <div class="container">
         <router-link to="/deposits" class="deposit-detail__back">‹ Назад к вкладам</router-link>
@@ -53,7 +52,6 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import Navbar from '@/components/Navbar.vue'
 import CommentsBlock from '@/components/CommentsBlock.vue'
 import { DEPOSIT_LIST, type DepositItem } from '@/data/deposits'
 

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Navbar />
     <main class="main apply-page">
       <div class="container">
         <router-link to="/credits" class="apply-page__back">‹ Назад к кредитам</router-link>
@@ -65,7 +64,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import Navbar from '@/components/Navbar.vue'
 
 const form = ref({
   fullName: '',
