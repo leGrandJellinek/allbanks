@@ -1,5 +1,5 @@
 <template>
-  <div class="deposit-card">
+  <router-link :to="`/deposits/${deposit.id}`" class="deposit-card">
     <div class="deposit-card__header">
       <h3 class="deposit-card__bank">{{ deposit.bank }}</h3>
       <p class="deposit-card__subtitle">{{ deposit.subtitle }}</p>
@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script setup lang="ts">

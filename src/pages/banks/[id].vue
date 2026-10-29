@@ -91,7 +91,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import Navbar from '@/components/Navbar.vue'
 import CommentsBlock from '@/components/CommentsBlock.vue'
@@ -105,6 +105,10 @@ const bankId = computed(() => Number((route.params as { id?: string }).id) || 1)
 const bank = computed(() => {
   return banksStore.banks.find(b => b.id === bankId.value) || banksStore.banks[0]
 })
+
+watch(bank, (b) => {
+  if (b) document.title = `${b.name} - AllBanks.kz`
+}, { immediate: true })
 
 const isExpanded = ref(false)
 const showBranches = ref(true)

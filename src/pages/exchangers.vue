@@ -10,7 +10,7 @@
         </h1>
 
         <!-- Mobile City Selector (Under title in Frame 292:1399 Group 108) -->
-        <div class="exchangers-page__mobile-city-picker">
+        <div ref="mobileCityRef" class="exchangers-page__mobile-city-picker">
           <button 
             type="button" 
             class="exchangers-page__city-btn" 
@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useBanksStore } from '@/stores/banks'
 import Navbar from '@/components/Navbar.vue'
 import ExchangerRateCards from '@/components/Exchangers/ExchangerRateCards.vue'
@@ -67,6 +67,21 @@ import ExchangerSeo from '@/components/Exchangers/ExchangerSeo.vue'
 
 const banksStore = useBanksStore()
 const isMobileCityOpen = ref(false)
+const mobileCityRef = ref<HTMLElement | null>(null)
+
+function onDocumentClick(e: MouseEvent) {
+  if (mobileCityRef.value && !mobileCityRef.value.contains(e.target as Node)) {
+    isMobileCityOpen.value = false
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', onDocumentClick)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', onDocumentClick)
+})
 
 function selectMobileCity(city: string) {
   banksStore.setCity(city)

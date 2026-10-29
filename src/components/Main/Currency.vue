@@ -7,6 +7,7 @@
         <!-- City Selector Dropdown (Shown in center on desktop / below header on mobile when exchangers active) -->
         <div class="main__currency-controls">
           <div 
+            ref="citySelectRef"
             class="city-select"
             :class="{ 'mobile-hidden': banksStore.activeCurrencyTab === 'banks' }"
           >
@@ -112,10 +113,26 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useBanksStore } from '@/stores/banks'
 import CurrencyItem from '@/components/Main/CurrencyItem.vue'
 
 const banksStore = useBanksStore()
+const citySelectRef = ref<HTMLElement | null>(null)
+
+function onDocumentClick(e: MouseEvent) {
+  if (citySelectRef.value && !citySelectRef.value.contains(e.target as Node)) {
+    banksStore.isCityDropdownOpen = false
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', onDocumentClick)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', onDocumentClick)
+})
 </script>
 
 <style lang="scss" scoped>

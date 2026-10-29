@@ -7,23 +7,23 @@
 
         <div class="deposit-detail__card">
           <div class="deposit-detail__header">
-            <span class="bank-tag">Altyn Bank</span>
-            <h1 class="deposit-detail__title">Вклад «Управляй Онлайн»</h1>
-            <p class="deposit-detail__rate">14.5% годовых</p>
+            <span class="bank-tag">{{ deposit.bank }}</span>
+            <h1 class="deposit-detail__title">{{ deposit.subtitle }}</h1>
+            <p class="deposit-detail__rate">{{ deposit.rate }} годовых</p>
           </div>
 
           <div class="deposit-detail__specs">
             <div class="spec-box">
               <span class="label">Валюта вклада</span>
-              <strong class="val">KZT (Тенге)</strong>
+              <strong class="val">{{ deposit.currency }} (Тенге)</strong>
             </div>
             <div class="spec-box">
               <span class="label">Сумма вклада</span>
-              <strong class="val">от 10 000 до 50 000 000 ₸</strong>
+              <strong class="val">{{ deposit.minSum }}</strong>
             </div>
             <div class="spec-box">
               <span class="label">Срок размещения</span>
-              <strong class="val">12 месяцев</strong>
+              <strong class="val">{{ deposit.term }}</strong>
             </div>
             <div class="spec-box">
               <span class="label">Выплата процентов</span>
@@ -34,10 +34,7 @@
           <div class="deposit-detail__content">
             <h2>Условия по вкладу</h2>
             <ul>
-              <li>Возможность пополнения вклада без ограничений по сумме</li>
-              <li>Частичное снятие до суммы неснижаемого остатка (10 000 ₸)</li>
-              <li>Автоматическая пролонгация договора на новый срок</li>
-              <li>Депозит застрахован Казахстанским фондом гарантирования депозитов (КФГД)</li>
+              <li v-for="(cond, i) in depositConditions" :key="i">{{ cond }}</li>
             </ul>
           </div>
 
@@ -54,8 +51,33 @@
 </template>
 
 <script setup lang="ts">
+import { computed, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import Navbar from '@/components/Navbar.vue'
 import CommentsBlock from '@/components/CommentsBlock.vue'
+import { DEPOSIT_LIST, type DepositItem } from '@/data/deposits'
+
+const route = useRoute()
+
+const deposit = computed<DepositItem>(() => {
+  const id = Number((route.params as { id?: string }).id) || 1
+  return DEPOSIT_LIST.find(d => d.id === id) || DEPOSIT_LIST[0]
+})
+
+const depositConditions = computed(() => {
+  return deposit.value.fullConditions || [
+    'Возможность пополнения вклада без ограничений по сумме',
+    'Частичное снятие до суммы неснижаемого остатка',
+    'Автоматическая пролонгация договора на новый срок',
+    'Депозит застрахован Казахстанским фондом гарантирования депозитов (КФГД)'
+  ]
+})
+
+watch(deposit, (d) => {
+  if (d) {
+    document.title = `${d.bank} - ${d.subtitle} - AllBanks.kz`
+  }
+}, { immediate: true })
 </script>
 
 <style lang="scss" scoped>
@@ -74,102 +96,123 @@ import CommentsBlock from '@/components/CommentsBlock.vue'
   &__card {
     background: #ffffff;
     border: 1px solid #eeeeee;
-    border-radius: 14px;
-    padding: 32px 28px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    border-radius: 12px;
+    padding: 32px;
+
+    @media (max-width: 768px) {
+      padding: 20px 16px;
+    }
   }
 
   &__header {
     border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 20px;
+    padding-bottom: 24px;
     margin-bottom: 24px;
 
     .bank-tag {
+      display: inline-block;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 600;
       color: #ff8a16;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      background: #fff5eb;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
     }
+  }
 
-    .deposit-detail__title {
-      font-size: 26px;
-      font-weight: 700;
-      color: #1e1e1e;
-      margin: 6px 0;
-    }
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin: 0 0 10px 0;
 
-    .deposit-detail__rate {
-      font-size: 20px;
-      font-weight: 800;
-      color: #5fb451;
+    @media (max-width: 768px) {
+      font-size: 22px;
     }
+  }
+
+  &__rate {
+    font-size: 20px;
+    font-weight: 700;
+    color: #27ae60;
+    margin: 0;
   }
 
   &__specs {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
+    background: #fafafa;
+    padding: 20px;
+    border-radius: 8px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 991px) {
       grid-template-columns: repeat(2, 1fr);
     }
 
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+
     .spec-box {
-      background: #fafafa;
-      padding: 16px;
-      border-radius: 8px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
 
       .label {
         font-size: 12px;
-        color: #888888;
+        color: #828282;
       }
 
       .val {
-        font-size: 14px;
+        font-size: 15px;
         color: #1e1e1e;
+        font-weight: 600;
       }
     }
   }
 
   &__content {
-    margin-bottom: 30px;
+    margin-bottom: 32px;
 
     h2 {
       font-size: 18px;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+      color: #1e1e1e;
     }
 
     ul {
       list-style: disc;
       padding-left: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 14px;
-      color: #444444;
-      line-height: 1.5;
+
+      li {
+        font-size: 14px;
+        color: #4f4f4f;
+        line-height: 1.6;
+        margin-bottom: 8px;
+      }
     }
   }
 
   &__action {
+    margin-bottom: 40px;
+
     .open-deposit-btn {
       display: inline-block;
       background: #ff8a16;
       color: #ffffff;
       padding: 12px 28px;
       border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
       font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
 
       &:hover {
-        background: #e67508;
+        background: #e67605;
       }
     }
   }

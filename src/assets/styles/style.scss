@@ -1,8 +1,8 @@
-@import "@/assets/styles/common/common.scss",
-        "@/assets/styles/common/fonts.scss",
-        "@/assets/styles/common/grid.scss",
-        "@/assets/styles/common/root.scss",
-        "@/assets/styles/components/header.scss",
-        "@/assets/styles/components/main.sass",
-        "@/assets/styles/components/footer.sass",
-        "@/assets/styles/components/adaptive.sass";
+@use "@/assets/styles/common/common.scss";
+@use "@/assets/styles/common/fonts.scss";
+@use "@/assets/styles/common/grid.scss";
+@use "@/assets/styles/common/root.scss";
+@use "@/assets/styles/components/header.scss";
+@use "@/assets/styles/components/main.scss";
+@use "@/assets/styles/components/footer.scss";
+@use "@/assets/styles/components/adaptive.scss";

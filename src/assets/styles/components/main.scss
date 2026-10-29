@@ -1,0 +1,145 @@
+@use "@/assets/styles/common/grid.scss" as *;
+@use "@/assets/styles/common/common.scss" as *;
+
+.main {
+  margin-top: 50px;
+
+  &__container {
+    @include container();
+  }
+
+  &__categories {
+    margin-bottom: 50px;
+
+    &-container {
+      @include container();
+    }
+  }
+
+  &__currency {
+    &-container {
+      @include container();
+    }
+  }
+
+  &__banks {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+
+    &-block {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+
+      @media (max-width: 991px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: 576px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &-text {
+      font-weight: 400;
+      color: rgba(184, 184, 184, 0.8);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    &-item {
+      padding: 24px;
+      background: rgba(235, 235, 235, 0.4);
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      &-up {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #E0E0E0;
+
+        img {
+          width: 44px;
+          height: 44px;
+          object-fit: contain;
+        }
+      }
+
+      &-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
+      &-name {
+        text-align: right;
+        margin-bottom: 6px;
+        font-weight: 700;
+        font-size: 16px;
+        color: #000000;
+      }
+
+      &-license {
+        font-size: 11px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+
+      &-bottom {
+        padding-top: 18px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 16px;
+      }
+
+      &-list {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        list-style: none;
+        padding: 0;
+      }
+
+      &-loc {
+        font-size: 13px;
+        line-height: 1.4;
+        color: #444444;
+      }
+
+      &-text {
+        font-size: 13px;
+        color: #222222;
+
+        a {
+          color: inherit;
+          text-decoration: none;
+
+          &:hover {
+            color: #FF8A16;
+          }
+        }
+      }
+
+      &-btn {
+        font-weight: 600;
+        font-size: 14px;
+        text-align: center;
+        color: #FF8A16;
+        text-decoration: underline;
+        transition: color 0.2s;
+
+        &:hover {
+          color: #d86f07;
+        }
+      }
+    }
+  }
+}

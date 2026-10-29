@@ -32,74 +32,19 @@
 import { ref } from 'vue'
 import Navbar from '@/components/Navbar.vue'
 import DepositFilters from '@/components/Deposits/DepositFilters.vue'
-import DepositCard, { type DepositItem } from '@/components/Deposits/DepositCard.vue'
+import DepositCard from '@/components/Deposits/DepositCard.vue'
 import DepositPagination from '@/components/Deposits/DepositPagination.vue'
+import { DEPOSIT_LIST } from '@/data/deposits'
 
 function handleSearch(filters: Record<string, string>) {
-  alert(`Поиск депозитов: ${JSON.stringify(filters)}`)
+  console.log('Поиск депозитов:', filters)
 }
 
 function handlePageChange(page: number) {
   console.log('Page changed to:', page)
 }
 
-// 6 Deposit Cards (1:1 with Figma Frame 53 & Mobile Frame 325:2242)
-const depositList = ref<DepositItem[]>([
-  {
-    id: 1,
-    bank: 'Altyn Bank',
-    subtitle: '"Резерв"',
-    rate: '11.2%',
-    currency: 'KZT',
-    minSum: 'от 10 000 ₸',
-    term: '2 года'
-  },
-  {
-    id: 2,
-    bank: 'Altyn Bank',
-    subtitle: '"Заем под залог денег на сберегательном счете (без комиссий)"',
-    rate: '11.2%',
-    currency: 'KZT',
-    minSum: 'от 10 000 ₸',
-    term: '2 года'
-  },
-  {
-    id: 3,
-    bank: 'Altyn Bank',
-    subtitle: '"Заем под залог денег на сберегательном счете (без комиссий)"',
-    rate: '11.2%',
-    currency: 'KZT',
-    minSum: 'от 10 000 ₸',
-    term: '2 года'
-  },
-  {
-    id: 4,
-    bank: 'Altyn Bank',
-    subtitle: '"Резерв"',
-    rate: '11.2%',
-    currency: 'KZT',
-    minSum: 'от 10 000 ₸',
-    term: '2 года'
-  },
-  {
-    id: 5,
-    bank: 'Altyn Bank',
-    subtitle: '"Заем под залог денег на сберегательном счете (без комиссий)"',
-    rate: '11.2%',
-    currency: 'KZT',
-    minSum: 'от 10 000 ₸',
-    term: '2 года'
-  },
-  {
-    id: 6,
-    bank: 'Altyn Bank',
-    subtitle: '"Заем под залог денег на сберегательном счете (без комиссий)"',
-    rate: '11.2%',
-    currency: 'KZT',
-    minSum: 'от 10 000 ₸',
-    term: '2 года'
-  }
-])
+const depositList = ref(DEPOSIT_LIST)
 </script>
 
 <style lang="scss" scoped>

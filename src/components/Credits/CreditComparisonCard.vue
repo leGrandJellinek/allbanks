@@ -1,5 +1,5 @@
 <template>
-  <div class="credit-comp-card">
+  <router-link :to="`/credits/${loan.id}`" class="credit-comp-card">
     <div class="credit-comp-card__header">
       <h3 class="credit-comp-card__bank">{{ loan.bank }}</h3>
       <p class="credit-comp-card__subtitle">{{ loan.subtitle }}</p>
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script setup lang="ts">

@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import Navbar from '@/components/Navbar.vue'
 import { NEWS_ITEMS, type NewsItem } from '@/data/news'
@@ -65,6 +65,10 @@ const currentArticle = computed<NewsItem>(() => {
   const found = NEWS_ITEMS.find(item => item.id === id)
   return found || NEWS_ITEMS[0]
 })
+
+watch(currentArticle, (a) => {
+  if (a) document.title = `${a.title} - AllBanks.kz`
+}, { immediate: true })
 </script>
 
 <style lang="scss" scoped>
