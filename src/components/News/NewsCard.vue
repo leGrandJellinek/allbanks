@@ -1,7 +1,7 @@
 <template>
   <article class="news-card">
     <div class="news-card__badge">{{ item.date || 'Сегодня, 11:00' }}</div>
-    
+
     <div class="news-card__image-wrap">
       <img :src="item.image" :alt="item.title" class="news-card__image" loading="lazy" />
     </div>
@@ -30,7 +30,7 @@ defineProps<{
 .news-card {
   width: 100%;
   height: 256px;
-  background: #F9F9F9;
+  background: #f9f9f9;
   border-radius: 14px;
   padding: 25px 25px 20px 25px;
   display: flex;
@@ -49,7 +49,7 @@ defineProps<{
     font-family: 'GP', sans-serif;
     font-size: 11px;
     font-weight: 400;
-    color: #FFFFFF;
+    color: #ffffff;
     line-height: 1;
     margin-bottom: 16px;
     flex-shrink: 0;
@@ -78,7 +78,7 @@ defineProps<{
     transition: color 0.2s ease;
 
     &:hover {
-      color: #FF8A16;
+      color: #ff8a16;
     }
   }
 
@@ -149,7 +149,7 @@ defineProps<{
       display: block;
       width: 100%;
       height: 1px;
-      background: #B8B8B8;
+      background: #b8b8b8;
       margin-bottom: 10px;
       flex-shrink: 0;
     }

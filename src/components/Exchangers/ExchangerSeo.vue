@@ -7,10 +7,7 @@
 
     <!-- Free Add Link -->
     <div class="exchanger-seo__action-wrap">
-      <a 
-        href="mailto:info@allbanks.kz" 
-        class="exchanger-seo__free-link"
-      >
+      <a href="mailto:info@allbanks.kz" class="exchanger-seo__free-link">
         Добавьте Ваш обменный пункт БЕСПЛАТНО!
       </a>
     </div>
@@ -18,17 +15,14 @@
     <!-- SEO Description -->
     <div class="exchanger-seo__text-block">
       <p class="exchanger-seo__text" :class="{ 'exchanger-seo__text--collapsed': isCollapsed }">
-        На этой странице Вы можете сравнить курс валют в обменных пунктах {{ banksStore.selectedCity }}. 
-        В таблице представлены основные валюты, которые могут Вас заинтересовать. 
-        Курс доллара к тенге на сегодня, а так же курс евро, рубля, юаня и тенге по отношению к этим валютам - 
-        всё на одной странице и удобно для анализа и выбора. Зелёным выделены ячейки с данными, которые 
-        являются лучшими предложениями в {{ banksStore.selectedCity }} на данный момент.
+        На этой странице Вы можете сравнить курс валют в обменных пунктах
+        {{ banksStore.selectedCity }}. В таблице представлены основные валюты, которые могут Вас
+        заинтересовать. Курс доллара к тенге на сегодня, а так же курс евро, рубля, юаня и тенге по
+        отношению к этим валютам - всё на одной странице и удобно для анализа и выбора. Зелёным
+        выделены ячейки с данными, которые являются лучшими предложениями в
+        {{ banksStore.selectedCity }} на данный момент.
       </p>
-      <button 
-        type="button" 
-        class="exchanger-seo__more-btn" 
-        @click="isCollapsed = !isCollapsed"
-      >
+      <button type="button" class="exchanger-seo__more-btn" @click="isCollapsed = !isCollapsed">
         {{ isCollapsed ? 'Читать далее' : 'Свернуть' }}
       </button>
     </div>
@@ -53,7 +47,7 @@ const isCollapsed = ref(true)
     font-weight: 400;
     font-size: 14px;
     line-height: 1.2;
-    color: #A0A0A0;
+    color: #a0a0a0;
     margin: 0 0 16px 0;
   }
 
@@ -65,8 +59,8 @@ const isCollapsed = ref(true)
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 700;
     font-size: 16px;
-    line-height: 1.0;
-    color: #FF8A16;
+    line-height: 1;
+    color: #ff8a16;
     text-decoration: underline;
     transition: opacity 0.2s;
 
@@ -107,8 +101,8 @@ const isCollapsed = ref(true)
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 500;
     font-size: 16px;
-    line-height: 1.0;
-    color: #FF8A16;
+    line-height: 1;
+    color: #ff8a16;
     text-decoration: underline;
     cursor: pointer;
     transition: opacity 0.2s;

@@ -1,7 +1,7 @@
 <template>
-  <router-link 
-    :to="item.path || '/'" 
-    class="main__categories-item" 
+  <router-link
+    :to="item.path || '/'"
+    class="main__categories-item"
     :style="{ backgroundColor: item.bgcolor }"
   >
     <div class="main__categories-icon-wrap">
@@ -28,7 +28,9 @@ defineProps<{
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   box-sizing: border-box;
 
   // Desktop (1:1 from Figma Desktop Frame 1: 159x146px, radius 10px)

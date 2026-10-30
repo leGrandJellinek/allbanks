@@ -1,10 +1,6 @@
 <template>
   <div class="main__banks-block">
-    <BanksItem
-      v-for="item in banksStore.banks"
-      :key="item.id"
-      :item="item"
-    />
+    <BanksItem v-for="item in banksStore.banks" :key="item.id" :item="item" />
   </div>
 </template>
 

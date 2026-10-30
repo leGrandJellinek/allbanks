@@ -11,26 +11,36 @@
       <div class="credit-comp-card__col">
         <div class="credit-comp-card__item">
           <span class="credit-comp-card__bullet">•</span>
-          <span>Мин ставка: <strong class="credit-comp-card__value">{{ loan.minRate }}</strong></span>
+          <span
+            >Мин ставка: <strong class="credit-comp-card__value">{{ loan.minRate }}</strong></span
+          >
         </div>
         <div class="credit-comp-card__item">
           <span class="credit-comp-card__bullet">•</span>
-          <span>Валюта: <strong class="credit-comp-card__value">{{ loan.currency }}</strong></span>
+          <span
+            >Валюта: <strong class="credit-comp-card__value">{{ loan.currency }}</strong></span
+          >
         </div>
         <div class="credit-comp-card__item">
           <span class="credit-comp-card__bullet">•</span>
-          <span>Макс. сумма: <strong class="credit-comp-card__value">{{ loan.maxSum }}</strong></span>
+          <span
+            >Макс. сумма: <strong class="credit-comp-card__value">{{ loan.maxSum }}</strong></span
+          >
         </div>
       </div>
 
       <div class="credit-comp-card__col">
         <div class="credit-comp-card__item">
           <span class="credit-comp-card__bullet">•</span>
-          <span>Макс. срок: <strong class="credit-comp-card__value">{{ loan.maxTerm }}</strong></span>
+          <span
+            >Макс. срок: <strong class="credit-comp-card__value">{{ loan.maxTerm }}</strong></span
+          >
         </div>
         <div class="credit-comp-card__item">
           <span class="credit-comp-card__bullet">•</span>
-          <span>Залог: <strong class="credit-comp-card__value">{{ loan.collateral }}</strong></span>
+          <span
+            >Залог: <strong class="credit-comp-card__value">{{ loan.collateral }}</strong></span
+          >
         </div>
       </div>
     </div>

@@ -4,26 +4,33 @@
       <div class="container exchangers-page__container">
         <!-- Main Title (Figma Frame 47 393:1830 & Mobile Frame 292:1407) -->
         <h1 class="exchangers-page__title">
-          Курс доллара, евро, рубля и юаня в обменниках<br />{{ banksStore.selectedCity }} на сегодня
+          Курс доллара, евро, рубля и юаня в обменниках<br />{{ banksStore.selectedCity }} на
+          сегодня
         </h1>
 
         <!-- Mobile City Selector (Under title in Frame 292:1399 Group 108) -->
         <div ref="mobileCityRef" class="exchangers-page__mobile-city-picker">
-          <button 
-            type="button" 
-            class="exchangers-page__city-btn" 
+          <button
+            type="button"
+            class="exchangers-page__city-btn"
             @click.stop="isMobileCityOpen = !isMobileCityOpen"
           >
             <span>{{ banksStore.selectedCity }}</span>
             <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-              <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M1 1.5L6 6.5L11 1.5"
+                stroke="#FF8A16"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </button>
 
           <!-- Dropdown -->
           <ul v-if="isMobileCityOpen" class="exchangers-page__city-menu">
-            <li 
-              v-for="city in banksStore.cities" 
+            <li
+              v-for="city in banksStore.cities"
               :key="city"
               class="exchangers-page__city-item"
               :class="{ 'exchangers-page__city-item--active': city === banksStore.selectedCity }"
@@ -38,11 +45,7 @@
         <ExchangerRateCards />
 
         <!-- Filter Bar -->
-        <ExchangerFilter 
-          @filter="handleFilter"
-          @show-map="handleShowMap"
-          @reset="handleReset"
-        />
+        <ExchangerFilter @filter="handleFilter" @show-map="handleShowMap" @reset="handleReset" />
 
         <!-- Exchangers Rates Table (Desktop 9-col / Mobile with tabs) -->
         <ExchangerTable />
@@ -135,7 +138,7 @@ function handleReset() {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    background: #FEF2E3;
+    background: #fef2e3;
     border: none;
     border-radius: 4px;
     height: 32px;
@@ -173,8 +176,8 @@ function handleReset() {
 
     &:hover,
     &--active {
-      background: #FEF2E3;
-      color: #FF8A16;
+      background: #fef2e3;
+      color: #ff8a16;
       font-weight: 500;
     }
   }

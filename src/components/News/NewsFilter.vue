@@ -1,25 +1,25 @@
 <template>
   <div class="news-filter">
     <!-- Toggle Button: "Все категории" (collapsed) / "Свернуть категории" (expanded) -->
-    <button 
+    <button
       class="news-filter__btn news-filter__btn--toggle"
       :class="{ 'news-filter__btn--active': isExpanded && selected === '' }"
       @click="toggleExpand"
     >
       <span>{{ isExpanded ? 'Свернуть категории' : 'Все категории' }}</span>
-      <svg 
-        class="news-filter__chevron" 
+      <svg
+        class="news-filter__chevron"
         :class="{ 'news-filter__chevron--expanded': isExpanded }"
-        width="8" 
-        height="12" 
-        viewBox="0 0 8 12" 
+        width="8"
+        height="12"
+        viewBox="0 0 8 12"
         fill="none"
       >
-        <path 
-          d="M1.5 1L6.5 6L1.5 11" 
-          stroke="#FF8A16" 
-          stroke-width="2" 
-          stroke-linecap="round" 
+        <path
+          d="M1.5 1L6.5 6L1.5 11"
+          stroke="#FF8A16"
+          stroke-width="2"
+          stroke-linecap="round"
           stroke-linejoin="round"
         />
       </svg>
@@ -87,7 +87,7 @@ function selectCategory(cat: string) {
   &__btn {
     height: 38px;
     padding: 0 16px;
-    background: #FEF1E2;
+    background: #fef1e2;
     border: none;
     border-radius: 4px;
     font-family: 'GP', sans-serif;
@@ -99,7 +99,9 @@ function selectCategory(cat: string) {
     align-items: center;
     gap: 10px;
     white-space: nowrap;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
 
     &:hover {
       background: rgba(255, 138, 22, 0.2);

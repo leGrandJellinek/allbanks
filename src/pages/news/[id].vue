@@ -7,18 +7,18 @@
 
         <!-- Hero Image (1200x378 on Desktop / 335x109 on Mobile per Figma) -->
         <div class="news-detail__hero">
-          <img 
-            :src="currentArticle.heroImage || defaultHero" 
-            :alt="currentArticle.title" 
-            class="news-detail__hero-img" 
+          <img
+            :src="currentArticle.heroImage || defaultHero"
+            :alt="currentArticle.title"
+            class="news-detail__hero-img"
           />
         </div>
 
         <!-- Article Body Paragraphs -->
         <div class="news-detail__content">
-          <p 
-            v-for="(paragraph, idx) in currentArticle.paragraphs" 
-            :key="idx" 
+          <p
+            v-for="(paragraph, idx) in currentArticle.paragraphs"
+            :key="idx"
             class="news-detail__paragraph"
           >
             {{ paragraph }}
@@ -28,12 +28,18 @@
         <!-- Bottom Action Bar: "‹ Вернуться назад" + Date Badge -->
         <div class="news-detail__bottom-bar">
           <router-link to="/news" class="news-detail__back-link">
-            <svg class="news-detail__back-arrow" width="9" height="13" viewBox="0 0 9 13" fill="none">
-              <path 
-                d="M7.5 11.5L2 6.5L7.5 1.5" 
-                stroke="#FF8A16" 
-                stroke-width="2" 
-                stroke-linecap="round" 
+            <svg
+              class="news-detail__back-arrow"
+              width="9"
+              height="13"
+              viewBox="0 0 9 13"
+              fill="none"
+            >
+              <path
+                d="M7.5 11.5L2 6.5L7.5 1.5"
+                stroke="#FF8A16"
+                stroke-width="2"
+                stroke-linecap="round"
                 stroke-linejoin="round"
               />
             </svg>
@@ -58,15 +64,19 @@ import defaultHero from '@/assets/images/news/news-hero.png'
 const route = useRoute()
 
 const currentArticle = computed<NewsItem>(() => {
-  const idParam = 'id' in route.params ? (route.params as any).id : undefined
+  const idParam = (route.params as Record<string, string | undefined>).id
   const id = Number(idParam)
-  const found = NEWS_ITEMS.find(item => item.id === id)
+  const found = NEWS_ITEMS.find((item) => item.id === id)
   return found || NEWS_ITEMS[0]
 })
 
-watch(currentArticle, (a) => {
-  if (a) document.title = `${a.title} - AllBanks.kz`
-}, { immediate: true })
+watch(
+  currentArticle,
+  (a) => {
+    if (a) document.title = `${a.title} - AllBanks.kz`
+  },
+  { immediate: true }
+)
 </script>
 
 <style lang="scss" scoped>
@@ -176,7 +186,7 @@ watch(currentArticle, (a) => {
     cursor: pointer;
 
     &:hover .news-detail__back-text {
-      color: #FF8A16;
+      color: #ff8a16;
     }
   }
 
@@ -208,7 +218,7 @@ watch(currentArticle, (a) => {
     font-family: 'GP', sans-serif;
     font-size: 11px;
     font-weight: 400;
-    color: #FFFFFF;
+    color: #ffffff;
     line-height: 1;
     flex-shrink: 0;
 

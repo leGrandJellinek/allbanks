@@ -6,23 +6,33 @@
 
         <div class="apply-card">
           <div class="apply-card__header">
-            <h1 class="apply-card__title">
-              Поздравляем! Вы в одном шаге от получения кредита!
-            </h1>
+            <h1 class="apply-card__title">Поздравляем! Вы в одном шаге от получения кредита!</h1>
             <p class="apply-card__subtitle">
-              Заполните короткую анкету, и банк свяжется с вами в течение нескольких минут для подтверждения заявки.
+              Заполните короткую анкету, и банк свяжется с вами в течение нескольких минут для
+              подтверждения заявки.
             </p>
           </div>
 
-          <form @submit.prevent="submitApplication" class="apply-form">
+          <form class="apply-form" @submit.prevent="submitApplication">
             <div class="form-group">
               <label>ФИО полностью *</label>
-              <input v-model="form.fullName" type="text" placeholder="Иванов Иван Иванович" required />
+              <input
+                v-model="form.fullName"
+                type="text"
+                placeholder="Иванов Иван Иванович"
+                required
+              />
             </div>
 
             <div class="form-group">
               <label>ИИН (12 цифр) *</label>
-              <input v-model="form.iin" type="text" maxlength="12" placeholder="000000000000" required />
+              <input
+                v-model="form.iin"
+                type="text"
+                maxlength="12"
+                placeholder="000000000000"
+                required
+              />
             </div>
 
             <div class="form-group">
@@ -46,15 +56,13 @@
             </div>
 
             <div class="form-agree">
-              <input type="checkbox" id="agree" v-model="form.agree" required />
+              <input id="agree" v-model="form.agree" type="checkbox" required />
               <label for="agree">
                 Я даю согласие на обработку персональных данных и передачу кредитной истории
               </label>
             </div>
 
-            <button type="submit" class="apply-submit-btn">
-              Отправить заявку
-            </button>
+            <button type="submit" class="apply-submit-btn">Отправить заявку</button>
           </form>
         </div>
       </div>
@@ -147,7 +155,8 @@ function submitApplication() {
       color: #333333;
     }
 
-    input, select {
+    input,
+    select {
       padding: 12px 14px;
       border: 1px solid #dddddd;
       border-radius: 6px;

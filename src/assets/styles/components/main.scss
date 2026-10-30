@@ -1,5 +1,5 @@
-@use "@/assets/styles/common/grid.scss" as *;
-@use "@/assets/styles/common/common.scss" as *;
+@use '@/assets/styles/common/grid.scss' as *;
+@use '@/assets/styles/common/common.scss' as *;
 
 .main {
   margin-top: 50px;
@@ -62,7 +62,7 @@
         justify-content: space-between;
         align-items: flex-start;
         padding-bottom: 20px;
-        border-bottom: 1px solid #E0E0E0;
+        border-bottom: 1px solid #e0e0e0;
 
         img {
           width: 44px;
@@ -123,7 +123,7 @@
           text-decoration: none;
 
           &:hover {
-            color: #FF8A16;
+            color: #ff8a16;
           }
         }
       }
@@ -132,7 +132,7 @@
         font-weight: 600;
         font-size: 14px;
         text-align: center;
-        color: #FF8A16;
+        color: #ff8a16;
         text-decoration: underline;
         transition: color 0.2s;
 

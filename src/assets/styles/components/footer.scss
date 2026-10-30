@@ -1,5 +1,5 @@
-@use "@/assets/styles/common/common.scss" as *;
-@use "@/assets/styles/common/grid.scss" as *;
+@use '@/assets/styles/common/common.scss' as *;
+@use '@/assets/styles/common/grid.scss' as *;
 
 .footer {
   padding: 60px 0 0 0;
@@ -79,13 +79,13 @@
       transition: color 0.2s;
 
       &:hover {
-        color: #FF8A16;
+        color: #ff8a16;
       }
     }
   }
 
   &__bottom {
-    background: #F8F8F8;
+    background: #f8f8f8;
     padding: 32px 0 34px 0;
 
     @media (max-width: 768px) {

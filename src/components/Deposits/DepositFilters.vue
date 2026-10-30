@@ -5,27 +5,33 @@
       <!-- Row 1 -->
       <div class="deposit-filters__row">
         <!-- Валюта -->
-        <div 
-          class="deposit-filters__dropdown" 
+        <div
+          class="deposit-filters__dropdown"
           :class="{ 'deposit-filters__dropdown--open': activeDropdown === 'currency' }"
         >
           <button class="deposit-filters__pill" @click="toggleDropdown('currency')">
             <span class="deposit-filters__pill-text">{{ selectedCurrencyLabel }}</span>
-            <svg 
-              class="deposit-filters__chevron" 
+            <svg
+              class="deposit-filters__chevron"
               :class="{ 'deposit-filters__chevron--open': activeDropdown === 'currency' }"
-              width="12" 
-              height="8" 
-              viewBox="0 0 12 8" 
+              width="12"
+              height="8"
+              viewBox="0 0 12 8"
               fill="none"
             >
-              <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M1 1.5L6 6.5L11 1.5"
+                stroke="#FF8A16"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </button>
           <div v-if="activeDropdown === 'currency'" class="deposit-filters__menu">
-            <div 
-              v-for="curr in currencyOptions" 
-              :key="curr.value" 
+            <div
+              v-for="curr in currencyOptions"
+              :key="curr.value"
               class="deposit-filters__item"
               :class="{ 'deposit-filters__item--active': selectedCurrency === curr.value }"
               @click="selectCurrency(curr.value)"
@@ -36,17 +42,17 @@
         </div>
 
         <!-- Сумма -->
-        <div 
-          class="deposit-filters__dropdown" 
+        <div
+          class="deposit-filters__dropdown"
           :class="{ 'deposit-filters__dropdown--open': activeDropdown === 'amount' }"
         >
           <button class="deposit-filters__pill" @click="toggleDropdown('amount')">
             <span class="deposit-filters__pill-text">{{ selectedAmountLabel }}</span>
           </button>
           <div v-if="activeDropdown === 'amount'" class="deposit-filters__menu">
-            <div 
-              v-for="amt in amountOptions" 
-              :key="amt.value" 
+            <div
+              v-for="amt in amountOptions"
+              :key="amt.value"
               class="deposit-filters__item"
               :class="{ 'deposit-filters__item--active': selectedAmount === amt.value }"
               @click="selectAmount(amt.value)"
@@ -57,27 +63,33 @@
         </div>
 
         <!-- Срок, мес. -->
-        <div 
-          class="deposit-filters__dropdown" 
+        <div
+          class="deposit-filters__dropdown"
           :class="{ 'deposit-filters__dropdown--open': activeDropdown === 'term' }"
         >
           <button class="deposit-filters__pill" @click="toggleDropdown('term')">
             <span class="deposit-filters__pill-text">{{ selectedTermLabel }}</span>
-            <svg 
-              class="deposit-filters__chevron" 
+            <svg
+              class="deposit-filters__chevron"
               :class="{ 'deposit-filters__chevron--open': activeDropdown === 'term' }"
-              width="12" 
-              height="8" 
-              viewBox="0 0 12 8" 
+              width="12"
+              height="8"
+              viewBox="0 0 12 8"
               fill="none"
             >
-              <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M1 1.5L6 6.5L11 1.5"
+                stroke="#FF8A16"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </button>
           <div v-if="activeDropdown === 'term'" class="deposit-filters__menu">
-            <div 
-              v-for="t in termOptions" 
-              :key="t.value" 
+            <div
+              v-for="t in termOptions"
+              :key="t.value"
               class="deposit-filters__item"
               :class="{ 'deposit-filters__item--active': selectedTerm === t.value }"
               @click="selectTerm(t.value)"
@@ -88,27 +100,33 @@
         </div>
 
         <!-- Пополнение -->
-        <div 
-          class="deposit-filters__dropdown" 
+        <div
+          class="deposit-filters__dropdown"
           :class="{ 'deposit-filters__dropdown--open': activeDropdown === 'replenishment' }"
         >
           <button class="deposit-filters__pill" @click="toggleDropdown('replenishment')">
             <span class="deposit-filters__pill-text">{{ selectedReplenishmentLabel }}</span>
-            <svg 
-              class="deposit-filters__chevron" 
+            <svg
+              class="deposit-filters__chevron"
               :class="{ 'deposit-filters__chevron--open': activeDropdown === 'replenishment' }"
-              width="12" 
-              height="8" 
-              viewBox="0 0 12 8" 
+              width="12"
+              height="8"
+              viewBox="0 0 12 8"
               fill="none"
             >
-              <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M1 1.5L6 6.5L11 1.5"
+                stroke="#FF8A16"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </button>
           <div v-if="activeDropdown === 'replenishment'" class="deposit-filters__menu">
-            <div 
-              v-for="rep in replenishmentOptions" 
-              :key="rep.value" 
+            <div
+              v-for="rep in replenishmentOptions"
+              :key="rep.value"
               class="deposit-filters__item"
               :class="{ 'deposit-filters__item--active': selectedReplenishment === rep.value }"
               @click="selectReplenishment(rep.value)"
@@ -119,27 +137,33 @@
         </div>
 
         <!-- Част. снятие -->
-        <div 
-          class="deposit-filters__dropdown" 
+        <div
+          class="deposit-filters__dropdown"
           :class="{ 'deposit-filters__dropdown--open': activeDropdown === 'withdrawal' }"
         >
           <button class="deposit-filters__pill" @click="toggleDropdown('withdrawal')">
             <span class="deposit-filters__pill-text">{{ selectedWithdrawalLabel }}</span>
-            <svg 
-              class="deposit-filters__chevron" 
+            <svg
+              class="deposit-filters__chevron"
               :class="{ 'deposit-filters__chevron--open': activeDropdown === 'withdrawal' }"
-              width="12" 
-              height="8" 
-              viewBox="0 0 12 8" 
+              width="12"
+              height="8"
+              viewBox="0 0 12 8"
               fill="none"
             >
-              <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M1 1.5L6 6.5L11 1.5"
+                stroke="#FF8A16"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </button>
           <div v-if="activeDropdown === 'withdrawal'" class="deposit-filters__menu">
-            <div 
-              v-for="w in withdrawalOptions" 
-              :key="w.value" 
+            <div
+              v-for="w in withdrawalOptions"
+              :key="w.value"
               class="deposit-filters__item"
               :class="{ 'deposit-filters__item--active': selectedWithdrawal === w.value }"
               @click="selectWithdrawal(w.value)"
@@ -150,27 +174,33 @@
         </div>
 
         <!-- Город -->
-        <div 
-          class="deposit-filters__dropdown" 
+        <div
+          class="deposit-filters__dropdown"
           :class="{ 'deposit-filters__dropdown--open': activeDropdown === 'city' }"
         >
           <button class="deposit-filters__pill" @click="toggleDropdown('city')">
             <span class="deposit-filters__pill-text">{{ selectedCityLabel }}</span>
-            <svg 
-              class="deposit-filters__chevron" 
+            <svg
+              class="deposit-filters__chevron"
               :class="{ 'deposit-filters__chevron--open': activeDropdown === 'city' }"
-              width="12" 
-              height="8" 
-              viewBox="0 0 12 8" 
+              width="12"
+              height="8"
+              viewBox="0 0 12 8"
               fill="none"
             >
-              <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M1 1.5L6 6.5L11 1.5"
+                stroke="#FF8A16"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </button>
           <div v-if="activeDropdown === 'city'" class="deposit-filters__menu">
-            <div 
-              v-for="city in cityOptions" 
-              :key="city" 
+            <div
+              v-for="city in cityOptions"
+              :key="city"
               class="deposit-filters__item"
               :class="{ 'deposit-filters__item--active': selectedCity === city }"
               @click="selectCity(city)"
@@ -184,27 +214,33 @@
       <!-- Row 2 -->
       <div class="deposit-filters__row">
         <!-- Мульт. вклад -->
-        <div 
-          class="deposit-filters__dropdown" 
+        <div
+          class="deposit-filters__dropdown"
           :class="{ 'deposit-filters__dropdown--open': activeDropdown === 'multi' }"
         >
           <button class="deposit-filters__pill" @click="toggleDropdown('multi')">
             <span class="deposit-filters__pill-text">{{ selectedMultiLabel }}</span>
-            <svg 
-              class="deposit-filters__chevron" 
+            <svg
+              class="deposit-filters__chevron"
               :class="{ 'deposit-filters__chevron--open': activeDropdown === 'multi' }"
-              width="12" 
-              height="8" 
-              viewBox="0 0 12 8" 
+              width="12"
+              height="8"
+              viewBox="0 0 12 8"
               fill="none"
             >
-              <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M1 1.5L6 6.5L11 1.5"
+                stroke="#FF8A16"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </button>
           <div v-if="activeDropdown === 'multi'" class="deposit-filters__menu">
-            <div 
-              v-for="m in multiOptions" 
-              :key="m.value" 
+            <div
+              v-for="m in multiOptions"
+              :key="m.value"
               class="deposit-filters__item"
               :class="{ 'deposit-filters__item--active': selectedMulti === m.value }"
               @click="selectMulti(m.value)"
@@ -215,27 +251,33 @@
         </div>
 
         <!-- Пенсионный -->
-        <div 
-          class="deposit-filters__dropdown" 
+        <div
+          class="deposit-filters__dropdown"
           :class="{ 'deposit-filters__dropdown--open': activeDropdown === 'pension' }"
         >
           <button class="deposit-filters__pill" @click="toggleDropdown('pension')">
             <span class="deposit-filters__pill-text">{{ selectedPensionLabel }}</span>
-            <svg 
-              class="deposit-filters__chevron" 
+            <svg
+              class="deposit-filters__chevron"
               :class="{ 'deposit-filters__chevron--open': activeDropdown === 'pension' }"
-              width="12" 
-              height="8" 
-              viewBox="0 0 12 8" 
+              width="12"
+              height="8"
+              viewBox="0 0 12 8"
               fill="none"
             >
-              <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M1 1.5L6 6.5L11 1.5"
+                stroke="#FF8A16"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </button>
           <div v-if="activeDropdown === 'pension'" class="deposit-filters__menu">
-            <div 
-              v-for="p in pensionOptions" 
-              :key="p.value" 
+            <div
+              v-for="p in pensionOptions"
+              :key="p.value"
               class="deposit-filters__item"
               :class="{ 'deposit-filters__item--active': selectedPension === p.value }"
               @click="selectPension(p.value)"
@@ -246,9 +288,7 @@
         </div>
 
         <!-- Найти депозит button -->
-        <button class="deposit-filters__submit" @click="handleSubmit">
-          Найти депозит
-        </button>
+        <button class="deposit-filters__submit" @click="handleSubmit">Найти депозит</button>
       </div>
     </div>
 
@@ -258,8 +298,20 @@
       <div class="deposit-filters__row">
         <button class="deposit-filters__pill" @click="toggleDropdown('currency')">
           <span class="deposit-filters__pill-text">{{ selectedCurrencyLabel }}</span>
-          <svg class="deposit-filters__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            class="deposit-filters__chevron"
+            width="12"
+            height="8"
+            viewBox="0 0 12 8"
+            fill="none"
+          >
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
         <button class="deposit-filters__pill" @click="toggleDropdown('amount')">
@@ -271,14 +323,38 @@
       <div class="deposit-filters__row">
         <button class="deposit-filters__pill" @click="toggleDropdown('term')">
           <span class="deposit-filters__pill-text">{{ selectedTermLabel }}</span>
-          <svg class="deposit-filters__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            class="deposit-filters__chevron"
+            width="12"
+            height="8"
+            viewBox="0 0 12 8"
+            fill="none"
+          >
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
         <button class="deposit-filters__pill" @click="toggleDropdown('replenishment')">
           <span class="deposit-filters__pill-text">{{ selectedReplenishmentLabel }}</span>
-          <svg class="deposit-filters__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            class="deposit-filters__chevron"
+            width="12"
+            height="8"
+            viewBox="0 0 12 8"
+            fill="none"
+          >
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
       </div>
@@ -287,14 +363,38 @@
       <div class="deposit-filters__row">
         <button class="deposit-filters__pill" @click="toggleDropdown('withdrawal')">
           <span class="deposit-filters__pill-text">{{ selectedWithdrawalLabel }}</span>
-          <svg class="deposit-filters__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            class="deposit-filters__chevron"
+            width="12"
+            height="8"
+            viewBox="0 0 12 8"
+            fill="none"
+          >
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
         <button class="deposit-filters__pill" @click="toggleDropdown('city')">
           <span class="deposit-filters__pill-text">{{ selectedCityLabel }}</span>
-          <svg class="deposit-filters__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            class="deposit-filters__chevron"
+            width="12"
+            height="8"
+            viewBox="0 0 12 8"
+            fill="none"
+          >
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
       </div>
@@ -303,14 +403,38 @@
       <div class="deposit-filters__row">
         <button class="deposit-filters__pill" @click="toggleDropdown('multi')">
           <span class="deposit-filters__pill-text">{{ selectedMultiLabel }}</span>
-          <svg class="deposit-filters__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            class="deposit-filters__chevron"
+            width="12"
+            height="8"
+            viewBox="0 0 12 8"
+            fill="none"
+          >
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
         <button class="deposit-filters__pill" @click="toggleDropdown('pension')">
           <span class="deposit-filters__pill-text">{{ selectedPensionLabel }}</span>
-          <svg class="deposit-filters__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            class="deposit-filters__chevron"
+            width="12"
+            height="8"
+            viewBox="0 0 12 8"
+            fill="none"
+          >
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
       </div>
@@ -360,7 +484,7 @@ const currencyOptions = [
   { value: 'EUR', label: 'EUR (Евро)' }
 ]
 const selectedCurrencyLabel = computed(() => {
-  const found = currencyOptions.find(o => o.value === selectedCurrency.value)
+  const found = currencyOptions.find((o) => o.value === selectedCurrency.value)
   return found ? found.label : 'Валюта'
 })
 function selectCurrency(val: string) {
@@ -378,7 +502,7 @@ const amountOptions = [
   { value: '5m', label: 'от 5 млн ₸' }
 ]
 const selectedAmountLabel = computed(() => {
-  const found = amountOptions.find(o => o.value === selectedAmount.value)
+  const found = amountOptions.find((o) => o.value === selectedAmount.value)
   return found ? found.label : 'Сумма'
 })
 function selectAmount(val: string) {
@@ -397,7 +521,7 @@ const termOptions = [
   { value: '36', label: '36 месяцев' }
 ]
 const selectedTermLabel = computed(() => {
-  const found = termOptions.find(o => o.value === selectedTerm.value)
+  const found = termOptions.find((o) => o.value === selectedTerm.value)
   return found ? found.label : 'Срок, мес.'
 })
 function selectTerm(val: string) {
@@ -413,7 +537,7 @@ const replenishmentOptions = [
   { value: 'no', label: 'Без пополнения' }
 ]
 const selectedReplenishmentLabel = computed(() => {
-  const found = replenishmentOptions.find(o => o.value === selectedReplenishment.value)
+  const found = replenishmentOptions.find((o) => o.value === selectedReplenishment.value)
   return found ? found.label : 'Пополнение'
 })
 function selectReplenishment(val: string) {
@@ -429,7 +553,7 @@ const withdrawalOptions = [
   { value: 'no', label: 'Без снятия' }
 ]
 const selectedWithdrawalLabel = computed(() => {
-  const found = withdrawalOptions.find(o => o.value === selectedWithdrawal.value)
+  const found = withdrawalOptions.find((o) => o.value === selectedWithdrawal.value)
   return found ? found.label : 'Част. снятие'
 })
 function selectWithdrawal(val: string) {
@@ -456,7 +580,7 @@ const multiOptions = [
   { value: 'no', label: 'Обычный' }
 ]
 const selectedMultiLabel = computed(() => {
-  const found = multiOptions.find(o => o.value === selectedMulti.value)
+  const found = multiOptions.find((o) => o.value === selectedMulti.value)
   return found ? found.label : 'Мульт. вклад'
 })
 function selectMulti(val: string) {
@@ -472,7 +596,7 @@ const pensionOptions = [
   { value: 'no', label: 'Стандартный' }
 ]
 const selectedPensionLabel = computed(() => {
-  const found = pensionOptions.find(o => o.value === selectedPension.value)
+  const found = pensionOptions.find((o) => o.value === selectedPension.value)
   return found ? found.label : 'Пенсионный'
 })
 function selectPension(val: string) {

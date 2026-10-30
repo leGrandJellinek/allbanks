@@ -59,23 +59,29 @@ const route = useRoute()
 
 const deposit = computed<DepositItem>(() => {
   const id = Number((route.params as { id?: string }).id) || 1
-  return DEPOSIT_LIST.find(d => d.id === id) || DEPOSIT_LIST[0]
+  return DEPOSIT_LIST.find((d) => d.id === id) || DEPOSIT_LIST[0]
 })
 
 const depositConditions = computed(() => {
-  return deposit.value.fullConditions || [
-    'Возможность пополнения вклада без ограничений по сумме',
-    'Частичное снятие до суммы неснижаемого остатка',
-    'Автоматическая пролонгация договора на новый срок',
-    'Депозит застрахован Казахстанским фондом гарантирования депозитов (КФГД)'
-  ]
+  return (
+    deposit.value.fullConditions || [
+      'Возможность пополнения вклада без ограничений по сумме',
+      'Частичное снятие до суммы неснижаемого остатка',
+      'Автоматическая пролонгация договора на новый срок',
+      'Депозит застрахован Казахстанским фондом гарантирования депозитов (КФГД)'
+    ]
+  )
 })
 
-watch(deposit, (d) => {
-  if (d) {
-    document.title = `${d.bank} - ${d.subtitle} - AllBanks.kz`
-  }
-}, { immediate: true })
+watch(
+  deposit,
+  (d) => {
+    if (d) {
+      document.title = `${d.bank} - ${d.subtitle} - AllBanks.kz`
+    }
+  },
+  { immediate: true }
+)
 </script>
 
 <style lang="scss" scoped>

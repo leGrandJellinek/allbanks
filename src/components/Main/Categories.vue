@@ -2,11 +2,7 @@
   <section class="main__categories">
     <div class="main__categories-container">
       <div class="main__categories-grid">
-        <CategoriesItem 
-          v-for="item in banksStore.categoriesList" 
-          :key="item.id" 
-          :item="item" 
-        />
+        <CategoriesItem v-for="item in banksStore.categoriesList" :key="item.id" :item="item" />
       </div>
     </div>
   </section>

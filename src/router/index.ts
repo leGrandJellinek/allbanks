@@ -13,7 +13,7 @@ const PAGE_TITLES: Record<string, string> = {
   '/credits/cash': 'Кредиты наличными - AllBanks.kz',
   '/microloans': 'Займы и микрокредиты онлайн в Казахстане - AllBanks.kz',
   '/deposits': 'Вклады для физических лиц в банках Казахстана - AllBanks.kz',
-  '/news': 'Новости банков и финансового рынка - AllBanks.kz',
+  '/news': 'Новости банков и финансового рынка - AllBanks.kz'
 }
 
 const router = createRouter({
@@ -24,7 +24,7 @@ const router = createRouter({
       return savedPosition
     }
     return { top: 0 }
-  },
+  }
 })
 
 router.afterEach((to) => {

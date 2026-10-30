@@ -4,7 +4,8 @@
       <div class="container nbk-page__container">
         <!-- Main page title (1:1 from Figma Desktop Frame 48 & Mobile Frame 263:671) -->
         <h1 class="nbk-page__title">
-          Курсы валют Национального<br class="nbk-page__br-mobile" /> Банка Казахстана на 16.02.2022
+          Курсы валют Национального<br class="nbk-page__br-mobile" />
+          Банка Казахстана на 16.02.2022
         </h1>
 
         <!-- Table Container (741px on Desktop, 100% on Mobile per Figma) -->
@@ -18,11 +19,7 @@
           </div>
 
           <!-- Table Rows -->
-          <div 
-            v-for="item in nbkList" 
-            :key="item.code" 
-            class="nbk-page__table-row"
-          >
+          <div v-for="item in nbkList" :key="item.code" class="nbk-page__table-row">
             <div class="nbk-page__col nbk-page__col--name">
               <span class="nbk-page__currency-name">{{ item.name }}</span>
             </div>
@@ -33,14 +30,14 @@
               <span class="nbk-page__currency-rate">{{ item.rate }}</span>
             </div>
             <div class="nbk-page__col nbk-page__col--movement">
-              <div 
-                class="nbk-page__pill" 
+              <div
+                class="nbk-page__pill"
                 :class="item.trend === 'up' ? 'nbk-page__pill--up' : 'nbk-page__pill--down'"
               >
-                <svg 
-                  class="nbk-page__pill-arrow" 
+                <svg
+                  class="nbk-page__pill-arrow"
                   :class="{ 'nbk-page__pill-arrow--down': item.trend === 'down' }"
-                  viewBox="0 0 10 13" 
+                  viewBox="0 0 10 13"
                   fill="currentColor"
                   aria-hidden="true"
                 >
@@ -273,12 +270,12 @@ const nbkList = ref<NbkCurrency[]>([
 
     &--up {
       background-color: rgba(96, 178, 88, 0.1);
-      color: #60B258;
+      color: #60b258;
     }
 
     &--down {
       background-color: rgba(222, 19, 6, 0.1);
-      color: #DE1306;
+      color: #de1306;
     }
 
     &-arrow {

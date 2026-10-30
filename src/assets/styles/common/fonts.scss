@@ -1,8 +1,4 @@
-$GothamPro: ('Light', 300),
-            ('Regular', 400),
-            ('Medium', 500),
-            ('Bold', 700),
-            ('Black', 900);
+$GothamPro: ('Light', 300), ('Regular', 400), ('Medium', 500), ('Bold', 700), ('Black', 900);
 
 @each $name, $weight in $GothamPro {
   @font-face {
@@ -13,8 +9,7 @@ $GothamPro: ('Light', 300),
   }
 }
 
-$SFPro: ('Regular', 400),
-        ('Semibold', 600);
+$SFPro: ('Regular', 400), ('Semibold', 600);
 
 @each $name, $weight in $SFPro {
   @font-face {
@@ -25,9 +20,7 @@ $SFPro: ('Regular', 400),
   }
 }
 
-$Gilroy: ('Medium', 500),
-         ('Semibold', 600),
-         ('Bold', 700);
+$Gilroy: ('Medium', 500), ('Semibold', 600), ('Bold', 700);
 
 @each $name, $weight in $Gilroy {
   @font-face {

@@ -70,7 +70,9 @@ const toastStore = useToastStore()
   color: #1e1e1e;
   padding: 14px 18px;
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.06);
   border-left: 5px solid #ff8a16;
   font-family: inherit;
   font-size: 14px;

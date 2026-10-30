@@ -6,33 +6,38 @@
 
         <!-- City Selector Dropdown (Shown in center on desktop / below header on mobile when exchangers active) -->
         <div class="main__currency-controls">
-          <div 
+          <div
             ref="citySelectRef"
             class="city-select"
             :class="{ 'mobile-hidden': banksStore.activeCurrencyTab === 'banks' }"
           >
-            <button 
-              class="city-select__button" 
+            <button
+              class="city-select__button"
               :class="{ open: banksStore.isCityDropdownOpen }"
               @click="banksStore.toggleCityDropdown"
             >
               <span>{{ banksStore.selectedCity }}</span>
-              <svg 
-                class="city-select__arrow" 
+              <svg
+                class="city-select__arrow"
                 :class="{ rotated: banksStore.isCityDropdownOpen }"
-                width="12" 
-                height="8" 
-                viewBox="0 0 12 8" 
+                width="12"
+                height="8"
+                viewBox="0 0 12 8"
                 fill="none"
               >
-                <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="2" stroke-linecap="round"/>
+                <path
+                  d="M1 1.5L6 6.5L11 1.5"
+                  stroke="#FF8A16"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
               </svg>
             </button>
 
             <ul v-if="banksStore.isCityDropdownOpen" class="city-select__menu">
-              <li 
-                v-for="city in banksStore.cities" 
-                :key="city" 
+              <li
+                v-for="city in banksStore.cities"
+                :key="city"
                 class="city-select__item"
                 :class="{ selected: banksStore.selectedCity === city }"
                 @click="banksStore.setCity(city)"
@@ -44,15 +49,15 @@
 
           <!-- Tabs: Обменники / Банки -->
           <div class="main__currency-tabs">
-            <button 
-              class="main__currency-tab" 
+            <button
+              class="main__currency-tab"
               :class="{ active: banksStore.activeCurrencyTab === 'exchangers' }"
               @click="banksStore.setCurrencyTab('exchangers')"
             >
               Обменники
             </button>
-            <button 
-              class="main__currency-tab" 
+            <button
+              class="main__currency-tab"
               :class="{ active: banksStore.activeCurrencyTab === 'banks' }"
               @click="banksStore.setCurrencyTab('banks')"
             >
@@ -64,11 +69,7 @@
 
       <!-- Desktop Currency Pills (1:1 from Figma Desktop Frame 1: Group 229) -->
       <div class="main__currency-desktop-grid">
-        <div 
-          v-for="currency in banksStore.currencyList" 
-          :key="currency.id" 
-          class="currency-pill"
-        >
+        <div v-for="currency in banksStore.currencyList" :key="currency.id" class="currency-pill">
           <div class="currency-pill__badge" :style="{ backgroundColor: currency.color }">
             <span>{{ currency.symbol }}</span>
           </div>
@@ -101,10 +102,10 @@
         </div>
 
         <div class="main__currency-list">
-          <CurrencyItem 
-            v-for="currency in banksStore.currencyList" 
-            :key="currency.id" 
-            :item="currency" 
+          <CurrencyItem
+            v-for="currency in banksStore.currencyList"
+            :key="currency.id"
+            :item="currency"
           />
         </div>
       </div>
@@ -257,7 +258,7 @@ onUnmounted(() => {
     &__divider {
       width: 1px;
       height: 32px;
-      background: #E0E0E0;
+      background: #e0e0e0;
       margin: 0 4px;
     }
 

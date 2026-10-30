@@ -2,22 +2,22 @@
   <div class="deposit-pagination">
     <!-- Buttons -->
     <div class="deposit-pagination__list">
-      <button 
-        class="deposit-pagination__btn" 
+      <button
+        class="deposit-pagination__btn"
         :class="{ 'deposit-pagination__btn--active': currentPage === 1 }"
         @click="$emit('change', 1)"
       >
         1
       </button>
-      <button 
-        class="deposit-pagination__btn" 
+      <button
+        class="deposit-pagination__btn"
         :class="{ 'deposit-pagination__btn--active': currentPage === 2 }"
         @click="$emit('change', 2)"
       >
         2
       </button>
-      <button 
-        class="deposit-pagination__btn" 
+      <button
+        class="deposit-pagination__btn"
         :class="{ 'deposit-pagination__btn--active': currentPage === 3 }"
         @click="$emit('change', 3)"
       >
@@ -25,8 +25,8 @@
       </button>
       <!-- Mobile-only continuation dots and 30 -->
       <span class="deposit-pagination__dots mobile-only">...</span>
-      <button 
-        class="deposit-pagination__btn deposit-pagination__btn--wide mobile-only" 
+      <button
+        class="deposit-pagination__btn deposit-pagination__btn--wide mobile-only"
         :class="{ 'deposit-pagination__btn--active': currentPage === 30 }"
         @click="$emit('change', 30)"
       >

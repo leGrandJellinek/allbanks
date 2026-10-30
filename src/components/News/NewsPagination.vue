@@ -1,8 +1,8 @@
 <template>
   <div class="news-pagination">
     <div class="news-pagination__pages">
-      <button 
-        v-for="page in [1, 2, 3]" 
+      <button
+        v-for="page in [1, 2, 3]"
         :key="page"
         class="news-pagination__page"
         :class="{ 'news-pagination__page--active': currentPage === page }"
@@ -13,7 +13,7 @@
 
       <span class="news-pagination__dots">...</span>
 
-      <button 
+      <button
         class="news-pagination__page news-pagination__page--wide"
         :class="{ 'news-pagination__page--active': currentPage === totalPages }"
         @click="selectPage(totalPages)"
@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     totalPages?: number
     totalCount?: number
@@ -73,7 +73,7 @@ function selectPage(p: number) {
     width: 31px;
     height: 30px;
     border-radius: 5px;
-    border: 1px solid #B8B8B8;
+    border: 1px solid #b8b8b8;
     background: transparent;
     color: #000000;
     font-family: 'GP', sans-serif;
@@ -84,16 +84,18 @@ function selectPage(p: number) {
     justify-content: center;
     cursor: pointer;
     padding: 0;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease;
 
     &:hover {
-      border-color: #FF8A16;
-      color: #FF8A16;
+      border-color: #ff8a16;
+      color: #ff8a16;
     }
 
     &--active {
-      border-color: #FF8A16;
-      color: #FF8A16;
+      border-color: #ff8a16;
+      color: #ff8a16;
     }
 
     &--wide {

@@ -3,11 +3,10 @@
     <main class="main cash-page">
       <div class="container">
         <router-link to="/credits" class="cash-page__back">‹ Назад к кредитам</router-link>
-        <h1 class="cash-page__title section-title">
-          Кредиты наличными
-        </h1>
+        <h1 class="cash-page__title section-title">Кредиты наличными</h1>
         <p class="cash-page__desc">
-          В нашем каталоге мы собрали достоверную информацию о кредитах наличными, которые предоставляют банки Казахстана.
+          В нашем каталоге мы собрали достоверную информацию о кредитах наличными, которые
+          предоставляют банки Казахстана.
         </p>
 
         <!-- Horizontal Filter Bar (Figma Frame 51) -->
@@ -29,9 +28,7 @@
               </select>
             </div>
           </div>
-          <button class="filter-submit-btn" @click="applyFilter">
-            Найти кредит
-          </button>
+          <button class="filter-submit-btn" @click="applyFilter">Найти кредит</button>
         </div>
 
         <div class="cash-grid">
@@ -42,10 +39,30 @@
             </div>
             <div class="cash-card__divider"></div>
             <ul class="cash-card__list">
-              <li><span class="dot"></span><span>Мин. ставка: <strong>{{ item.rate }}</strong></span></li>
-              <li><span class="dot"></span><span>Срок: <strong>{{ item.term }}</strong></span></li>
-              <li><span class="dot"></span><span>Валюта: <strong>{{ item.currency }}</strong></span></li>
-              <li><span class="dot"></span><span>Макс. сумма: <strong>{{ item.maxSum }}</strong></span></li>
+              <li>
+                <span class="dot"></span
+                ><span
+                  >Мин. ставка: <strong>{{ item.rate }}</strong></span
+                >
+              </li>
+              <li>
+                <span class="dot"></span
+                ><span
+                  >Срок: <strong>{{ item.term }}</strong></span
+                >
+              </li>
+              <li>
+                <span class="dot"></span
+                ><span
+                  >Валюта: <strong>{{ item.currency }}</strong></span
+                >
+              </li>
+              <li>
+                <span class="dot"></span
+                ><span
+                  >Макс. сумма: <strong>{{ item.maxSum }}</strong></span
+                >
+              </li>
             </ul>
             <div class="cash-card__action">
               <router-link to="/credits/apply" class="btn">Получить кредит</router-link>

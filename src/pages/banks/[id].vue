@@ -4,9 +4,7 @@
       <div class="container">
         <!-- Breadcrumb / back link -->
         <div class="bank-detail__breadcrumbs">
-          <router-link to="/banks" class="bank-detail__back">
-            ‹ Назад к списку банков
-          </router-link>
+          <router-link to="/banks" class="bank-detail__back"> ‹ Назад к списку банков </router-link>
         </div>
 
         <h1 class="bank-detail__page-title section-title">{{ bank.name }}</h1>
@@ -22,7 +20,9 @@
             <ul class="info-card__list">
               <li class="info-card__item">
                 <span class="info-card__dot"></span>
-                <span class="info-card__text"><strong>АО "{{ bank.name }}"</strong></span>
+                <span class="info-card__text"
+                  ><strong>АО "{{ bank.name }}"</strong></span
+                >
               </li>
               <li class="info-card__item">
                 <span class="info-card__dot"></span>
@@ -30,7 +30,9 @@
               </li>
               <li class="info-card__item">
                 <span class="info-card__dot"></span>
-                <span class="info-card__text">Руководитель: Марат Альменов (по информации на 16.02.2021)</span>
+                <span class="info-card__text"
+                  >Руководитель: Марат Альменов (по информации на 16.02.2021)</span
+                >
               </li>
               <li class="info-card__item">
                 <span class="info-card__dot"></span>
@@ -38,7 +40,9 @@
               </li>
               <li class="info-card__item">
                 <span class="info-card__dot"></span>
-                <a :href="`tel:${bank.phoneNumber}`" class="info-card__link">{{ bank.phoneNumber }}</a>
+                <a :href="`tel:${bank.phoneNumber}`" class="info-card__link">{{
+                  bank.phoneNumber
+                }}</a>
               </li>
             </ul>
           </div>
@@ -47,16 +51,24 @@
           <div class="bank-detail__ref-block">
             <h2 class="ref-block__title">Справочная информация:</h2>
             <p class="ref-block__text">
-              {{ bank.name }} — универсальный коммерческий банк, предоставляющий полный спектр продуктов и услуг корпоративным и розничным клиентам. Центральный офис банка находится в г. Алматы, Казахстан. Банк имеет филиалы в пяти крупных городах страны — Алматы, Астана (Нур-Султан), Шымкент, Актау и Атырау.
+              {{ bank.name }} — универсальный коммерческий банк, предоставляющий полный спектр
+              продуктов и услуг корпоративным и розничным клиентам. Центральный офис банка находится
+              в г. Алматы, Казахстан. Банк имеет филиалы в пяти крупных городах страны — Алматы,
+              Астана (Нур-Султан), Шымкент, Актау и Атырау.
             </p>
             <p class="ref-block__text">
-              Акционерами банка являются ведущие международные и национальные финансовые институты: China CITIC Bank Corporation Limited (50.1%), китайская компания China Shuangwei Investment Co., Ltd. (9.9%) и AO «Народный Банк Казахстана» (40.0%).
+              Акционерами банка являются ведущие международные и национальные финансовые институты:
+              China CITIC Bank Corporation Limited (50.1%), китайская компания China Shuangwei
+              Investment Co., Ltd. (9.9%) и AO «Народный Банк Казахстана» (40.0%).
             </p>
             <button class="ref-block__more-btn" @click="isExpanded = !isExpanded">
               {{ isExpanded ? 'Свернуть' : 'Читать далее' }}
             </button>
             <p v-if="isExpanded" class="ref-block__text extra">
-              Банк обладает высоким кредитным рейтингом инвестиционного уровня от международных агентств Fitch Ratings и Standard & Poor's. Обслуживание клиентов осуществляется по современным стандартам цифрового банкинга и через развитую сеть банкоматов и отделений по всей Республике.
+              Банк обладает высоким кредитным рейтингом инвестиционного уровня от международных
+              агентств Fitch Ratings и Standard & Poor's. Обслуживание клиентов осуществляется по
+              современным стандартам цифрового банкинга и через развитую сеть банкоматов и отделений
+              по всей Республике.
             </p>
           </div>
         </div>
@@ -71,7 +83,7 @@
           </div>
 
           <div v-if="showBranches" class="bank-detail__branches-grid">
-            <div class="branch-card" v-for="(branch, idx) in branches" :key="idx">
+            <div v-for="(branch, idx) in branches" :key="idx" class="branch-card">
               <span class="branch-card__dot"></span>
               <div class="branch-card__content">
                 <p class="branch-card__address">{{ branch.address }}</p>
@@ -101,12 +113,16 @@ const banksStore = useBanksStore()
 
 const bankId = computed(() => Number((route.params as { id?: string }).id) || 1)
 const bank = computed(() => {
-  return banksStore.banks.find(b => b.id === bankId.value) || banksStore.banks[0]
+  return banksStore.banks.find((b) => b.id === bankId.value) || banksStore.banks[0]
 })
 
-watch(bank, (b) => {
-  if (b) document.title = `${b.name} - AllBanks.kz`
-}, { immediate: true })
+watch(
+  bank,
+  (b) => {
+    if (b) document.title = `${b.name} - AllBanks.kz`
+  },
+  { immediate: true }
+)
 
 const isExpanded = ref(false)
 const showBranches = ref(true)

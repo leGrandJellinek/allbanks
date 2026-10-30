@@ -14,19 +14,11 @@
 
         <!-- News Cards Grid (3 columns Desktop / 1 column Mobile) -->
         <div class="news-page__grid">
-          <NewsCard
-            v-for="item in filteredNews"
-            :key="item.id"
-            :item="item"
-          />
+          <NewsCard v-for="item in filteredNews" :key="item.id" :item="item" />
         </div>
 
         <!-- Pagination (1:1 from Figma 353:1212) -->
-        <NewsPagination 
-          :total-count="45631"
-          :start-count="1"
-          :end-count="filteredNews.length"
-        />
+        <NewsPagination :total-count="45631" :start-count="1" :end-count="filteredNews.length" />
       </div>
     </main>
   </div>
@@ -49,7 +41,7 @@ const filteredNews = computed(() => {
   if (!selectedCategory.value) {
     return NEWS_ITEMS
   }
-  return NEWS_ITEMS.filter(n => n.category === selectedCategory.value)
+  return NEWS_ITEMS.filter((n) => n.category === selectedCategory.value)
 })
 </script>
 

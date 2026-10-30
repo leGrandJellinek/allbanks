@@ -16,7 +16,13 @@
             <option value="zhetysu">Жетысуский</option>
           </select>
           <svg class="exchanger-filter__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </div>
 
@@ -31,7 +37,13 @@
             <option value="ainabulak">Айнабулак</option>
           </select>
           <svg class="exchanger-filter__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </div>
 
@@ -43,7 +55,13 @@
             <option value="no">Нет</option>
           </select>
           <svg class="exchanger-filter__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </div>
 
@@ -55,36 +73,30 @@
             <option value="no">Нет</option>
           </select>
           <svg class="exchanger-filter__arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </div>
       </div>
 
       <!-- Action Button & Links -->
       <div class="exchanger-filter__actions">
-        <button 
-          type="button" 
-          class="exchanger-filter__submit-btn" 
-          @click="handleSelect"
-        >
+        <button type="button" class="exchanger-filter__submit-btn" @click="handleSelect">
           Выбрать
         </button>
 
         <div class="exchanger-filter__links-row">
-          <a 
-            href="#map" 
-            class="exchanger-filter__map-link" 
-            @click.prevent="handleShowMap"
-          >
+          <a href="#map" class="exchanger-filter__map-link" @click.prevent="handleShowMap">
             Показать на карте
           </a>
 
           <!-- Mobile Reset Link -->
-          <button 
-            type="button" 
-            class="exchanger-filter__reset-btn" 
-            @click="handleReset"
-          >
+          <button type="button" class="exchanger-filter__reset-btn" @click="handleReset">
             Сбросить
           </button>
         </div>
@@ -97,7 +109,10 @@
 import { ref } from 'vue'
 
 const emit = defineEmits<{
-  (e: 'filter', payload: { district: string; street: string; onlyBest: string; optimal: string }): void
+  (
+    e: 'filter',
+    payload: { district: string; street: string; onlyBest: string; optimal: string }
+  ): void
   (e: 'show-map'): void
   (e: 'reset'): void
 }>()
@@ -138,7 +153,7 @@ function handleReset() {
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 500;
     font-size: 36px;
-    line-height: 1.0;
+    line-height: 1;
     color: #000000;
     margin: 0 0 20px 0;
   }
@@ -159,7 +174,7 @@ function handleReset() {
 
   &__select-wrap {
     position: relative;
-    background: #FEF2E3;
+    background: #fef2e3;
     border-radius: 4px;
     height: 38px;
     display: inline-flex;
@@ -218,7 +233,7 @@ function handleReset() {
   }
 
   &__submit-btn {
-    background: #FF8A16;
+    background: #ff8a16;
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -228,7 +243,7 @@ function handleReset() {
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 700;
     font-size: 16px;
-    line-height: 1.0;
+    line-height: 1;
     cursor: pointer;
     transition: background-color 0.2s;
     box-sizing: border-box;
@@ -242,8 +257,8 @@ function handleReset() {
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 500;
     font-size: 16px;
-    line-height: 1.0;
-    color: #FF8A16;
+    line-height: 1;
+    color: #ff8a16;
     text-decoration: underline;
     transition: opacity 0.2s;
     white-space: nowrap;
@@ -327,7 +342,7 @@ function handleReset() {
       font-family: 'Gotham Pro', sans-serif;
       font-weight: 400;
       font-size: 14px;
-      color: #A0A0A0;
+      color: #a0a0a0;
       cursor: pointer;
 
       &:hover {

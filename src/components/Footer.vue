@@ -5,10 +5,22 @@
         <div class="footer__top-info">
           <a class="footer__top-tel" href="tel:77075789999">+7 707 578 99 99</a>
           <div class="footer__top-icons">
-            <a class="footer__top-icon" href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+            <a
+              class="footer__top-icon"
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener"
+              aria-label="Facebook"
+            >
               <img src="@/assets/images/icons/facebook.svg" alt="Facebook" />
             </a>
-            <a class="footer__top-icon" href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter">
+            <a
+              class="footer__top-icon"
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener"
+              aria-label="Twitter"
+            >
               <img src="@/assets/images/icons/twitter.svg" alt="Twitter" />
             </a>
           </div>
@@ -28,7 +40,9 @@
           </router-link>
           <p class="footer__bottom-text">© 2010-2022 AllBanks.kz</p>
         </div>
-        <p class="footer__bottom-text">При использовании материалов гиперссылка на AllBanks.kz обязательна</p>
+        <p class="footer__bottom-text">
+          При использовании материалов гиперссылка на AllBanks.kz обязательна
+        </p>
       </div>
     </div>
   </footer>

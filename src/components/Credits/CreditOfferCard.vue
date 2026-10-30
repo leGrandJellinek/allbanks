@@ -3,9 +3,9 @@
     <!-- Header: Logo & Action Link/Button -->
     <div class="credit-offer-card__header">
       <div class="credit-offer-card__logo-wrap">
-        <img 
-          :src="getMainImage(offer.logoImg)" 
-          :alt="offer.name" 
+        <img
+          :src="getMainImage(offer.logoImg)"
+          :alt="offer.name"
           class="credit-offer-card__logo-img"
           :class="`credit-offer-card__logo-img--${offer.bankSlug}`"
           loading="lazy"
@@ -31,26 +31,37 @@
       <div class="credit-offer-card__col">
         <div class="credit-offer-card__item">
           <span class="credit-offer-card__bullet">•</span>
-          <span>Возраст от <strong class="credit-offer-card__value">{{ offer.age }}</strong></span>
+          <span
+            >Возраст от <strong class="credit-offer-card__value">{{ offer.age }}</strong></span
+          >
         </div>
         <div class="credit-offer-card__item">
           <span class="credit-offer-card__bullet">•</span>
-          <span>Сумма до <strong class="credit-offer-card__value">{{ offer.sum }}</strong></span>
+          <span
+            >Сумма до <strong class="credit-offer-card__value">{{ offer.sum }}</strong></span
+          >
         </div>
         <div class="credit-offer-card__item">
           <span class="credit-offer-card__bullet">•</span>
-          <span>Время ответа <strong class="credit-offer-card__value">{{ offer.responseTime }}</strong></span>
+          <span
+            >Время ответа
+            <strong class="credit-offer-card__value">{{ offer.responseTime }}</strong></span
+          >
         </div>
       </div>
 
       <div class="credit-offer-card__col">
         <div class="credit-offer-card__item">
           <span class="credit-offer-card__bullet">•</span>
-          <span>Ставка от <strong class="credit-offer-card__value">{{ offer.rate }}</strong></span>
+          <span
+            >Ставка от <strong class="credit-offer-card__value">{{ offer.rate }}</strong></span
+          >
         </div>
         <div class="credit-offer-card__item">
           <span class="credit-offer-card__bullet">•</span>
-          <span>Срок до <strong class="credit-offer-card__value">{{ offer.term }}</strong></span>
+          <span
+            >Срок до <strong class="credit-offer-card__value">{{ offer.term }}</strong></span
+          >
         </div>
       </div>
     </div>

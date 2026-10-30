@@ -3,14 +3,14 @@
     <main class="main rates-page">
       <div class="container rates-container">
         <!-- Main page title (1:1 from Figma Desktop Frame 46 & Mobile Frame 261:410) -->
-        <h1 class="rates-page__title">
-          Курсы валют в банках Казахстана на 16.02.2022
-        </h1>
+        <h1 class="rates-page__title">Курсы валют в банках Казахстана на 16.02.2022</h1>
 
         <!-- Description with "Читать далее" -->
         <div class="rates-page__desc-block">
           <p class="rates-page__desc">
-            На этой странице Вы можете сравнить курсы валют в банках Алматы, Астаны, Шымкента и других городах Казахстана. В таблице представлены основные валюты, которые могут Вас заинтересовать: доллары ...
+            На этой странице Вы можете сравнить курсы валют в банках Алматы, Астаны, Шымкента и
+            других городах Казахстана. В таблице представлены основные валюты, которые могут Вас
+            заинтересовать: доллары ...
           </p>
           <a href="#" class="rates-page__more-link" @click.prevent>Читать далее</a>
         </div>
@@ -21,8 +21,8 @@
 
           <!-- Mobile Currency Selector Tabs (1:1 from Figma Mobile Frame 261:410) -->
           <div class="rates-mobile-tabs mobile-only">
-            <button 
-              class="mobile-tab-btn" 
+            <button
+              class="mobile-tab-btn"
               :class="{ active: selectedCurrency === 'USD' }"
               @click="selectedCurrency = 'USD'"
             >
@@ -31,8 +31,8 @@
               <div class="tab-underline"></div>
             </button>
 
-            <button 
-              class="mobile-tab-btn" 
+            <button
+              class="mobile-tab-btn"
               :class="{ active: selectedCurrency === 'EUR' }"
               @click="selectedCurrency = 'EUR'"
             >
@@ -41,8 +41,8 @@
               <div class="tab-underline"></div>
             </button>
 
-            <button 
-              class="mobile-tab-btn" 
+            <button
+              class="mobile-tab-btn"
               :class="{ active: selectedCurrency === 'RUR' }"
               @click="selectedCurrency = 'RUR'"
             >
@@ -124,9 +124,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr 
-                v-for="(row, idx) in desktopBanks" 
-                :key="row.id" 
+              <tr
+                v-for="(row, idx) in desktopBanks"
+                :key="row.id"
                 class="desktop-row"
                 :class="{ 'is-last': idx === desktopBanks.length - 1 }"
               >
@@ -136,12 +136,18 @@
                 </td>
 
                 <!-- USD Buy / Sell -->
-                <td class="td-rate td-usd td-usd-left" :class="{ 'is-last-row': idx === desktopBanks.length - 1 }">
+                <td
+                  class="td-rate td-usd td-usd-left"
+                  :class="{ 'is-last-row': idx === desktopBanks.length - 1 }"
+                >
                   <div class="rate-val-box" :class="{ 'best-rate-pill': row.bestUsdBuy }">
                     {{ row.usdBuy }}
                   </div>
                 </td>
-                <td class="td-rate td-usd td-usd-right" :class="{ 'is-last-row': idx === desktopBanks.length - 1 }">
+                <td
+                  class="td-rate td-usd td-usd-right"
+                  :class="{ 'is-last-row': idx === desktopBanks.length - 1 }"
+                >
                   <div class="rate-val-box" :class="{ 'best-rate-pill': row.bestUsdSell }">
                     {{ row.usdSell }}
                   </div>
@@ -189,11 +195,7 @@
           </div>
 
           <div class="mobile-table-body">
-            <div 
-              v-for="row in currentMobileBanks" 
-              :key="row.id" 
-              class="mobile-table-row"
-            >
+            <div v-for="row in currentMobileBanks" :key="row.id" class="mobile-table-row">
               <div class="m-col m-col-bank">
                 <span class="m-bank-name">{{ row.name }}</span>
               </div>
@@ -250,7 +252,7 @@ const desktopBanks = ref([
     bestEurBuy: false,
     bestEurSell: false,
     bestRubBuy: false,
-    bestRubSell: false,
+    bestRubSell: false
   },
   {
     id: 2,
@@ -267,7 +269,7 @@ const desktopBanks = ref([
     bestEurBuy: false,
     bestEurSell: false,
     bestRubBuy: false,
-    bestRubSell: false,
+    bestRubSell: false
   },
   {
     id: 3,
@@ -279,12 +281,12 @@ const desktopBanks = ref([
     rubBuy: '430.50',
     rubSell: '435.50',
     time: '01.04.22 16:00',
-    bestUsdBuy: true,  // Highlighted in Figma Frame 48 (393:1634)
+    bestUsdBuy: true, // Highlighted in Figma Frame 48 (393:1634)
     bestUsdSell: false,
-    bestEurBuy: true,  // Highlighted in Figma Frame 50 (393:1743)
+    bestEurBuy: true, // Highlighted in Figma Frame 50 (393:1743)
     bestEurSell: false,
-    bestRubBuy: true,  // Highlighted in Figma Frame 52 (393:1775)
-    bestRubSell: false,
+    bestRubBuy: true, // Highlighted in Figma Frame 52 (393:1775)
+    bestRubSell: false
   },
   {
     id: 4,
@@ -301,7 +303,7 @@ const desktopBanks = ref([
     bestEurBuy: false,
     bestEurSell: false,
     bestRubBuy: false,
-    bestRubSell: false,
+    bestRubSell: false
   },
   {
     id: 5,
@@ -318,7 +320,7 @@ const desktopBanks = ref([
     bestEurBuy: false,
     bestEurSell: false,
     bestRubBuy: false,
-    bestRubSell: false,
+    bestRubSell: false
   },
   {
     id: 6,
@@ -331,11 +333,11 @@ const desktopBanks = ref([
     rubSell: '430.50',
     time: '01.04.22 16:00',
     bestUsdBuy: false,
-    bestUsdSell: true,  // Highlighted in Figma Frame 49 (393:1635)
+    bestUsdSell: true, // Highlighted in Figma Frame 49 (393:1635)
     bestEurBuy: false,
-    bestEurSell: true,  // Highlighted in Figma Frame 51 (393:1745)
+    bestEurSell: true, // Highlighted in Figma Frame 51 (393:1745)
     bestRubBuy: false,
-    bestRubSell: true,  // Highlighted in Figma Frame 53 (393:1777)
+    bestRubSell: true // Highlighted in Figma Frame 53 (393:1777)
   },
   {
     id: 7,
@@ -352,7 +354,7 @@ const desktopBanks = ref([
     bestEurBuy: false,
     bestEurSell: false,
     bestRubBuy: false,
-    bestRubSell: false,
+    bestRubSell: false
   },
   {
     id: 8,
@@ -369,7 +371,7 @@ const desktopBanks = ref([
     bestEurBuy: false,
     bestEurSell: false,
     bestRubBuy: false,
-    bestRubSell: false,
+    bestRubSell: false
   }
 ])
 
@@ -378,11 +380,32 @@ const mobileBanksUsd = [
   { id: 1, name: 'Bank RBK', buy: '430.50', sell: '437.50', isBestBuy: false, isBestSell: false },
   { id: 2, name: 'Halyk Bank', buy: '430.50', sell: '437.50', isBestBuy: true, isBestSell: false }, // Rectangle 129
   { id: 3, name: 'Банк Китая', buy: '430.50', sell: '437.50', isBestBuy: false, isBestSell: false },
-  { id: 4, name: 'Евразийский банк', buy: '430.50', sell: '437.50', isBestBuy: false, isBestSell: false },
+  {
+    id: 4,
+    name: 'Евразийский банк',
+    buy: '430.50',
+    sell: '437.50',
+    isBestBuy: false,
+    isBestSell: false
+  },
   { id: 5, name: 'Заман-Банк', buy: '430.50', sell: '437.50', isBestBuy: false, isBestSell: true }, // Rectangle 130
   { id: 6, name: 'Нурбанк', buy: '430.50', sell: '437.50', isBestBuy: false, isBestSell: false },
-  { id: 7, name: 'Сбербанк России', buy: '430.50', sell: '437.50', isBestBuy: false, isBestSell: false },
-  { id: 8, name: 'Шинхан Банк Казахстана', buy: '430.50', sell: '437.50', isBestBuy: false, isBestSell: false },
+  {
+    id: 7,
+    name: 'Сбербанк России',
+    buy: '430.50',
+    sell: '437.50',
+    isBestBuy: false,
+    isBestSell: false
+  },
+  {
+    id: 8,
+    name: 'Шинхан Банк Казахстана',
+    buy: '430.50',
+    sell: '437.50',
+    isBestBuy: false,
+    isBestSell: false
+  }
 ]
 
 const currentMobileBanks = computed(() => {
@@ -601,7 +624,7 @@ const currentMobileBanks = computed(() => {
 
         /* USD Column Highlight Top (Figma Rectangle 2: x=2290, w=270, cornerRadius=18) */
         &.th-usd {
-          background: rgba(235, 235, 235, 0.40);
+          background: rgba(235, 235, 235, 0.4);
 
           &.th-usd-left {
             border-top-left-radius: 18px;
@@ -636,9 +659,15 @@ const currentMobileBanks = computed(() => {
       flex-shrink: 0;
       line-height: 1;
 
-      &.usd { background: #ff8a16; }
-      &.eur { background: #d92365; }
-      &.rub { background: #e41f18; }
+      &.usd {
+        background: #ff8a16;
+      }
+      &.eur {
+        background: #d92365;
+      }
+      &.rub {
+        background: #e41f18;
+      }
     }
 
     .curr-titles {
@@ -694,7 +723,7 @@ const currentMobileBanks = computed(() => {
 
         /* USD Column Highlight Body (Figma Rectangle 2) */
         &.td-usd {
-          background: rgba(235, 235, 235, 0.40);
+          background: rgba(235, 235, 235, 0.4);
 
           &.td-usd-left {
             padding-left: 18px;

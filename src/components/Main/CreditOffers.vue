@@ -3,32 +3,26 @@
     <div class="container main__credits-container">
       <div class="main__credits-header">
         <h2 class="main__credits-title">Лучшие кредитные предложения</h2>
-        <router-link to="/credits" class="main__credits-more">
-          Все кредиты ›
-        </router-link>
+        <router-link to="/credits" class="main__credits-more"> Все кредиты › </router-link>
       </div>
 
       <!-- Desktop View: 3 cards matching Figma Desktop Frame 1 (Sber, Kaspi, RBK) -->
       <div class="main__credits-grid desktop-grid">
-        <div 
-          v-for="offer in desktopOffers" 
-          :key="offer.id" 
+        <div
+          v-for="offer in desktopOffers"
+          :key="offer.id"
           class="credit-card desktop-card"
           :style="{ backgroundColor: offer.bgcolor || '#ffffff' }"
         >
           <div class="credit-card__header">
-            <img 
-              v-if="offer.logoImg" 
-              :src="getMainImage(offer.logoImg)" 
-              :alt="offer.name" 
-              class="credit-card__brand-logo" 
+            <img
+              v-if="offer.logoImg"
+              :src="getMainImage(offer.logoImg)"
+              :alt="offer.name"
+              class="credit-card__brand-logo"
               loading="lazy"
             />
-            <span 
-              v-else 
-              class="credit-card__logo" 
-              :style="{ color: offer.logoColor || '#FF8A16' }"
-            >
+            <span v-else class="credit-card__logo" :style="{ color: offer.logoColor || '#FF8A16' }">
               {{ offer.logoText || offer.name }}
             </span>
           </div>
@@ -66,25 +60,27 @@
 
       <!-- Mobile View: 4 cards matching Figma Mobile Frame 230:622 -->
       <div class="main__credits-grid mobile-grid">
-        <div 
-          v-for="offer in banksStore.creditOffers" 
-          :key="offer.id" 
+        <div
+          v-for="offer in banksStore.creditOffers"
+          :key="offer.id"
           class="credit-card"
           :style="{ backgroundColor: offer.bgcolor || '#ffffff' }"
         >
           <div class="credit-card__header">
             <div v-if="offer.name === 'Сбербанк'" class="credit-card__sber-logo">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="11" stroke="#21A038" stroke-width="2"/>
-                <path d="M7 12.5L10.5 16L17 8.5" stroke="#21A038" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="11" stroke="#21A038" stroke-width="2" />
+                <path
+                  d="M7 12.5L10.5 16L17 8.5"
+                  stroke="#21A038"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
               </svg>
-              <span class="credit-card__logo" style="color: #21A038;">СБЕР БАНК</span>
+              <span class="credit-card__logo" style="color: #21a038">СБЕР БАНК</span>
             </div>
-            <span 
-              v-else
-              class="credit-card__logo" 
-              :style="{ color: offer.logoColor || '#FF8A16' }"
-            >
+            <span v-else class="credit-card__logo" :style="{ color: offer.logoColor || '#FF8A16' }">
               {{ offer.logoText || offer.name }}
             </span>
           </div>
@@ -208,7 +204,9 @@ const desktopOffers = computed(() => banksStore.creditOffers.slice(0, 3))
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
   &:hover {
     transform: translateY(-3px);

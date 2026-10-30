@@ -27,28 +27,18 @@
         }"
         class="header__swiper"
       >
-        <SwiperSlide 
-          v-for="slide in allSlides" 
-          :key="slide.uid" 
-          class="header__slide"
-        >
-          <div 
-            class="header__content" 
-            :class="`header__content--${slide.theme}`"
-          >
+        <SwiperSlide v-for="slide in allSlides" :key="slide.uid" class="header__slide">
+          <div class="header__content" :class="`header__content--${slide.theme}`">
             <div class="header__content-block">
               <h2 class="header__content-title">
                 {{ slide.title }}
               </h2>
-              <div 
-                class="header__content-time" 
-                :class="`header__content-time--${slide.theme}`"
-              >
+              <div class="header__content-time" :class="`header__content-time--${slide.theme}`">
                 {{ slide.timeText }}
               </div>
             </div>
 
-            <div 
+            <div
               class="header__content-block-shadow"
               :class="`header__content-block-shadow--${slide.theme}`"
             ></div>
@@ -124,7 +114,9 @@ const allSlides = computed(() => [
 :deep(.header__slide) {
   width: 1197px;
   height: 495px;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
   transform: scale(0.92);
   opacity: 0.75;
   cursor: grab;
@@ -177,27 +169,27 @@ const allSlides = computed(() => [
   }
 
   &--pink {
-    background: url("@/assets/images/header/header__content-bg.png") no-repeat center right;
+    background: url('@/assets/images/header/header__content-bg.png') no-repeat center right;
     background-size: cover;
-    background-color: #EFD0DA;
+    background-color: #efd0da;
   }
 
   &--blue {
-    background: url("@/assets/images/header/header__content-bg-blue.png") no-repeat center right;
+    background: url('@/assets/images/header/header__content-bg-blue.png') no-repeat center right;
     background-size: cover;
-    background-color: #CFDEF0;
+    background-color: #cfdef0;
   }
 
   &--peach {
-    background: url("@/assets/images/header/header__content-bg-peach.png") no-repeat center right;
+    background: url('@/assets/images/header/header__content-bg-peach.png') no-repeat center right;
     background-size: cover;
-    background-color: #F6D6C8;
+    background-color: #f6d6c8;
   }
 
   &--purple {
-    background: url("@/assets/images/header/header__content-bg-purple.png") no-repeat center right;
+    background: url('@/assets/images/header/header__content-bg-purple.png') no-repeat center right;
     background-size: cover;
-    background-color: #DCD0F0;
+    background-color: #dcd0f0;
   }
 
   &-block {
@@ -284,19 +276,19 @@ const allSlides = computed(() => [
     display: inline-block;
 
     &--pink {
-      background: #EAACC1;
+      background: #eaacc1;
     }
 
     &--blue {
-      background: #89AEDB;
+      background: #89aedb;
     }
 
     &--peach {
-      background: #E8A185;
+      background: #e8a185;
     }
 
     &--purple {
-      background: #B6A2DC;
+      background: #b6a2dc;
     }
 
     @media (max-width: 767px) {

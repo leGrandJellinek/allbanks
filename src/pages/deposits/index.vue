@@ -10,18 +10,11 @@
 
         <!-- Deposits Grid (3-column Desktop / 1-column Mobile) -->
         <div class="deposits-page__grid">
-          <DepositCard 
-            v-for="deposit in depositList" 
-            :key="deposit.id" 
-            :deposit="deposit" 
-          />
+          <DepositCard v-for="deposit in depositList" :key="deposit.id" :deposit="deposit" />
         </div>
 
         <!-- Pagination -->
-        <DepositPagination 
-          :current-page="1" 
-          @change="handlePageChange" 
-        />
+        <DepositPagination :current-page="1" @change="handlePageChange" />
       </div>
     </main>
   </div>

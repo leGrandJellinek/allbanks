@@ -2,7 +2,12 @@
   <div class="bank-card">
     <div class="bank-card__header">
       <div class="bank-card__logo-wrap">
-        <img :src="getMainImage(item.icon)" :alt="item.name" class="bank-card__logo" loading="lazy" />
+        <img
+          :src="getMainImage(item.icon)"
+          :alt="item.name"
+          class="bank-card__logo"
+          loading="lazy"
+        />
       </div>
       <div class="bank-card__header-info">
         <h3 class="bank-card__name">{{ item.name }}</h3>
@@ -24,7 +29,13 @@
         </li>
         <li class="bank-card__item website">
           <span class="bank-card__dot"></span>
-          <a :href="`https://${item.website}`" target="_blank" rel="noopener" class="bank-card__link">{{ item.website }}</a>
+          <a
+            :href="`https://${item.website}`"
+            target="_blank"
+            rel="noopener"
+            class="bank-card__link"
+            >{{ item.website }}</a
+          >
         </li>
       </ul>
 
@@ -56,7 +67,9 @@ defineProps<{
   flex-direction: column;
   justify-content: space-between;
   min-height: 227px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
   &:hover {
     transform: translateY(-2px);

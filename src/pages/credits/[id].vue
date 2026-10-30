@@ -8,7 +8,8 @@
           <div class="credit-detail__header">
             <span class="bank-tag">{{ offer.name }}</span>
             <h1 class="credit-detail__title">
-              «Нужный кредит» под залог (без комиссии и с подтверждением дохода)» на срок до {{ offer.term }} под {{ offer.rate }} от {{ offer.name }}
+              «Нужный кредит» под залог (без комиссии и с подтверждением дохода)» на срок до
+              {{ offer.term }} под {{ offer.rate }} от {{ offer.name }}
             </h1>
           </div>
 
@@ -37,25 +38,37 @@
 
           <div class="credit-detail__terms">
             <h2>Условия кредитования</h2>
-            
+
             <div class="term-group">
               <h3>Комиссия за выдачу кредита</h3>
-              <p>АО «{{ offer.name }}» — комиссия за выдачу по потребительскому финансированию: 0 тенге.</p>
+              <p>
+                АО «{{ offer.name }}» — комиссия за выдачу по потребительскому финансированию: 0
+                тенге.
+              </p>
             </div>
 
             <div class="term-group">
               <h3>Комиссия за досрочное погашение</h3>
-              <p>Комиссия за досрочное погашение кредита — 0 тенге без штрафных санкций на любом сроке.</p>
+              <p>
+                Комиссия за досрочное погашение кредита — 0 тенге без штрафных санкций на любом
+                сроке.
+              </p>
             </div>
 
             <div class="term-group">
               <h3>Подтверждение дохода</h3>
-              <p>Требуется подтверждение дохода выпиской из пенсионного фонда за последние 6 месяцев (или без справок при оформлении онлайн).</p>
+              <p>
+                Требуется подтверждение дохода выпиской из пенсионного фонда за последние 6 месяцев
+                (или без справок при оформлении онлайн).
+              </p>
             </div>
 
             <div class="term-group">
               <h3>Требуется залог</h3>
-              <p>Квартира, жилой дом с земельным участком, коммерческая недвижимость или без залога в зависимости от запрашиваемой суммы.</p>
+              <p>
+                Квартира, жилой дом с земельным участком, коммерческая недвижимость или без залога в
+                зависимости от запрашиваемой суммы.
+              </p>
             </div>
 
             <div class="term-group">
@@ -87,14 +100,18 @@ const banksStore = useBanksStore()
 
 const offerId = computed(() => Number((route.params as { id?: string }).id) || 1)
 const offer = computed(() => {
-  return banksStore.creditOffers.find(o => o.id === offerId.value) || banksStore.creditOffers[0]
+  return banksStore.creditOffers.find((o) => o.id === offerId.value) || banksStore.creditOffers[0]
 })
 
-watch(offer, (o) => {
-  if (o) {
-    document.title = `${o.name} - Кредит наличными - AllBanks.kz`
-  }
-}, { immediate: true })
+watch(
+  offer,
+  (o) => {
+    if (o) {
+      document.title = `${o.name} - Кредит наличными - AllBanks.kz`
+    }
+  },
+  { immediate: true }
+)
 </script>
 
 <style lang="scss" scoped>

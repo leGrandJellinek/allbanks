@@ -8,24 +8,38 @@
         <div class="exchanger-rate-cards__controls">
           <!-- City Selector -->
           <div class="exchanger-rate-cards__city-picker">
-            <button 
-              type="button" 
-              class="exchanger-rate-cards__city-btn" 
+            <button
+              type="button"
+              class="exchanger-rate-cards__city-btn"
               @click.stop="isCityDropdownOpen = !isCityDropdownOpen"
             >
               <span>{{ banksStore.selectedCity }}</span>
-              <svg class="exchanger-rate-cards__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-                <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <svg
+                class="exchanger-rate-cards__chevron"
+                width="12"
+                height="8"
+                viewBox="0 0 12 8"
+                fill="none"
+              >
+                <path
+                  d="M1 1.5L6 6.5L11 1.5"
+                  stroke="#FF8A16"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
               </svg>
             </button>
 
             <!-- Dropdown -->
             <ul v-if="isCityDropdownOpen" class="exchanger-rate-cards__city-menu">
-              <li 
-                v-for="city in banksStore.cities" 
+              <li
+                v-for="city in banksStore.cities"
                 :key="city"
                 class="exchanger-rate-cards__city-item"
-                :class="{ 'exchanger-rate-cards__city-item--active': city === banksStore.selectedCity }"
+                :class="{
+                  'exchanger-rate-cards__city-item--active': city === banksStore.selectedCity
+                }"
                 @click="selectCity(city)"
               >
                 {{ city }}
@@ -35,41 +49,35 @@
 
           <!-- Type Tabs: Обменники / Банки -->
           <div class="exchanger-rate-cards__tabs">
-            <button 
-              type="button" 
+            <button
+              type="button"
               class="exchanger-rate-cards__tab exchanger-rate-cards__tab--active"
             >
               Обменники
             </button>
-            <router-link 
-              to="/rates" 
-              class="exchanger-rate-cards__tab"
-            >
-              Банки
-            </router-link>
+            <router-link to="/rates" class="exchanger-rate-cards__tab"> Банки </router-link>
           </div>
         </div>
       </div>
 
       <!-- Mobile Subheaders (Валюта, Покупка, Продажа) -->
       <div class="exchanger-rate-cards__mobile-head">
-        <span class="exchanger-rate-cards__mobile-th exchanger-rate-cards__mobile-th--currency">Валюта</span>
+        <span class="exchanger-rate-cards__mobile-th exchanger-rate-cards__mobile-th--currency"
+          >Валюта</span
+        >
         <span class="exchanger-rate-cards__mobile-th">Покупка</span>
         <span class="exchanger-rate-cards__mobile-th">Продажа</span>
       </div>
 
       <!-- Currencies List (USD, EUR, RUR) -->
       <div class="exchanger-rate-cards__currencies">
-        <div 
-          v-for="curr in currencyList" 
-          :key="curr.symbol" 
+        <div
+          v-for="curr in currencyList"
+          :key="curr.symbol"
           class="exchanger-rate-cards__currency-item"
         >
           <div class="exchanger-rate-cards__currency-main">
-            <div 
-              class="exchanger-rate-cards__badge" 
-              :style="{ backgroundColor: curr.color }"
-            >
+            <div class="exchanger-rate-cards__badge" :style="{ backgroundColor: curr.color }">
               <span class="exchanger-rate-cards__badge-symbol">{{ curr.iconText }}</span>
             </div>
             <div class="exchanger-rate-cards__currency-info">
@@ -109,24 +117,38 @@
         <div class="exchanger-rate-cards__controls">
           <!-- City Selector -->
           <div class="exchanger-rate-cards__city-picker">
-            <button 
-              type="button" 
-              class="exchanger-rate-cards__city-btn" 
+            <button
+              type="button"
+              class="exchanger-rate-cards__city-btn"
               @click.stop="isCityDropdownOpen2 = !isCityDropdownOpen2"
             >
               <span>{{ banksStore.selectedCity }}</span>
-              <svg class="exchanger-rate-cards__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-                <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <svg
+                class="exchanger-rate-cards__chevron"
+                width="12"
+                height="8"
+                viewBox="0 0 12 8"
+                fill="none"
+              >
+                <path
+                  d="M1 1.5L6 6.5L11 1.5"
+                  stroke="#FF8A16"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
               </svg>
             </button>
 
             <!-- Dropdown -->
             <ul v-if="isCityDropdownOpen2" class="exchanger-rate-cards__city-menu">
-              <li 
-                v-for="city in banksStore.cities" 
+              <li
+                v-for="city in banksStore.cities"
                 :key="city"
                 class="exchanger-rate-cards__city-item"
-                :class="{ 'exchanger-rate-cards__city-item--active': city === banksStore.selectedCity }"
+                :class="{
+                  'exchanger-rate-cards__city-item--active': city === banksStore.selectedCity
+                }"
                 @click="selectCity(city)"
               >
                 {{ city }}
@@ -136,41 +158,35 @@
 
           <!-- Type Tabs: Обменники / Банки -->
           <div class="exchanger-rate-cards__tabs">
-            <button 
-              type="button" 
+            <button
+              type="button"
               class="exchanger-rate-cards__tab exchanger-rate-cards__tab--active"
             >
               Обменники
             </button>
-            <router-link 
-              to="/rates" 
-              class="exchanger-rate-cards__tab"
-            >
-              Банки
-            </router-link>
+            <router-link to="/rates" class="exchanger-rate-cards__tab"> Банки </router-link>
           </div>
         </div>
       </div>
 
       <!-- Mobile Subheaders (Валюта, Покупка, Продажа) -->
       <div class="exchanger-rate-cards__mobile-head">
-        <span class="exchanger-rate-cards__mobile-th exchanger-rate-cards__mobile-th--currency">Валюта</span>
+        <span class="exchanger-rate-cards__mobile-th exchanger-rate-cards__mobile-th--currency"
+          >Валюта</span
+        >
         <span class="exchanger-rate-cards__mobile-th">Покупка</span>
         <span class="exchanger-rate-cards__mobile-th">Продажа</span>
       </div>
 
       <!-- Currencies List (USD, EUR, RUR) -->
       <div class="exchanger-rate-cards__currencies">
-        <div 
-          v-for="curr in currencyList" 
-          :key="`avg-${curr.symbol}`" 
+        <div
+          v-for="curr in currencyList"
+          :key="`avg-${curr.symbol}`"
           class="exchanger-rate-cards__currency-item"
         >
           <div class="exchanger-rate-cards__currency-main">
-            <div 
-              class="exchanger-rate-cards__badge" 
-              :style="{ backgroundColor: curr.color }"
-            >
+            <div class="exchanger-rate-cards__badge" :style="{ backgroundColor: curr.color }">
               <span class="exchanger-rate-cards__badge-symbol">{{ curr.iconText }}</span>
             </div>
             <div class="exchanger-rate-cards__currency-info">
@@ -250,7 +266,7 @@ const currencyList = [
   gap: 40px;
 
   &__card {
-    background: #F9F9F9;
+    background: #f9f9f9;
     border-radius: 14px;
     padding: 24px 36px 28px;
     box-sizing: border-box;
@@ -275,7 +291,7 @@ const currencyList = [
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 500;
     font-size: 36px;
-    line-height: 1.0;
+    line-height: 1;
     color: #000000;
     margin: 0;
   }
@@ -295,7 +311,7 @@ const currencyList = [
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    background: #FEF2E3;
+    background: #fef2e3;
     border: none;
     border-radius: 4px;
     height: 38px;
@@ -343,8 +359,8 @@ const currencyList = [
 
     &:hover,
     &--active {
-      background: #FEF2E3;
-      color: #FF8A16;
+      background: #fef2e3;
+      color: #ff8a16;
       font-weight: 500;
     }
   }
@@ -362,15 +378,15 @@ const currencyList = [
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 400;
     font-size: 22px;
-    line-height: 1.0;
-    color: #B8B8B8;
+    line-height: 1;
+    color: #b8b8b8;
     cursor: pointer;
     text-decoration: none;
     transition: color 0.2s;
 
     &--active {
-      color: #FF8A16;
-      border-bottom: 2px solid #FF8A16;
+      color: #ff8a16;
+      border-bottom: 2px solid #ff8a16;
     }
 
     &:hover:not(&--active) {
@@ -416,7 +432,7 @@ const currencyList = [
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 500;
     font-size: 26px;
-    line-height: 1.0;
+    line-height: 1;
     color: #ffffff;
   }
 
@@ -445,7 +461,7 @@ const currencyList = [
   &__divider {
     width: 1px;
     height: 32px;
-    background: #B8B8B8;
+    background: #b8b8b8;
     opacity: 0.6;
     margin: 0 4px;
     flex-shrink: 0;
@@ -467,7 +483,7 @@ const currencyList = [
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 400;
     font-size: 10px;
-    line-height: 1.0;
+    line-height: 1;
     color: rgba(0, 0, 0, 0.6);
   }
 
@@ -475,7 +491,7 @@ const currencyList = [
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 400;
     font-size: 18px;
-    line-height: 1.0;
+    line-height: 1;
     color: #000000;
     letter-spacing: -0.2px;
   }
@@ -490,8 +506,8 @@ const currencyList = [
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 500;
     font-size: 16px;
-    line-height: 1.0;
-    color: #FF8A16;
+    line-height: 1;
+    color: #ff8a16;
     text-decoration: underline;
     transition: opacity 0.2s;
 
@@ -516,7 +532,7 @@ const currencyList = [
 
     &__title {
       font-size: 18px;
-      line-height: 1.0;
+      line-height: 1;
     }
 
     &__controls {
@@ -535,7 +551,7 @@ const currencyList = [
       font-family: 'Gotham Pro', sans-serif;
       font-weight: 400;
       font-size: 13px;
-      line-height: 1.0;
+      line-height: 1;
       color: rgba(0, 0, 0, 0.5);
       text-align: right;
       width: 60px;

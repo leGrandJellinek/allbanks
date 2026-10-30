@@ -1,30 +1,30 @@
 <template>
   <div class="credit-pagination">
     <div class="credit-pagination__list">
-      <button 
-        class="credit-pagination__btn" 
+      <button
+        class="credit-pagination__btn"
         :class="{ 'credit-pagination__btn--active': currentPage === 1 }"
         @click="$emit('change', 1)"
       >
         1
       </button>
-      <button 
-        class="credit-pagination__btn" 
+      <button
+        class="credit-pagination__btn"
         :class="{ 'credit-pagination__btn--active': currentPage === 2 }"
         @click="$emit('change', 2)"
       >
         2
       </button>
-      <button 
-        class="credit-pagination__btn" 
+      <button
+        class="credit-pagination__btn"
         :class="{ 'credit-pagination__btn--active': currentPage === 3 }"
         @click="$emit('change', 3)"
       >
         3
       </button>
       <span class="credit-pagination__dots">...</span>
-      <button 
-        class="credit-pagination__btn credit-pagination__btn--wide" 
+      <button
+        class="credit-pagination__btn credit-pagination__btn--wide"
         :class="{ 'credit-pagination__btn--active': currentPage === totalPages }"
         @click="$emit('change', totalPages)"
       >

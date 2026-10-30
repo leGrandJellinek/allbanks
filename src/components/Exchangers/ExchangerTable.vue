@@ -1,9 +1,7 @@
 <template>
   <section class="exchanger-table">
     <!-- Desktop Title -->
-    <h2 class="exchanger-table__title exchanger-table__title--desktop">
-      Средний курс тенге
-    </h2>
+    <h2 class="exchanger-table__title exchanger-table__title--desktop">Средний курс тенге</h2>
 
     <!-- Mobile Title -->
     <h2 class="exchanger-table__title exchanger-table__title--mobile">
@@ -12,15 +10,15 @@
 
     <!-- Mobile Currency Switcher Tabs -->
     <div class="exchanger-table__mobile-tabs">
-      <button 
-        v-for="curr in mobileTabs" 
+      <button
+        v-for="curr in mobileTabs"
         :key="curr.code"
         type="button"
         class="exchanger-table__tab-btn"
         :class="{ 'exchanger-table__tab-btn--active': activeMobileTab === curr.code }"
         @click="activeMobileTab = curr.code"
       >
-        <span 
+        <span
           class="exchanger-table__tab-circle"
           :class="`exchanger-table__tab-circle--${curr.code.toLowerCase()}`"
         >
@@ -35,9 +33,7 @@
       <table class="exchanger-table__grid">
         <thead>
           <tr class="exchanger-table__head-row">
-            <th class="exchanger-table__th exchanger-table__th--name">
-              Обменный пункт
-            </th>
+            <th class="exchanger-table__th exchanger-table__th--name">Обменный пункт</th>
             <!-- USD -->
             <th class="exchanger-table__th exchanger-table__th--rate">
               <div class="exchanger-table__th-badge exchanger-table__th-badge--usd">
@@ -118,11 +114,7 @@
         </thead>
         <tbody>
           <!-- Exchanger Data Rows -->
-          <tr 
-            v-for="item in exchangersList" 
-            :key="item.id" 
-            class="exchanger-table__row"
-          >
+          <tr v-for="item in exchangersList" :key="item.id" class="exchanger-table__row">
             <td class="exchanger-table__td exchanger-table__td--name">
               <div class="exchanger-table__item-info">
                 <strong class="exchanger-table__item-title">{{ item.name }}</strong>
@@ -206,27 +198,19 @@
       </div>
 
       <!-- Exchangers List -->
-      <div 
-        v-for="item in exchangersList" 
-        :key="`m-${item.id}`" 
-        class="exchanger-table__mobile-row"
-      >
+      <div v-for="item in exchangersList" :key="`m-${item.id}`" class="exchanger-table__mobile-row">
         <div class="exchanger-table__m-info">
           <strong class="exchanger-table__m-name">{{ item.name }}</strong>
           <span class="exchanger-table__m-addr">{{ item.address }}</span>
           <span class="exchanger-table__m-time">{{ item.updated }}</span>
         </div>
         <div class="exchanger-table__m-rate">
-          <span 
-            :class="{ 'exchanger-table__pill-badge': isBestRate(item, 'buy') }"
-          >
+          <span :class="{ 'exchanger-table__pill-badge': isBestRate(item, 'buy') }">
             {{ getRate(item, 'buy') }}
           </span>
         </div>
         <div class="exchanger-table__m-rate">
-          <span 
-            :class="{ 'exchanger-table__pill-badge': isBestRate(item, 'sell') }"
-          >
+          <span :class="{ 'exchanger-table__pill-badge': isBestRate(item, 'sell') }">
             {{ getRate(item, 'sell') }}
           </span>
         </div>
@@ -250,9 +234,7 @@
       <!-- Mobile Summary Row 2: Лучшие курсы валют на сегодня -->
       <div class="exchanger-table__mobile-row exchanger-table__mobile-row--summary-best">
         <div class="exchanger-table__m-info">
-          <strong class="exchanger-table__m-summary-title">
-            Лучшие курсы валют на сегодня
-          </strong>
+          <strong class="exchanger-table__m-summary-title"> Лучшие курсы валют на сегодня </strong>
         </div>
         <div class="exchanger-table__m-rate">
           <span class="exchanger-table__pill-badge">
@@ -423,7 +405,7 @@ function getSummaryRate(obj: typeof avgRates, type: 'buy' | 'sell'): string {
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 500;
     font-size: 36px;
-    line-height: 1.0;
+    line-height: 1;
     color: #000000;
     margin: 0 0 32px 0;
 
@@ -462,7 +444,7 @@ function getSummaryRate(obj: typeof avgRates, type: 'buy' | 'sell'): string {
       font-family: 'Gotham Pro', sans-serif;
       font-weight: 500;
       font-size: 16px;
-      line-height: 1.0;
+      line-height: 1;
       color: #000000;
       width: 240px;
       padding-left: 0;
@@ -495,19 +477,19 @@ function getSummaryRate(obj: typeof avgRates, type: 'buy' | 'sell'): string {
   }
 
   &__th-badge--usd .exchanger-table__badge-icon {
-    background-color: #FF8A16;
+    background-color: #ff8a16;
   }
 
   &__th-badge--eur .exchanger-table__badge-icon {
-    background-color: #DC2B7C;
+    background-color: #dc2b7c;
   }
 
   &__th-badge--rur .exchanger-table__badge-icon {
-    background-color: #E41F18;
+    background-color: #e41f18;
   }
 
   &__th-badge--cny .exchanger-table__badge-icon {
-    background-color: #DE251D;
+    background-color: #de251d;
   }
 
   &__badge-text {
@@ -538,7 +520,7 @@ function getSummaryRate(obj: typeof avgRates, type: 'buy' | 'sell'): string {
     transition: background-color 0.15s;
 
     &:hover:not(&--summary-avg):not(&--summary-best) {
-      background-color: #FAFAFA;
+      background-color: #fafafa;
     }
 
     &--summary-avg {
@@ -569,7 +551,7 @@ function getSummaryRate(obj: typeof avgRates, type: 'buy' | 'sell'): string {
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 400;
     font-size: 18px;
-    line-height: 1.0;
+    line-height: 1;
     color: #000000;
 
     &--name {
@@ -629,7 +611,7 @@ function getSummaryRate(obj: typeof avgRates, type: 'buy' | 'sell'): string {
     font-family: 'Gotham Pro', sans-serif;
     font-weight: 400;
     font-size: 18px;
-    line-height: 1.0;
+    line-height: 1;
     color: #000000;
     box-sizing: border-box;
   }
@@ -676,10 +658,10 @@ function getSummaryRate(obj: typeof avgRates, type: 'buy' | 'sell'): string {
       font-family: 'Gotham Pro', sans-serif;
       font-weight: 500;
       font-size: 14px;
-      color: #A0A0A0;
+      color: #a0a0a0;
 
       &--active {
-        color: #FF8A16;
+        color: #ff8a16;
 
         &::after {
           content: '';
@@ -688,7 +670,7 @@ function getSummaryRate(obj: typeof avgRates, type: 'buy' | 'sell'): string {
           left: 0;
           width: 100%;
           height: 2px;
-          background-color: #FF8A16;
+          background-color: #ff8a16;
         }
       }
     }
@@ -697,7 +679,7 @@ function getSummaryRate(obj: typeof avgRates, type: 'buy' | 'sell'): string {
       width: 16px;
       height: 16px;
       border-radius: 50%;
-      background: #D9D9D9;
+      background: #d9d9d9;
       color: #ffffff;
       display: inline-flex;
       align-items: center;
@@ -707,19 +689,19 @@ function getSummaryRate(obj: typeof avgRates, type: 'buy' | 'sell'): string {
     }
 
     &__tab-btn--active .exchanger-table__tab-circle--usd {
-      background-color: #FF8A16;
+      background-color: #ff8a16;
     }
 
     &__tab-btn--active .exchanger-table__tab-circle--eur {
-      background-color: #DC2B7C;
+      background-color: #dc2b7c;
     }
 
     &__tab-btn--active .exchanger-table__tab-circle--rub {
-      background-color: #E41F18;
+      background-color: #e41f18;
     }
 
     &__tab-btn--active .exchanger-table__tab-circle--cny {
-      background-color: #DE251D;
+      background-color: #de251d;
     }
 
     &__desktop-wrap {

@@ -3,27 +3,33 @@
     <!-- Desktop Filter Controls (Figma Group 254) -->
     <div class="credit-filters__desktop desktop-only">
       <!-- Currency Dropdown -->
-      <div 
-        class="credit-filters__dropdown" 
+      <div
+        class="credit-filters__dropdown"
         :class="{ 'credit-filters__dropdown--open': activeDropdown === 'currency' }"
       >
         <button class="credit-filters__pill" @click="toggleDropdown('currency')">
           <span class="credit-filters__pill-text">{{ selectedCurrencyLabel }}</span>
-          <svg 
-            class="credit-filters__chevron" 
+          <svg
+            class="credit-filters__chevron"
             :class="{ 'credit-filters__chevron--open': activeDropdown === 'currency' }"
-            width="12" 
-            height="8" 
-            viewBox="0 0 12 8" 
+            width="12"
+            height="8"
+            viewBox="0 0 12 8"
             fill="none"
           >
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
         <div v-if="activeDropdown === 'currency'" class="credit-filters__menu">
-          <div 
-            v-for="curr in currencyOptions" 
-            :key="curr.value" 
+          <div
+            v-for="curr in currencyOptions"
+            :key="curr.value"
             class="credit-filters__item"
             :class="{ 'credit-filters__item--active': selectedCurrency === curr.value }"
             @click="selectCurrency(curr.value)"
@@ -34,27 +40,33 @@
       </div>
 
       <!-- Amount Dropdown -->
-      <div 
-        class="credit-filters__dropdown" 
+      <div
+        class="credit-filters__dropdown"
         :class="{ 'credit-filters__dropdown--open': activeDropdown === 'amount' }"
       >
         <button class="credit-filters__pill" @click="toggleDropdown('amount')">
           <span class="credit-filters__pill-text">{{ selectedAmountLabel }}</span>
-          <svg 
-            class="credit-filters__chevron" 
+          <svg
+            class="credit-filters__chevron"
             :class="{ 'credit-filters__chevron--open': activeDropdown === 'amount' }"
-            width="12" 
-            height="8" 
-            viewBox="0 0 12 8" 
+            width="12"
+            height="8"
+            viewBox="0 0 12 8"
             fill="none"
           >
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
         <div v-if="activeDropdown === 'amount'" class="credit-filters__menu">
-          <div 
-            v-for="amt in amountOptions" 
-            :key="amt.value" 
+          <div
+            v-for="amt in amountOptions"
+            :key="amt.value"
             class="credit-filters__item"
             :class="{ 'credit-filters__item--active': selectedAmount === amt.value }"
             @click="selectAmount(amt.value)"
@@ -65,27 +77,33 @@
       </div>
 
       <!-- Collateral Dropdown -->
-      <div 
-        class="credit-filters__dropdown" 
+      <div
+        class="credit-filters__dropdown"
         :class="{ 'credit-filters__dropdown--open': activeDropdown === 'collateral' }"
       >
         <button class="credit-filters__pill" @click="toggleDropdown('collateral')">
           <span class="credit-filters__pill-text">{{ selectedCollateralLabel }}</span>
-          <svg 
-            class="credit-filters__chevron" 
+          <svg
+            class="credit-filters__chevron"
             :class="{ 'credit-filters__chevron--open': activeDropdown === 'collateral' }"
-            width="12" 
-            height="8" 
-            viewBox="0 0 12 8" 
+            width="12"
+            height="8"
+            viewBox="0 0 12 8"
             fill="none"
           >
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
         <div v-if="activeDropdown === 'collateral'" class="credit-filters__menu">
-          <div 
-            v-for="col in collateralOptions" 
-            :key="col.value" 
+          <div
+            v-for="col in collateralOptions"
+            :key="col.value"
             class="credit-filters__item"
             :class="{ 'credit-filters__item--active': selectedCollateral === col.value }"
             @click="selectCollateral(col.value)"
@@ -96,27 +114,33 @@
       </div>
 
       <!-- City Dropdown -->
-      <div 
-        class="credit-filters__dropdown" 
+      <div
+        class="credit-filters__dropdown"
         :class="{ 'credit-filters__dropdown--open': activeDropdown === 'city' }"
       >
         <button class="credit-filters__pill" @click="toggleDropdown('city')">
           <span class="credit-filters__pill-text">{{ selectedCityLabel }}</span>
-          <svg 
-            class="credit-filters__chevron" 
+          <svg
+            class="credit-filters__chevron"
             :class="{ 'credit-filters__chevron--open': activeDropdown === 'city' }"
-            width="12" 
-            height="8" 
-            viewBox="0 0 12 8" 
+            width="12"
+            height="8"
+            viewBox="0 0 12 8"
             fill="none"
           >
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
         <div v-if="activeDropdown === 'city'" class="credit-filters__menu">
-          <div 
-            v-for="city in cityOptions" 
-            :key="city" 
+          <div
+            v-for="city in cityOptions"
+            :key="city"
             class="credit-filters__item"
             :class="{ 'credit-filters__item--active': selectedCity === city }"
             @click="selectCity(city)"
@@ -127,9 +151,7 @@
       </div>
 
       <!-- Submit Button -->
-      <button class="credit-filters__submit" @click="handleSubmit">
-        Найти кредит
-      </button>
+      <button class="credit-filters__submit" @click="handleSubmit">Найти кредит</button>
     </div>
 
     <!-- Mobile Filter Controls (Figma Mobile Frame 284:660) -->
@@ -138,13 +160,25 @@
         <button class="credit-filters__pill" @click="toggleDropdown('currency')">
           <span class="credit-filters__pill-text">{{ selectedCurrencyLabel }}</span>
           <svg class="credit-filters__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
         <button class="credit-filters__pill" @click="toggleDropdown('amount')">
           <span class="credit-filters__pill-text">{{ selectedAmountLabel }}</span>
           <svg class="credit-filters__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
       </div>
@@ -153,13 +187,25 @@
         <button class="credit-filters__pill" @click="toggleDropdown('collateral')">
           <span class="credit-filters__pill-text">{{ selectedCollateralLabel }}</span>
           <svg class="credit-filters__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
         <button class="credit-filters__pill" @click="toggleDropdown('city')">
           <span class="credit-filters__pill-text">{{ selectedCityLabel }}</span>
           <svg class="credit-filters__chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
-            <path d="M1 1.5L6 6.5L11 1.5" stroke="#FF8A16" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M1 1.5L6 6.5L11 1.5"
+              stroke="#FF8A16"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
       </div>
@@ -175,7 +221,10 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const emit = defineEmits<{
-  (e: 'search', filters: { currency: string, amount: string, collateral: string, city: string }): void
+  (
+    e: 'search',
+    filters: { currency: string; amount: string; collateral: string; city: string }
+  ): void
 }>()
 
 const activeDropdown = ref<string | null>(null)
@@ -207,7 +256,7 @@ const currencyOptions = [
   { value: 'EUR', label: 'EUR (Евро)' }
 ]
 const selectedCurrencyLabel = computed(() => {
-  const found = currencyOptions.find(o => o.value === selectedCurrency.value)
+  const found = currencyOptions.find((o) => o.value === selectedCurrency.value)
   return found ? found.label : 'Валюта'
 })
 function selectCurrency(val: string) {
@@ -224,7 +273,7 @@ const amountOptions = [
   { value: '8m', label: 'до 8 млн ₸' }
 ]
 const selectedAmountLabel = computed(() => {
-  const found = amountOptions.find(o => o.value === selectedAmount.value)
+  const found = amountOptions.find((o) => o.value === selectedAmount.value)
   return found ? found.label : 'Сумма'
 })
 function selectAmount(val: string) {
@@ -239,7 +288,7 @@ const collateralOptions = [
   { value: 'collateral', label: 'Под залог' }
 ]
 const selectedCollateralLabel = computed(() => {
-  const found = collateralOptions.find(o => o.value === selectedCollateral.value)
+  const found = collateralOptions.find((o) => o.value === selectedCollateral.value)
   return found ? found.label : 'Без залога'
 })
 function selectCollateral(val: string) {

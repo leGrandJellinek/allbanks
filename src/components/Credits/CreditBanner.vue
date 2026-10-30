@@ -1,9 +1,9 @@
 <template>
   <router-link to="/credits" class="credit-banner">
     <span class="credit-banner__text">Получить кредит</span>
-    <img 
-      :src="getMainImage('credit_card.png')" 
-      alt="Кредитная карта" 
+    <img
+      :src="getMainImage('credit_card.png')"
+      alt="Кредитная карта"
       class="credit-banner__img"
       loading="lazy"
     />
@@ -28,7 +28,9 @@ import { getMainImage } from '@/utils/assets'
   overflow: hidden;
   text-decoration: none;
   flex-shrink: 0;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 
   &:hover {
     transform: translateY(-2px);

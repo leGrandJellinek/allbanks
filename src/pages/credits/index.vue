@@ -6,7 +6,9 @@
         <h1 class="credits-page__title">Кредит в Казахстане</h1>
         <div class="credits-page__desc-block">
           <p class="credits-page__desc">
-            В каталоге allbanks.kz собрана достоверная информация о потребительских кредитах, которые предоставляют 24 банка в Казахстане. На странице 86 лучших предложений и условий по оформлению...
+            В каталоге allbanks.kz собрана достоверная информация о потребительских кредитах,
+            которые предоставляют 24 банка в Казахстане. На странице 86 лучших предложений и условий
+            по оформлению...
           </p>
           <a href="#" class="credits-page__more-link" @click.prevent>Читать далее</a>
         </div>
@@ -21,11 +23,7 @@
         <section class="credits-page__section">
           <h2 class="credits-page__subtitle">Лучшие кредитные предложения</h2>
           <div class="credits-page__offers-grid">
-            <CreditOfferCard 
-              v-for="offer in displayedBestOffers" 
-              :key="offer.id" 
-              :offer="offer" 
-            />
+            <CreditOfferCard v-for="offer in displayedBestOffers" :key="offer.id" :offer="offer" />
           </div>
         </section>
 
@@ -35,19 +33,15 @@
             Сравнительная таблица потребительских кредитов во все банки в Казахстане
           </h2>
           <div class="credits-page__comparison-grid">
-            <CreditComparisonCard 
-              v-for="loan in comparisonLoans" 
-              :key="loan.id" 
-              :loan="loan" 
-            />
+            <CreditComparisonCard v-for="loan in comparisonLoans" :key="loan.id" :loan="loan" />
           </div>
         </section>
 
         <!-- Pagination -->
-        <CreditPagination 
-          :current-page="1" 
-          :total-pages="30" 
-          counter-text="Кредитов 1—17 из 68" 
+        <CreditPagination
+          :current-page="1"
+          :total-pages="30"
+          counter-text="Кредитов 1—17 из 68"
           @change="handlePageChange"
         />
 
@@ -64,7 +58,9 @@ import { useToastStore } from '@/stores/toast'
 import CreditBanner from '@/components/Credits/CreditBanner.vue'
 import CreditFilters from '@/components/Credits/CreditFilters.vue'
 import CreditOfferCard, { type CreditOfferItem } from '@/components/Credits/CreditOfferCard.vue'
-import CreditComparisonCard, { type ComparisonLoanItem } from '@/components/Credits/CreditComparisonCard.vue'
+import CreditComparisonCard, {
+  type ComparisonLoanItem
+} from '@/components/Credits/CreditComparisonCard.vue'
 import CreditPagination from '@/components/Credits/CreditPagination.vue'
 import CreditSeo from '@/components/Credits/CreditSeo.vue'
 
@@ -86,7 +82,12 @@ onUnmounted(() => {
 const toast = useToastStore()
 
 // Handlers
-function handleSearch(filters: { currency: string, amount: string, collateral: string, city: string }) {
+function handleSearch(filters: {
+  currency: string
+  amount: string
+  collateral: string
+  city: string
+}) {
   toast.info(`Поиск кредитов: ${filters.city}, ${filters.amount} ${filters.currency}`)
 }
 

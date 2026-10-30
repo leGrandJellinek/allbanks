@@ -11,22 +11,30 @@
       <div class="deposit-card__col">
         <div class="deposit-card__item">
           <span class="deposit-card__bullet">•</span>
-          <span>Ставка: <strong class="deposit-card__value">{{ deposit.rate }}</strong></span>
+          <span
+            >Ставка: <strong class="deposit-card__value">{{ deposit.rate }}</strong></span
+          >
         </div>
         <div class="deposit-card__item">
           <span class="deposit-card__bullet">•</span>
-          <span>Валюта: <strong class="deposit-card__value">{{ deposit.currency }}</strong></span>
+          <span
+            >Валюта: <strong class="deposit-card__value">{{ deposit.currency }}</strong></span
+          >
         </div>
       </div>
 
       <div class="deposit-card__col">
         <div class="deposit-card__item">
           <span class="deposit-card__bullet">•</span>
-          <span>Мин. сумма: <strong class="deposit-card__value">{{ deposit.minSum }}</strong></span>
+          <span
+            >Мин. сумма: <strong class="deposit-card__value">{{ deposit.minSum }}</strong></span
+          >
         </div>
         <div class="deposit-card__item">
           <span class="deposit-card__bullet">•</span>
-          <span>Срок вклада: <strong class="deposit-card__value">{{ deposit.term }}</strong></span>
+          <span
+            >Срок вклада: <strong class="deposit-card__value">{{ deposit.term }}</strong></span
+          >
         </div>
       </div>
     </div>

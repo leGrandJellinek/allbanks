@@ -3,11 +3,10 @@
     <main class="main mortgage-page">
       <div class="container">
         <router-link to="/credits" class="mortgage-page__back">‹ Назад к кредитам</router-link>
-        <h1 class="mortgage-page__title section-title">
-          Кредиты под залог недвижимости
-        </h1>
+        <h1 class="mortgage-page__title section-title">Кредиты под залог недвижимости</h1>
         <p class="mortgage-page__desc">
-          В нашем каталоге собрана достоверная информация о кредитах под залог недвижимости в Казахстане от ведущих банков.
+          В нашем каталоге собрана достоверная информация о кредитах под залог недвижимости в
+          Казахстане от ведущих банков.
         </p>
 
         <div class="mortgage-grid">
@@ -18,10 +17,30 @@
             </div>
             <div class="mortgage-card__divider"></div>
             <ul class="mortgage-card__list">
-              <li><span class="dot"></span><span>Мин. ставка: <strong>{{ item.rate }}</strong></span></li>
-              <li><span class="dot"></span><span>Срок: <strong>{{ item.term }}</strong></span></li>
-              <li><span class="dot"></span><span>Валюта: <strong>{{ item.currency }}</strong></span></li>
-              <li><span class="dot"></span><span>Макс. сумма: <strong>{{ item.maxSum }}</strong></span></li>
+              <li>
+                <span class="dot"></span
+                ><span
+                  >Мин. ставка: <strong>{{ item.rate }}</strong></span
+                >
+              </li>
+              <li>
+                <span class="dot"></span
+                ><span
+                  >Срок: <strong>{{ item.term }}</strong></span
+                >
+              </li>
+              <li>
+                <span class="dot"></span
+                ><span
+                  >Валюта: <strong>{{ item.currency }}</strong></span
+                >
+              </li>
+              <li>
+                <span class="dot"></span
+                ><span
+                  >Макс. сумма: <strong>{{ item.maxSum }}</strong></span
+                >
+              </li>
             </ul>
             <div class="mortgage-card__action">
               <router-link to="/credits/apply" class="btn">Получить кредит</router-link>

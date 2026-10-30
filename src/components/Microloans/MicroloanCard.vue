@@ -15,15 +15,21 @@
       <div class="microloan-card__spec-col">
         <div class="microloan-card__spec-item">
           <span class="microloan-card__dot"></span>
-          <span class="microloan-card__text">Возраст от <strong>{{ item.age }}</strong> года</span>
+          <span class="microloan-card__text"
+            >Возраст от <strong>{{ item.age }}</strong> года</span
+          >
         </div>
         <div class="microloan-card__spec-item">
           <span class="microloan-card__dot"></span>
-          <span class="microloan-card__text">Сумма до <strong>{{ item.sum }}</strong></span>
+          <span class="microloan-card__text"
+            >Сумма до <strong>{{ item.sum }}</strong></span
+          >
         </div>
         <div class="microloan-card__spec-item">
           <span class="microloan-card__dot"></span>
-          <span class="microloan-card__text">Срок до <strong>{{ item.termDays }}</strong> дня</span>
+          <span class="microloan-card__text"
+            >Срок до <strong>{{ item.termDays }}</strong> дня</span
+          >
         </div>
       </div>
 
@@ -34,7 +40,9 @@
         </div>
         <div class="microloan-card__spec-item">
           <span class="microloan-card__dot"></span>
-          <span class="microloan-card__text">Срок до <strong>{{ item.termMonths }}</strong> мес.</span>
+          <span class="microloan-card__text"
+            >Срок до <strong>{{ item.termMonths }}</strong> мес.</span
+          >
         </div>
       </div>
     </div>

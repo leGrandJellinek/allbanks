@@ -2,19 +2,11 @@
   <div class="container">
     <nav class="header__nav">
       <!-- Backdrop overlay -->
-      <div 
-        class="bg" 
-        :class="{ active: isMenuOpen }" 
-        @click="closeMenu"
-      ></div>
+      <div class="bg" :class="{ active: isMenuOpen }" @click="closeMenu"></div>
 
       <div class="header__nav-block">
         <!-- Burger Toggle Button -->
-        <button 
-          class="header__nav-burger" 
-          @click="openMenu"
-          aria-label="Открыть меню"
-        >
+        <button class="header__nav-burger" aria-label="Открыть меню" @click="openMenu">
           <img src="@/assets/images/icons/menu-burger.svg" alt="Меню" />
         </button>
 
@@ -41,9 +33,14 @@
       <!-- Mobile Slide-over Drawer (1:1 from Figma) -->
       <div class="mobile-drawer" :class="{ open: isMenuOpen }">
         <div class="mobile-drawer__header">
-          <button class="mobile-drawer__close" @click="closeMenu" aria-label="Закрыть">
+          <button class="mobile-drawer__close" aria-label="Закрыть" @click="closeMenu">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M18 6L6 18M6 6L18 18" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round"/>
+              <path
+                d="M18 6L6 18M6 6L18 18"
+                stroke="#1E1E1E"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
             </svg>
           </button>
           <div class="mobile-drawer__logo">
@@ -57,8 +54,8 @@
         <ul class="mobile-drawer__list">
           <li v-for="link in banksStore.menuList" :key="link.id" class="mobile-drawer__item">
             <!-- If item has sub-options in figma (Обменники or Кредиты) -->
-            <button 
-              v-if="link.id === 3" 
+            <button
+              v-if="link.id === 3"
               class="mobile-drawer__btn"
               @click="toggleSubmenu('exchangers')"
             >
@@ -66,8 +63,8 @@
               <span class="mobile-drawer__title">{{ link.title }}</span>
               <span class="mobile-drawer__arrow">›</span>
             </button>
-            <button 
-              v-else-if="link.id === 5" 
+            <button
+              v-else-if="link.id === 5"
               class="mobile-drawer__btn"
               @click="toggleSubmenu('credits')"
             >
@@ -75,18 +72,13 @@
               <span class="mobile-drawer__title">{{ link.title }}</span>
               <span class="mobile-drawer__arrow">›</span>
             </button>
-            <router-link 
-              v-else 
-              :to="link.path" 
-              class="mobile-drawer__link"
-              @click="closeMenu"
-            >
-              <span class="mobile-drawer__icon" v-if="link.id === 1">🏦</span>
-              <span class="mobile-drawer__icon" v-else-if="link.id === 2">📊</span>
-              <span class="mobile-drawer__icon" v-else-if="link.id === 4">🏛️</span>
-              <span class="mobile-drawer__icon" v-else-if="link.id === 6">💰</span>
-              <span class="mobile-drawer__icon" v-else-if="link.id === 7">🪙</span>
-              <span class="mobile-drawer__icon" v-else-if="link.id === 8">📰</span>
+            <router-link v-else :to="link.path" class="mobile-drawer__link" @click="closeMenu">
+              <span v-if="link.id === 1" class="mobile-drawer__icon">🏦</span>
+              <span v-else-if="link.id === 2" class="mobile-drawer__icon">📊</span>
+              <span v-else-if="link.id === 4" class="mobile-drawer__icon">🏛️</span>
+              <span v-else-if="link.id === 6" class="mobile-drawer__icon">💰</span>
+              <span v-else-if="link.id === 7" class="mobile-drawer__icon">🪙</span>
+              <span v-else-if="link.id === 8" class="mobile-drawer__icon">📰</span>
               <span class="mobile-drawer__title">{{ link.title }}</span>
               <span class="mobile-drawer__arrow">›</span>
             </router-link>
@@ -118,9 +110,12 @@
               <button class="bottom-sheet__close" @click="activeSubmenu = null">✕</button>
             </div>
             <ul class="bottom-sheet__list">
-              <li v-for="city in ['Алматы', 'Нур-Султана', 'Шымкент', 'Караганды', 'Риддера']" :key="city">
-                <router-link 
-                  :to="`/exchangers?city=${city}`" 
+              <li
+                v-for="city in ['Алматы', 'Нур-Султана', 'Шымкент', 'Караганды', 'Риддера']"
+                :key="city"
+              >
+                <router-link
+                  :to="`/exchangers?city=${city}`"
                   class="bottom-sheet__link"
                   @click="selectCityMenu(city)"
                 >
@@ -168,7 +163,9 @@
       <Teleport to="body">
         <div v-if="isLoginModalOpen" class="login-modal-overlay" @click.self="closeLoginModal">
           <div class="login-modal">
-            <button class="login-modal__close" @click="closeLoginModal" aria-label="Закрыть">✕</button>
+            <button class="login-modal__close" aria-label="Закрыть" @click="closeLoginModal">
+              ✕
+            </button>
             <div class="login-modal__header">
               <h3 class="login-modal__title">Вход в AllBanks</h3>
               <p class="login-modal__desc">Введите номер телефона для входа в личный кабинет</p>
@@ -176,7 +173,7 @@
             <form class="login-modal__form" @submit.prevent="submitLogin">
               <div class="form-group">
                 <label>Номер телефона</label>
-                <input type="tel" v-model="loginPhone" placeholder="+7 (7XX) XXX-XX-XX" required />
+                <input v-model="loginPhone" type="tel" placeholder="+7 (7XX) XXX-XX-XX" required />
               </div>
               <button type="submit" class="login-modal__btn">Получить код по SMS</button>
             </form>
@@ -402,7 +399,9 @@ function registerAlert() {
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 
   &.active {
     pointer-events: auto;

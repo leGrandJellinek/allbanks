@@ -1,4 +1,4 @@
-@use "./grid.scss" as *;
+@use './grid.scss' as *;
 
 * {
   margin: 0;
@@ -19,7 +19,8 @@ body {
   font-weight: 400;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 

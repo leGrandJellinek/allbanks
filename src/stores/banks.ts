@@ -72,14 +72,7 @@ export const useBanksStore = defineStore('banks', {
     selectedCity: 'Алматы',
     isCityDropdownOpen: false,
     activeCurrencyTab: 'banks' as 'exchangers' | 'banks',
-    cities: [
-      'Алматы',
-      'Караганда',
-      'Шымкент',
-      'Нур - Султан',
-      'Темиртау',
-      'Актау'
-    ],
+    cities: ['Алматы', 'Караганда', 'Шымкент', 'Нур - Султан', 'Темиртау', 'Актау'],
     menuList: [
       { id: 1, title: 'Банки Казахстана', path: '/banks' },
       { id: 2, title: 'Курсы в банках', path: '/rates' },
@@ -88,7 +81,7 @@ export const useBanksStore = defineStore('banks', {
       { id: 5, title: 'Кредиты', path: '/credits' },
       { id: 6, title: 'Микрозаймы', path: '/microloans' },
       { id: 7, title: 'Вклады физлиц', path: '/deposits' },
-      { id: 8, title: 'Новости', path: '/news' },
+      { id: 8, title: 'Новости', path: '/news' }
     ] as MenuItem[],
 
     categoriesList: [
@@ -133,7 +126,7 @@ export const useBanksStore = defineStore('banks', {
         bgcolor: 'rgba(214, 213, 254, 0.7)',
         img: 'bank.png',
         path: '/banks'
-      },
+      }
     ] as CategoryItem[],
 
     currencyList: [
@@ -145,7 +138,7 @@ export const useBanksStore = defineStore('banks', {
         symbol: '$',
         color: '#FF8A16',
         buyPrice: '430.50',
-        sellPrice: '437.50',
+        sellPrice: '437.50'
       },
       {
         id: 2,
@@ -155,7 +148,7 @@ export const useBanksStore = defineStore('banks', {
         symbol: '€',
         color: '#D92365',
         buyPrice: '430.50',
-        sellPrice: '437.50',
+        sellPrice: '437.50'
       },
       {
         id: 3,
@@ -165,8 +158,8 @@ export const useBanksStore = defineStore('banks', {
         symbol: '₽',
         color: '#DE251D',
         buyPrice: '430.50',
-        sellPrice: '437.50',
-      },
+        sellPrice: '437.50'
+      }
     ] as CurrencyItem[],
 
     creditOffers: [
@@ -244,7 +237,8 @@ export const useBanksStore = defineStore('banks', {
         name: 'Bank RBK',
         icon: 'rbk_logo.png',
         license: 'лицензия №1.2.23/194/33',
-        location: 'Республика Казахстан, г. Алматы, Бостандыкский район, Площадь Республики, дом № 15, 050013 (A15X3C7)',
+        location:
+          'Республика Казахстан, г. Алматы, Бостандыкский район, Площадь Республики, дом № 15, 050013 (A15X3C7)',
         phoneNumber: '8 (727) 330-90-30',
         website: 'bankrbk.kz',
         usdBuy: '430.50',
@@ -406,7 +400,7 @@ export const useBanksStore = defineStore('banks', {
         rubBuy: '430.50',
         rubSell: '437.50'
       }
-    ] as ExchangerItem[],
+    ] as ExchangerItem[]
   }),
 
   getters: {
@@ -415,7 +409,7 @@ export const useBanksStore = defineStore('banks', {
     getCurrencyList: (state) => state.currencyList,
     getBanksList: (state) => state.banks,
     getCreditOffers: (state) => state.creditOffers,
-    getExchangersList: (state) => state.exchangers,
+    getExchangersList: (state) => state.exchangers
   },
 
   actions: {

@@ -39,10 +39,10 @@
 
       <form class="comment-card__form" @submit.prevent="handleSubmit">
         <div class="form-group">
-          <input type="text" v-model="formName" placeholder="Имя" required />
+          <input v-model="formName" type="text" placeholder="Имя" required />
         </div>
         <div class="form-group">
-          <input type="email" v-model="formEmail" placeholder="Ваш e-mail *" required />
+          <input v-model="formEmail" type="email" placeholder="Ваш e-mail *" required />
         </div>
         <div class="form-group">
           <textarea v-model="formComment" placeholder="Комментарий:" rows="4" required></textarea>
@@ -271,7 +271,8 @@ function alertAuth() {
     gap: 14px;
 
     .form-group {
-      input, textarea {
+      input,
+      textarea {
         width: 100%;
         padding: 12px 14px;
         border: 1px solid #e0e0e0;
