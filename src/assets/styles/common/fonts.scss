@@ -7,7 +7,7 @@ $GothamPro: ('Light', 300),
 @each $name, $weight in $GothamPro {
   @font-face {
     font-family: 'GP';
-    src: url('@/assets/fonts/Gotham/GothamPro-#{$name}.ttf');
+    src: url('@/assets/fonts/Gotham/GothamPro-#{$name}.woff2') format('woff2');
     font-weight: $weight;
     font-display: swap;
   }
@@ -19,7 +19,7 @@ $SFPro: ('Regular', 400),
 @each $name, $weight in $SFPro {
   @font-face {
     font-family: 'SF';
-    src: url('@/assets/fonts/SFPro/SFProDisplay-#{$name}.ttf');
+    src: url('@/assets/fonts/SFPro/SFProDisplay-#{$name}.woff2') format('woff2');
     font-weight: $weight;
     font-display: swap;
   }
@@ -32,7 +32,7 @@ $Gilroy: ('Medium', 500),
 @each $name, $weight in $Gilroy {
   @font-face {
     font-family: 'GR';
-    src: url('@/assets/fonts/Gilroy/Gilroy-#{$name}.ttf');
+    src: url('@/assets/fonts/Gilroy/Gilroy-#{$name}.woff2') format('woff2');
     font-weight: $weight;
     font-display: swap;
   }
@@ -40,7 +40,7 @@ $Gilroy: ('Medium', 500),
 
 @font-face {
   font-family: 'Lato';
-  src: url('@/assets/fonts/Lato/Lato-Regular.ttf');
+  src: url('@/assets/fonts/Lato/Lato-Regular.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
 }

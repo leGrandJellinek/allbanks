@@ -2,7 +2,7 @@
   <div class="bank-card">
     <div class="bank-card__header">
       <div class="bank-card__logo-wrap">
-        <img :src="getMainImage(item.icon)" :alt="item.name" class="bank-card__logo" />
+        <img :src="getMainImage(item.icon)" :alt="item.name" class="bank-card__logo" loading="lazy" />
       </div>
       <div class="bank-card__header-info">
         <h3 class="bank-card__name">{{ item.name }}</h3>

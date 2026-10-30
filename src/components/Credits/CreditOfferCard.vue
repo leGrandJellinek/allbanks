@@ -8,6 +8,7 @@
           :alt="offer.name" 
           class="credit-offer-card__logo-img"
           :class="`credit-offer-card__logo-img--${offer.bankSlug}`"
+          loading="lazy"
         />
       </div>
 

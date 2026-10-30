@@ -5,6 +5,7 @@
       :src="getMainImage('credit_card.png')" 
       alt="Кредитная карта" 
       class="credit-banner__img"
+      loading="lazy"
     />
   </router-link>
 </template>

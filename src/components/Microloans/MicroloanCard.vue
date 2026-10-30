@@ -2,7 +2,7 @@
   <article class="microloan-card">
     <div class="microloan-card__head">
       <div class="microloan-card__logo-wrap">
-        <img :src="item.logo" :alt="item.name" class="microloan-card__logo" />
+        <img :src="item.logo" :alt="item.name" class="microloan-card__logo" loading="lazy" />
       </div>
       <router-link to="/credits/apply" class="microloan-card__action">
         Получить кредит

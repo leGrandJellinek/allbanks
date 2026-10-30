@@ -22,6 +22,7 @@
               :src="getMainImage(offer.logoImg)" 
               :alt="offer.name" 
               class="credit-card__brand-logo" 
+              loading="lazy"
             />
             <span 
               v-else 
