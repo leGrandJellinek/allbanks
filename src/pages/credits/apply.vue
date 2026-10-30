@@ -64,6 +64,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useToastStore } from '@/stores/toast'
+
+const router = useRouter()
+const toast = useToastStore()
 
 const form = ref({
   fullName: '',
@@ -75,7 +80,10 @@ const form = ref({
 })
 
 function submitApplication() {
-  alert('Заявка успешно принята! Ожидайте звонка от банка.')
+  toast.success('Заявка успешно принята! Ожидайте звонка от банка.')
+  setTimeout(() => {
+    router.push('/credits')
+  }, 1500)
 }
 </script>
 

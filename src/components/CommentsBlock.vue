@@ -55,6 +55,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useToastStore } from '@/stores/toast'
+
+const toast = useToastStore()
 
 const formName = ref('')
 const formEmail = ref('')
@@ -93,14 +96,14 @@ function handleSubmit() {
     date: 'Только что',
     text: formComment.value
   })
-  alert('Ваш комментарий успешно опубликован!')
+  toast.success('Ваш комментарий успешно опубликован!')
   formName.value = ''
   formEmail.value = ''
   formComment.value = ''
 }
 
 function alertAuth() {
-  alert('Авторизация через личный кабинет AllBanks')
+  toast.info('Авторизация через личный кабинет AllBanks')
 }
 </script>
 

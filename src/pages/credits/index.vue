@@ -60,6 +60,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useToastStore } from '@/stores/toast'
 import CreditBanner from '@/components/Credits/CreditBanner.vue'
 import CreditFilters from '@/components/Credits/CreditFilters.vue'
 import CreditOfferCard, { type CreditOfferItem } from '@/components/Credits/CreditOfferCard.vue'
@@ -82,9 +83,11 @@ onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
 })
 
+const toast = useToastStore()
+
 // Handlers
 function handleSearch(filters: { currency: string, amount: string, collateral: string, city: string }) {
-  alert(`Поиск кредитов: Валюта=${filters.currency}, Сумма=${filters.amount}, Залог=${filters.collateral}, Город=${filters.city}`)
+  toast.info(`Поиск кредитов: ${filters.city}, ${filters.amount} ${filters.currency}`)
 }
 
 function handlePageChange(page: number) {

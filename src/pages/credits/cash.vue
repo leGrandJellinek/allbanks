@@ -60,12 +60,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useBanksStore } from '@/stores/banks'
+import { useToastStore } from '@/stores/toast'
 
 const banksStore = useBanksStore()
+const toast = useToastStore()
 const filterCurrency = ref('KZT')
 
 function applyFilter() {
-  alert(`Поиск кредитов наличными в г. ${banksStore.selectedCity}`)
+  toast.info(`Поиск кредитов наличными в г. ${banksStore.selectedCity}`)
 }
 
 const cashLoans = ref([

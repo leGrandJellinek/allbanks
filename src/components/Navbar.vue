@@ -193,8 +193,10 @@
 <script setup lang="ts">
 import { ref, watch, onUnmounted } from 'vue'
 import { useBanksStore } from '@/stores/banks'
+import { useToastStore } from '@/stores/toast'
 
 const banksStore = useBanksStore()
+const toast = useToastStore()
 const isMenuOpen = ref(false)
 const activeSubmenu = ref<'exchangers' | 'credits' | null>(null)
 const isLoginModalOpen = ref(false)
@@ -252,12 +254,12 @@ function closeLoginModal() {
 }
 
 function submitLogin() {
-  alert(`Код подтверждения отправлен на номер ${loginPhone.value || '+7 (707) 578 99 99'}`)
+  toast.success(`Код подтверждения отправлен на номер ${loginPhone.value || '+7 (707) 578 99 99'}`)
   closeLoginModal()
 }
 
 function registerAlert() {
-  alert('Регистрация доступна для клиентов банков-партнеров')
+  toast.info('Регистрация доступна для клиентов банков-партнеров')
 }
 </script>
 

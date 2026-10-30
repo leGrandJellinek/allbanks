@@ -5,12 +5,14 @@
       <slot />
     </div>
     <Footer />
+    <ToastContainer />
   </div>
 </template>
 
 <script setup lang="ts">
 import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue'
+import ToastContainer from '@/components/Common/ToastContainer.vue'
 </script>
 
 <style lang="scss" scoped>
