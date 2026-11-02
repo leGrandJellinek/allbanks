@@ -266,7 +266,7 @@ export const useBanksStore = defineStore('banks', {
       {
         id: 4,
         name: 'ForteBank',
-        icon: 'forte_logo.png',
+        icon: 'forte_bank.png',
         license: 'лицензия №1.2.29/197/36',
         location: 'Нур-Султан (Астана), ул. Достык, 8/1',
         phoneNumber: '8 8000 800 819, 7575 звонок бесплатный',
@@ -281,7 +281,7 @@ export const useBanksStore = defineStore('banks', {
       {
         id: 5,
         name: 'Halyk Bank',
-        icon: 'halyk_logo.png',
+        icon: 'halyk_logo.svg',
         license: 'лицензия №1.2.47/230/38',
         location: 'Алматы, пр. Аль-Фараби, 40',
         phoneNumber: '7111 с мобильного',
@@ -326,7 +326,7 @@ export const useBanksStore = defineStore('banks', {
       {
         id: 8,
         name: 'Банк ЦентрКредит',
-        icon: 'centercredit_logo.png',
+        icon: 'centercredit_logo.svg',
         license: 'лицензия №1.2.25/195/34',
         location: 'Алматы, пр. Аль-Фараби 38',
         phoneNumber: '505 с мобильного',
