@@ -10,7 +10,16 @@ export function trapFocus(container: HTMLElement, event: KeyboardEvent): void {
   )
 
   const focusable = Array.from(focusableElements).filter((el) => {
-    return el.offsetParent !== null && !el.hasAttribute('disabled')
+    if (el.hasAttribute('disabled') || el.getAttribute('aria-hidden') === 'true') {
+      return false
+    }
+    if (typeof window !== 'undefined') {
+      const style = window.getComputedStyle(el)
+      if (style.display === 'none' || style.visibility === 'hidden') {
+        return false
+      }
+    }
+    return true
   })
 
   if (focusable.length === 0) {

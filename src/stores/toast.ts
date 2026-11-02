@@ -23,22 +23,23 @@ export const useToastStore = defineStore('toast', () => {
         remove(id)
       }, duration)
     }
+    return id
   }
 
   function success(message: string, duration = 3500) {
-    show(message, 'success', duration)
+    return show(message, 'success', duration)
   }
 
   function info(message: string, duration = 3500) {
-    show(message, 'info', duration)
+    return show(message, 'info', duration)
   }
 
   function warning(message: string, duration = 3500) {
-    show(message, 'warning', duration)
+    return show(message, 'warning', duration)
   }
 
   function error(message: string, duration = 4000) {
-    show(message, 'error', duration)
+    return show(message, 'error', duration)
   }
 
   function remove(id: number) {
@@ -52,6 +53,7 @@ export const useToastStore = defineStore('toast', () => {
     info,
     warning,
     error,
-    remove
+    remove,
+    removeToast: remove
   }
 })
