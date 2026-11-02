@@ -76,12 +76,29 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useHead } from '@unhead/vue'
 import { useAppStore } from '@/stores/app'
 import { useToastStore } from '@/stores/toast'
 
 const appStore = useAppStore()
 const toast = useToastStore()
 const filterCurrency = ref('KZT')
+
+useHead(() => ({
+  title: `Кредиты наличными в г. ${appStore.selectedCity} - AllBanks.kz`,
+  meta: [
+    {
+      name: 'description',
+      content: `Сравнение условий кредитов наличными без залога в банках ${appStore.selectedCity}. Ставки, сроки и подача заявки.`
+    },
+    { property: 'og:title', content: `Кредиты наличными (${appStore.selectedCity}) - AllBanks.kz` },
+    {
+      property: 'og:description',
+      content: `Потребительские кредиты наличными на любые цели в банках Казахстана.`
+    },
+    { property: 'og:type', content: 'website' }
+  ]
+}))
 
 function applyFilter() {
   toast.info(`Поиск кредитов наличными в г. ${appStore.selectedCity}`)

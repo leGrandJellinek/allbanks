@@ -56,8 +56,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useHead } from '@unhead/vue'
 import { NEWS_ITEMS, type NewsItem } from '@/data/news'
 import defaultHero from '@/assets/images/news/news-hero.png'
 
@@ -70,13 +71,36 @@ const currentArticle = computed<NewsItem>(() => {
   return found || NEWS_ITEMS[0]
 })
 
-watch(
-  currentArticle,
-  (a) => {
-    if (a) document.title = `${a.title} - AllBanks.kz`
-  },
-  { immediate: true }
-)
+useHead(() => ({
+  title: `${currentArticle.value.title} - AllBanks.kz`,
+  meta: [
+    {
+      name: 'description',
+      content: currentArticle.value.paragraphs?.[0] || 'Финансовые новости Казахстана на AllBanks.kz'
+    },
+    { property: 'og:title', content: currentArticle.value.title },
+    {
+      property: 'og:description',
+      content: currentArticle.value.paragraphs?.[0] || 'Финансовые новости Казахстана'
+    },
+    { property: 'og:type', content: 'article' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'NewsArticle',
+        headline: currentArticle.value.title,
+        datePublished: '2022-04-01T12:00:00+06:00',
+        author: {
+          '@type': 'Organization',
+          name: 'AllBanks.kz'
+        }
+      })
+    }
+  ]
+}))
 </script>
 
 <style lang="scss" scoped>

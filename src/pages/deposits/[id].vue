@@ -50,8 +50,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useHead } from '@unhead/vue'
 import CommentsBlock from '@/components/CommentsBlock.vue'
 import { DEPOSIT_LIST, type DepositItem } from '@/data/deposits'
 
@@ -73,15 +74,36 @@ const depositConditions = computed(() => {
   )
 })
 
-watch(
-  deposit,
-  (d) => {
-    if (d) {
-      document.title = `${d.bank} - ${d.subtitle} - AllBanks.kz`
+useHead(() => ({
+  title: `${deposit.value.bank} - ${deposit.value.subtitle} - AllBanks.kz`,
+  meta: [
+    {
+      name: 'description',
+      content: `Вклад «${deposit.value.subtitle}» от ${deposit.value.bank}: ставка ${deposit.value.rate}, минимальная сумма ${deposit.value.minSum}, срок ${deposit.value.term}.`
+    },
+    { property: 'og:title', content: `${deposit.value.bank} - ${deposit.value.subtitle}` },
+    {
+      property: 'og:description',
+      content: `Ставка ${deposit.value.rate}, сумма от ${deposit.value.minSum}, срок ${deposit.value.term}. Условия на AllBanks.kz.`
+    },
+    { property: 'og:type', content: 'website' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FinancialProduct',
+        name: deposit.value.subtitle,
+        annualPercentageRate: deposit.value.rate,
+        provider: {
+          '@type': 'BankOrCreditUnion',
+          name: deposit.value.bank
+        }
+      })
     }
-  },
-  { immediate: true }
-)
+  ]
+}))
 </script>
 
 <style lang="scss" scoped>

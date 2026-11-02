@@ -54,6 +54,25 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useHead } from '@unhead/vue'
+
+useHead({
+  title: 'Кредиты под залог недвижимости в Казахстане - AllBanks.kz',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Сравнение условий и ставок по кредитам под залог жилой и коммерческой недвижимости в банках Казахстана.'
+    },
+    { property: 'og:title', content: 'Кредиты под залог недвижимости - AllBanks.kz' },
+    {
+      property: 'og:description',
+      content:
+        'Выгодные залоговые кредиты и ипотечные программы банков Казахстана.'
+    },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 
 const mortgageList = ref([
   {
