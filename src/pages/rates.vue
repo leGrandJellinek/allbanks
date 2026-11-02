@@ -47,6 +47,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useHead } from '@unhead/vue'
 import RatesDesktopTable, {
   type DesktopBankRate
 } from '@/components/Rates/RatesDesktopTable.vue'
@@ -54,6 +55,27 @@ import RatesMobileTabs, { type RateCurrency } from '@/components/Rates/RatesMobi
 import RatesMobileTable, {
   type MobileBankRate
 } from '@/components/Rates/RatesMobileTable.vue'
+
+useHead({
+  title: 'Курсы валют в банках Казахстана на сегодня - AllBanks.kz',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Сравнение актуальных курсов покупки и продажи доллара, евро и рубля во всех банках Казахстана: Алматы, Астана, Шымкент.'
+    },
+    {
+      property: 'og:title',
+      content: 'Курсы валют в банках Казахстана на сегодня - AllBanks.kz'
+    },
+    {
+      property: 'og:description',
+      content:
+        'Сравните курсы доллара, евро и рубля в банках Казахстана. Лучшие предложения обмена.'
+    },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 
 // Currency tab on mobile: USD | EUR | RUR
 const selectedCurrency = ref<RateCurrency>('USD')

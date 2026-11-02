@@ -16,7 +16,29 @@
 </template>
 
 <script setup lang="ts">
+import { useHead } from '@unhead/vue'
 import Banks from '@/components/Main/Banks.vue'
+
+useHead({
+  title: 'Банки Казахстана: список, курсы валют, адреса и телефоны - AllBanks.kz',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Полный список коммерческих банков Казахстана. Актуальные контакты, телефоны, адреса отделений и курсы валют.'
+    },
+    {
+      property: 'og:title',
+      content: 'Банки Казахстана - AllBanks.kz'
+    },
+    {
+      property: 'og:description',
+      content:
+        'Список банков Казахстана, контакты и актуальные курсы валют.'
+    },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 </script>
 
 <style lang="scss" scoped>

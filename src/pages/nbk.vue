@@ -55,6 +55,25 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useHead } from '@unhead/vue'
+
+useHead({
+  title: 'Официальные курсы валют НБ РК на сегодня - AllBanks.kz',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Официальные курсы иностранных валют к казахстанскому тенге, установленные Национальным Банком Республики Казахстан на сегодня.'
+    },
+    { property: 'og:title', content: 'Официальные курсы валют НБ РК - AllBanks.kz' },
+    {
+      property: 'og:description',
+      content:
+        'Официальные курсы валют Национального Банка Республики Казахстан.'
+    },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 
 interface NbkCurrency {
   name: string

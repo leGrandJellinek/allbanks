@@ -26,10 +26,29 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useHead } from '@unhead/vue'
 import NewsCard from '@/components/News/NewsCard.vue'
 import NewsFilter from '@/components/News/NewsFilter.vue'
 import NewsPagination from '@/components/News/NewsPagination.vue'
 import { NEWS_ITEMS, NEWS_CATEGORIES } from '@/data/news'
+
+useHead({
+  title: 'Финансовые и банковские новости Казахстана - AllBanks.kz',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Актуальные новости финансового сектора, банков, курсов валют, кредитования и экономики Казахстана.'
+    },
+    { property: 'og:title', content: 'Новости финансов и банков - AllBanks.kz' },
+    {
+      property: 'og:description',
+      content:
+        'Главные события банковского рынка и экономики Республики Казахстан.'
+    },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 
 const selectedCategory = ref('')
 

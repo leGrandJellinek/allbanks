@@ -102,8 +102,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useHead } from '@unhead/vue'
 import CommentsBlock from '@/components/CommentsBlock.vue'
 import { useBanksStore } from '@/stores/banks'
 import { getMainImage } from '@/utils/assets'
@@ -116,13 +117,34 @@ const bank = computed(() => {
   return banksStore.banks.find((b) => b.id === bankId.value) || banksStore.banks[0]
 })
 
-watch(
-  bank,
-  (b) => {
-    if (b) document.title = `${b.name} - AllBanks.kz`
-  },
-  { immediate: true }
-)
+useHead(() => ({
+  title: `${bank.value.name} - AllBanks.kz`,
+  meta: [
+    {
+      name: 'description',
+      content: `${bank.value.name}: адреса отделений, телефоны, курсы валют, условия кредитования и депозитов в Казахстане.`
+    },
+    { property: 'og:title', content: `${bank.value.name} - AllBanks.kz` },
+    {
+      property: 'og:description',
+      content: `${bank.value.name}: адреса отделений, курсы валют и кредитные предложения.`
+    },
+    { property: 'og:type', content: 'business.financial_institution' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BankOrCreditUnion',
+        name: bank.value.name,
+        telephone: bank.value.phoneNumber,
+        address: bank.value.location,
+        url: `https://${bank.value.website}`
+      })
+    }
+  ]
+}))
 
 const isExpanded = ref(false)
 const showBranches = ref(true)

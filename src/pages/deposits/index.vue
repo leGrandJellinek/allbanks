@@ -22,10 +22,29 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useHead } from '@unhead/vue'
 import DepositFilters from '@/components/Deposits/DepositFilters.vue'
 import DepositCard from '@/components/Deposits/DepositCard.vue'
 import DepositPagination from '@/components/Deposits/DepositPagination.vue'
 import { DEPOSIT_LIST } from '@/data/deposits'
+
+useHead({
+  title: 'Вклады и депозиты для физических лиц в Казахстане - AllBanks.kz',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Сравнение условий по банковским вкладам и депозитам в банках Казахстана: ставки вознаграждения, сроки и условия пополнения.'
+    },
+    { property: 'og:title', content: 'Вклады для физических лиц - AllBanks.kz' },
+    {
+      property: 'og:description',
+      content:
+        'Выгодные банковские депозиты в тенге, долларах и евро.'
+    },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 
 function handleSearch(filters: Record<string, string>) {
   console.log('Поиск депозитов:', filters)

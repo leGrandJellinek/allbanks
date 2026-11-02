@@ -87,7 +87,23 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useHead } from '@unhead/vue'
 import { useToastStore } from '@/stores/toast'
+
+useHead({
+  title: 'Онлайн-заявка на кредит - AllBanks.kz',
+  meta: [
+    {
+      name: 'description',
+      content: 'Оформление онлайн-заявки на получение кредита в банках Казахстана.'
+    },
+    { property: 'og:title', content: 'Онлайн-заявка на кредит - AllBanks.kz' },
+    {
+      property: 'og:description',
+      content: 'Оформление онлайн-заявки на получение кредита в банках Казахстана.'
+    }
+  ]
+})
 
 const router = useRouter()
 const toast = useToastStore()

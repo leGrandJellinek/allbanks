@@ -90,8 +90,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useHead } from '@unhead/vue'
 import CommentsBlock from '@/components/CommentsBlock.vue'
 import { useCreditsStore } from '@/stores/credits'
 
@@ -103,15 +104,36 @@ const offer = computed(() => {
   return creditsStore.creditOffers.find((o) => o.id === offerId.value) || creditsStore.creditOffers[0]
 })
 
-watch(
-  offer,
-  (o) => {
-    if (o) {
-      document.title = `${o.name} - Кредит наличными - AllBanks.kz`
+useHead(() => ({
+  title: `${offer.value.name} - Кредит наличными - AllBanks.kz`,
+  meta: [
+    {
+      name: 'description',
+      content: `Кредит от ${offer.value.name}: ставка ${offer.value.rate}, сумма до ${offer.value.sum} тенге, срок ${offer.value.term}. Быстрое решение за ${offer.value.responseTime}.`
+    },
+    { property: 'og:title', content: `${offer.value.name} - Кредит наличными` },
+    {
+      property: 'og:description',
+      content: `Ставка ${offer.value.rate}, сумма до ${offer.value.sum} ₸, срок ${offer.value.term}. Онлайн-заявка на AllBanks.kz.`
+    },
+    { property: 'og:type', content: 'website' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FinancialProduct',
+        name: `Кредит наличными от ${offer.value.name}`,
+        annualPercentageRate: offer.value.rate,
+        provider: {
+          '@type': 'BankOrCreditUnion',
+          name: offer.value.name
+        }
+      })
     }
-  },
-  { immediate: true }
-)
+  ]
+}))
 </script>
 
 <style lang="scss" scoped>

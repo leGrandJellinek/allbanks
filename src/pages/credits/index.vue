@@ -54,6 +54,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useHead } from '@unhead/vue'
 import { useToastStore } from '@/stores/toast'
 import CreditBanner from '@/components/Credits/CreditBanner.vue'
 import CreditFilters from '@/components/Credits/CreditFilters.vue'
@@ -63,6 +64,27 @@ import CreditComparisonCard, {
 } from '@/components/Credits/CreditComparisonCard.vue'
 import CreditPagination from '@/components/Credits/CreditPagination.vue'
 import CreditSeo from '@/components/Credits/CreditSeo.vue'
+
+useHead({
+  title: 'Кредиты в банках Казахстана: ставки, калькулятор, сравнение условий - AllBanks.kz',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Сравнение условий и процентных ставок по потребительским кредитам во всех банках Казахстана. Онлайн-подбор и оформление заявки.'
+    },
+    {
+      property: 'og:title',
+      content: 'Кредиты в банках Казахстана - AllBanks.kz'
+    },
+    {
+      property: 'og:description',
+      content:
+        'Сравните кредитные предложения от ведущих банков Казахстана.'
+    },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 
 // Track window width for 5 cards on Desktop vs 4 cards on Mobile (Figma Frame 49 vs Frame 284:660)
 const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1200)

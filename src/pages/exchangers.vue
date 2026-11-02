@@ -59,6 +59,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useHead } from '@unhead/vue'
 import { useAppStore } from '@/stores/app'
 import ExchangerRateCards from '@/components/Exchangers/ExchangerRateCards.vue'
 import ExchangerFilter from '@/components/Exchangers/ExchangerFilter.vue'
@@ -66,6 +67,25 @@ import ExchangerTable from '@/components/Exchangers/ExchangerTable.vue'
 import ExchangerSeo from '@/components/Exchangers/ExchangerSeo.vue'
 
 const appStore = useAppStore()
+
+useHead(() => ({
+  title: `Курсы валют в обменных пунктах (${appStore.selectedCity}) - AllBanks.kz`,
+  meta: [
+    {
+      name: 'description',
+      content: `Актуальные курсы доллара, евро, рубля и юаня в обменных пунктах ${appStore.selectedCity} на сегодня. Поиск выгодного курса на AllBanks.kz.`
+    },
+    {
+      property: 'og:title',
+      content: `Курсы валют в обменных пунктах (${appStore.selectedCity}) - AllBanks.kz`
+    },
+    {
+      property: 'og:description',
+      content: `Курсы валют в обменных пунктах ${appStore.selectedCity} на сегодня.`
+    },
+    { property: 'og:type', content: 'website' }
+  ]
+}))
 const isMobileCityOpen = ref(false)
 const mobileCityRef = ref<HTMLElement | null>(null)
 

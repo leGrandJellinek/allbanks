@@ -67,7 +67,26 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useHead } from '@unhead/vue'
 import MicroloanCard, { type MicroloanItem } from '@/components/Microloans/MicroloanCard.vue'
+
+useHead({
+  title: 'Микрозаймы онлайн в Казахстане: быстрые микрокредиты на карту - AllBanks.kz',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Сравнение условий онлайн-микрозаймов в МФО Казахстана: сумма, процентная ставка, срок и требования. Быстрое одобрение без залога.'
+    },
+    { property: 'og:title', content: 'Микрозаймы онлайн в Казахстане - AllBanks.kz' },
+    {
+      property: 'og:description',
+      content:
+        'Быстрые микрозаймы на карту от проверенных МФО Казахстана.'
+    },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 
 import creditplusLogo from '@/assets/images/microloans/creditplus.png'
 import moneymanLogo from '@/assets/images/microloans/moneyman.png'
