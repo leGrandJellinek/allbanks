@@ -6,7 +6,13 @@
 
       <div class="header__nav-block">
         <!-- Burger Toggle Button -->
-        <button class="header__nav-burger" aria-label="Открыть меню" @click="openMenu">
+        <button
+          class="header__nav-burger"
+          aria-label="Открыть меню"
+          :aria-expanded="isMenuOpen"
+          aria-controls="mobile-nav-drawer"
+          @click="openMenu"
+        >
           <img src="@/assets/images/icons/menu-burger.svg" alt="Меню" />
         </button>
 
@@ -31,9 +37,18 @@
       </div>
 
       <!-- Mobile Slide-over Drawer (1:1 from Figma) -->
-      <div class="mobile-drawer" :class="{ open: isMenuOpen }">
+      <div
+        id="mobile-nav-drawer"
+        ref="drawerRef"
+        class="mobile-drawer"
+        :class="{ open: isMenuOpen }"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Меню навигации"
+        :aria-hidden="!isMenuOpen"
+      >
         <div class="mobile-drawer__header">
-          <button class="mobile-drawer__close" aria-label="Закрыть" @click="closeMenu">
+          <button class="mobile-drawer__close" aria-label="Закрыть меню" @click="closeMenu">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
                 d="M18 6L6 18M6 6L18 18"
@@ -102,12 +117,20 @@
       <!-- Teleport Bottom Sheets to body to prevent bloating mobile-drawer scrollHeight -->
       <Teleport to="body">
         <!-- Submenu Sheet: Выберите город (Обменники) -->
-        <div class="bottom-sheet" :class="{ active: activeSubmenu === 'exchangers' }">
+        <div
+          ref="exchangersSheetRef"
+          class="bottom-sheet"
+          :class="{ active: activeSubmenu === 'exchangers' }"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="exchangers-sheet-title"
+          :aria-hidden="activeSubmenu !== 'exchangers'"
+        >
           <div class="bottom-sheet__overlay" @click="activeSubmenu = null"></div>
           <div class="bottom-sheet__content">
             <div class="bottom-sheet__header">
-              <h3>Выберите город</h3>
-              <button class="bottom-sheet__close" @click="activeSubmenu = null">✕</button>
+              <h3 id="exchangers-sheet-title">Выберите город</h3>
+              <button class="bottom-sheet__close" aria-label="Закрыть выбор города" @click="activeSubmenu = null">✕</button>
             </div>
             <ul class="bottom-sheet__list">
               <li
@@ -128,12 +151,20 @@
         </div>
 
         <!-- Submenu Sheet: Выберите кредит -->
-        <div class="bottom-sheet" :class="{ active: activeSubmenu === 'credits' }">
+        <div
+          ref="creditsSheetRef"
+          class="bottom-sheet"
+          :class="{ active: activeSubmenu === 'credits' }"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="credits-sheet-title"
+          :aria-hidden="activeSubmenu !== 'credits'"
+        >
           <div class="bottom-sheet__overlay" @click="activeSubmenu = null"></div>
           <div class="bottom-sheet__content">
             <div class="bottom-sheet__header">
-              <h3>Выберите кредит</h3>
-              <button class="bottom-sheet__close" @click="activeSubmenu = null">✕</button>
+              <h3 id="credits-sheet-title">Выберите кредит</h3>
+              <button class="bottom-sheet__close" aria-label="Закрыть выбор кредита" @click="activeSubmenu = null">✕</button>
             </div>
             <ul class="bottom-sheet__list">
               <li>
@@ -162,18 +193,31 @@
       <!-- Login Modal Dialog -->
       <Teleport to="body">
         <div v-if="isLoginModalOpen" class="login-modal-overlay" @click.self="closeLoginModal">
-          <div class="login-modal">
-            <button class="login-modal__close" aria-label="Закрыть" @click="closeLoginModal">
+          <div
+            ref="loginModalRef"
+            class="login-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="login-modal-title"
+          >
+            <button class="login-modal__close" aria-label="Закрыть окно входа" @click="closeLoginModal">
               ✕
             </button>
             <div class="login-modal__header">
-              <h3 class="login-modal__title">Вход в AllBanks</h3>
+              <h3 id="login-modal-title" class="login-modal__title">Вход в AllBanks</h3>
               <p class="login-modal__desc">Введите номер телефона для входа в личный кабинет</p>
             </div>
             <form class="login-modal__form" @submit.prevent="submitLogin">
               <div class="form-group">
-                <label>Номер телефона</label>
-                <input v-model="loginPhone" type="tel" placeholder="+7 (7XX) XXX-XX-XX" required />
+                <label for="login-phone-input">Номер телефона</label>
+                <input
+                  id="login-phone-input"
+                  ref="loginInputRef"
+                  v-model="loginPhone"
+                  type="tel"
+                  placeholder="+7 (7XX) XXX-XX-XX"
+                  required
+                />
               </div>
               <button type="submit" class="login-modal__btn">Получить код по SMS</button>
             </form>
@@ -188,16 +232,24 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onUnmounted } from 'vue'
+import { ref, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { useAppStore } from '@/stores/app'
 import { useToastStore } from '@/stores/toast'
+import { trapFocus } from '@/utils/focusTrap'
 
 const appStore = useAppStore()
 const toast = useToastStore()
+
 const isMenuOpen = ref(false)
 const activeSubmenu = ref<'exchangers' | 'credits' | null>(null)
 const isLoginModalOpen = ref(false)
 const loginPhone = ref('')
+
+const drawerRef = ref<HTMLElement | null>(null)
+const exchangersSheetRef = ref<HTMLElement | null>(null)
+const creditsSheetRef = ref<HTMLElement | null>(null)
+const loginModalRef = ref<HTMLElement | null>(null)
+const loginInputRef = ref<HTMLInputElement | null>(null)
 
 watch(isMenuOpen, (isOpen) => {
   if (typeof document !== 'undefined') {
@@ -211,10 +263,54 @@ watch(isMenuOpen, (isOpen) => {
   }
 })
 
+watch(isLoginModalOpen, async (isOpen) => {
+  if (isOpen) {
+    await nextTick()
+    loginInputRef.value?.focus()
+  }
+})
+
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') {
+    if (isLoginModalOpen.value) {
+      closeLoginModal()
+      e.preventDefault()
+    } else if (activeSubmenu.value) {
+      activeSubmenu.value = null
+      e.preventDefault()
+    } else if (isMenuOpen.value) {
+      closeMenu()
+      e.preventDefault()
+    }
+    return
+  }
+
+  if (e.key === 'Tab') {
+    if (isLoginModalOpen.value && loginModalRef.value) {
+      trapFocus(loginModalRef.value, e)
+    } else if (activeSubmenu.value === 'exchangers' && exchangersSheetRef.value) {
+      trapFocus(exchangersSheetRef.value, e)
+    } else if (activeSubmenu.value === 'credits' && creditsSheetRef.value) {
+      trapFocus(creditsSheetRef.value, e)
+    } else if (isMenuOpen.value && drawerRef.value) {
+      trapFocus(drawerRef.value, e)
+    }
+  }
+}
+
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    window.addEventListener('keydown', onKeydown)
+  }
+})
+
 onUnmounted(() => {
   if (typeof document !== 'undefined') {
     document.body.style.overflow = ''
     document.body.style.touchAction = ''
+  }
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('keydown', onKeydown)
   }
 })
 

@@ -15,8 +15,9 @@
 
           <form class="apply-form" @submit.prevent="submitApplication">
             <div class="form-group">
-              <label>ФИО полностью *</label>
+              <label for="apply-fullName">ФИО полностью *</label>
               <input
+                id="apply-fullName"
                 v-model="form.fullName"
                 type="text"
                 placeholder="Иванов Иван Иванович"
@@ -25,8 +26,9 @@
             </div>
 
             <div class="form-group">
-              <label>ИИН (12 цифр) *</label>
+              <label for="apply-iin">ИИН (12 цифр) *</label>
               <input
+                id="apply-iin"
                 v-model="form.iin"
                 type="text"
                 maxlength="12"
@@ -36,18 +38,30 @@
             </div>
 
             <div class="form-group">
-              <label>Номер телефона *</label>
-              <input v-model="form.phone" type="tel" placeholder="+7 (___) ___-__-__" required />
+              <label for="apply-phone">Номер телефона *</label>
+              <input
+                id="apply-phone"
+                v-model="form.phone"
+                type="tel"
+                placeholder="+7 (___) ___-__-__"
+                required
+              />
             </div>
 
             <div class="form-group">
-              <label>Сумма кредита (₸) *</label>
-              <input v-model="form.sum" type="number" placeholder="500000" required />
+              <label for="apply-sum">Сумма кредита (₸) *</label>
+              <input
+                id="apply-sum"
+                v-model="form.sum"
+                type="number"
+                placeholder="500000"
+                required
+              />
             </div>
 
             <div class="form-group">
-              <label>Срок кредитования</label>
-              <select v-model="form.term">
+              <label for="apply-term">Срок кредитования</label>
+              <select id="apply-term" v-model="form.term">
                 <option value="12">12 месяцев</option>
                 <option value="24">24 месяца</option>
                 <option value="36">36 месяцев</option>
