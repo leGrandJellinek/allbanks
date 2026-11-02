@@ -23,8 +23,8 @@
           <div class="filter-item">
             <label>Город</label>
             <div class="select-wrap">
-              <select v-model="banksStore.selectedCity">
-                <option v-for="c in banksStore.cities" :key="c" :value="c">{{ c }}</option>
+              <select v-model="appStore.selectedCity">
+                <option v-for="c in appStore.cities" :key="c" :value="c">{{ c }}</option>
               </select>
             </div>
           </div>
@@ -76,15 +76,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useBanksStore } from '@/stores/banks'
+import { useAppStore } from '@/stores/app'
 import { useToastStore } from '@/stores/toast'
 
-const banksStore = useBanksStore()
+const appStore = useAppStore()
 const toast = useToastStore()
 const filterCurrency = ref('KZT')
 
 function applyFilter() {
-  toast.info(`Поиск кредитов наличными в г. ${banksStore.selectedCity}`)
+  toast.info(`Поиск кредитов наличными в г. ${appStore.selectedCity}`)
 }
 
 const cashLoans = ref([

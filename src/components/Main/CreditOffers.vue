@@ -61,7 +61,7 @@
       <!-- Mobile View: 4 cards matching Figma Mobile Frame 230:622 -->
       <div class="main__credits-grid mobile-grid">
         <div
-          v-for="offer in banksStore.creditOffers"
+          v-for="offer in creditsStore.creditOffers"
           :key="offer.id"
           class="credit-card"
           :style="{ backgroundColor: offer.bgcolor || '#ffffff' }"
@@ -121,13 +121,13 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useBanksStore } from '@/stores/banks'
+import { useCreditsStore } from '@/stores/credits'
 import { getMainImage } from '@/utils/assets'
 
-const banksStore = useBanksStore()
+const creditsStore = useCreditsStore()
 
 // Desktop Frame 1 in Figma has 3 cards: Sberbank, Kaspi, RBK
-const desktopOffers = computed(() => banksStore.creditOffers.slice(0, 3))
+const desktopOffers = computed(() => creditsStore.creditOffers.slice(0, 3))
 </script>
 
 <style lang="scss" scoped>

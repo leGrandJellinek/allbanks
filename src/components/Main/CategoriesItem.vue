@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import type { CategoryItem } from '@/stores/banks'
+import type { CategoryItem } from '@/stores/app'
 import { getMainImage } from '@/utils/assets'
 
 defineProps<{

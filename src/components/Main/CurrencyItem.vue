@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import type { CurrencyItem } from '@/stores/banks'
+import type { CurrencyItem } from '@/stores/currencies'
 
 defineProps<{
   item: CurrencyItem

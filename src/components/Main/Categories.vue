@@ -2,17 +2,17 @@
   <section class="main__categories">
     <div class="main__categories-container">
       <div class="main__categories-grid">
-        <CategoriesItem v-for="item in banksStore.categoriesList" :key="item.id" :item="item" />
+        <CategoriesItem v-for="item in appStore.categoriesList" :key="item.id" :item="item" />
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { useBanksStore } from '@/stores/banks'
+import { useAppStore } from '@/stores/app'
 import CategoriesItem from '@/components/Main/CategoriesItem.vue'
 
-const banksStore = useBanksStore()
+const appStore = useAppStore()
 </script>
 
 <style lang="scss" scoped>

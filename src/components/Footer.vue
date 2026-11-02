@@ -26,7 +26,7 @@
           </div>
         </div>
         <ul class="footer__top-menu">
-          <li v-for="link in banksStore.menuList" :key="link.id">
+          <li v-for="link in appStore.menuList" :key="link.id">
             <router-link class="footer__top-link" :to="link.path">{{ link.title }}</router-link>
           </li>
         </ul>
@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { useBanksStore } from '@/stores/banks'
+import { useAppStore } from '@/stores/app'
 
-const banksStore = useBanksStore()
+const appStore = useAppStore()
 </script>

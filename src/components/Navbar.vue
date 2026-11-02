@@ -18,7 +18,7 @@
 
         <!-- Desktop Navigation -->
         <ul class="header__nav-menu desktop-menu">
-          <li v-for="link in banksStore.menuList" :key="link.id">
+          <li v-for="link in appStore.menuList" :key="link.id">
             <router-link :to="link.path" class="header__nav-link">
               {{ link.title }}
             </router-link>
@@ -52,7 +52,7 @@
         </div>
 
         <ul class="mobile-drawer__list">
-          <li v-for="link in banksStore.menuList" :key="link.id" class="mobile-drawer__item">
+          <li v-for="link in appStore.menuList" :key="link.id" class="mobile-drawer__item">
             <!-- If item has sub-options in figma (Обменники or Кредиты) -->
             <button
               v-if="link.id === 3"
@@ -189,10 +189,10 @@
 
 <script setup lang="ts">
 import { ref, watch, onUnmounted } from 'vue'
-import { useBanksStore } from '@/stores/banks'
+import { useAppStore } from '@/stores/app'
 import { useToastStore } from '@/stores/toast'
 
-const banksStore = useBanksStore()
+const appStore = useAppStore()
 const toast = useToastStore()
 const isMenuOpen = ref(false)
 const activeSubmenu = ref<'exchangers' | 'credits' | null>(null)
@@ -236,7 +236,7 @@ function toggleSubmenu(type: 'exchangers' | 'credits') {
 }
 
 function selectCityMenu(city: string) {
-  banksStore.setCity(city)
+  appStore.setCity(city)
   closeMenu()
 }
 

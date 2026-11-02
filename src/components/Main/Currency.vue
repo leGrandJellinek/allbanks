@@ -9,17 +9,17 @@
           <div
             ref="citySelectRef"
             class="city-select"
-            :class="{ 'mobile-hidden': banksStore.activeCurrencyTab === 'banks' }"
+            :class="{ 'mobile-hidden': currenciesStore.activeCurrencyTab === 'banks' }"
           >
             <button
               class="city-select__button"
-              :class="{ open: banksStore.isCityDropdownOpen }"
-              @click="banksStore.toggleCityDropdown"
+              :class="{ open: appStore.isCityDropdownOpen }"
+              @click="appStore.toggleCityDropdown"
             >
-              <span>{{ banksStore.selectedCity }}</span>
+              <span>{{ appStore.selectedCity }}</span>
               <svg
                 class="city-select__arrow"
-                :class="{ rotated: banksStore.isCityDropdownOpen }"
+                :class="{ rotated: appStore.isCityDropdownOpen }"
                 width="12"
                 height="8"
                 viewBox="0 0 12 8"
@@ -34,13 +34,13 @@
               </svg>
             </button>
 
-            <ul v-if="banksStore.isCityDropdownOpen" class="city-select__menu">
+            <ul v-if="appStore.isCityDropdownOpen" class="city-select__menu">
               <li
-                v-for="city in banksStore.cities"
+                v-for="city in appStore.cities"
                 :key="city"
                 class="city-select__item"
-                :class="{ selected: banksStore.selectedCity === city }"
-                @click="banksStore.setCity(city)"
+                :class="{ selected: appStore.selectedCity === city }"
+                @click="appStore.setCity(city)"
               >
                 {{ city }}
               </li>
@@ -51,15 +51,15 @@
           <div class="main__currency-tabs">
             <button
               class="main__currency-tab"
-              :class="{ active: banksStore.activeCurrencyTab === 'exchangers' }"
-              @click="banksStore.setCurrencyTab('exchangers')"
+              :class="{ active: currenciesStore.activeCurrencyTab === 'exchangers' }"
+              @click="currenciesStore.setCurrencyTab('exchangers')"
             >
               Обменники
             </button>
             <button
               class="main__currency-tab"
-              :class="{ active: banksStore.activeCurrencyTab === 'banks' }"
-              @click="banksStore.setCurrencyTab('banks')"
+              :class="{ active: currenciesStore.activeCurrencyTab === 'banks' }"
+              @click="currenciesStore.setCurrencyTab('banks')"
             >
               Банки
             </button>
@@ -69,7 +69,7 @@
 
       <!-- Desktop Currency Pills (1:1 from Figma Desktop Frame 1: Group 229) -->
       <div class="main__currency-desktop-grid">
-        <div v-for="currency in banksStore.currencyList" :key="currency.id" class="currency-pill">
+        <div v-for="currency in currenciesStore.currencyList" :key="currency.id" class="currency-pill">
           <div class="currency-pill__badge" :style="{ backgroundColor: currency.color }">
             <span>{{ currency.symbol }}</span>
           </div>
@@ -103,7 +103,7 @@
 
         <div class="main__currency-list">
           <CurrencyItem
-            v-for="currency in banksStore.currencyList"
+            v-for="currency in currenciesStore.currencyList"
             :key="currency.id"
             :item="currency"
           />
@@ -115,15 +115,17 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useBanksStore } from '@/stores/banks'
+import { useAppStore } from '@/stores/app'
+import { useCurrenciesStore } from '@/stores/currencies'
 import CurrencyItem from '@/components/Main/CurrencyItem.vue'
 
-const banksStore = useBanksStore()
+const appStore = useAppStore()
+const currenciesStore = useCurrenciesStore()
 const citySelectRef = ref<HTMLElement | null>(null)
 
 function onDocumentClick(e: MouseEvent) {
   if (citySelectRef.value && !citySelectRef.value.contains(e.target as Node)) {
-    banksStore.isCityDropdownOpen = false
+    appStore.isCityDropdownOpen = false
   }
 }
 

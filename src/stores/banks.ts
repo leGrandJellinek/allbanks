@@ -1,30 +1,5 @@
 import { defineStore } from 'pinia'
 
-export interface MenuItem {
-  id: number
-  title: string
-  path: string
-}
-
-export interface CategoryItem {
-  id: number
-  title: string
-  bgcolor: string
-  img: string
-  path: string
-}
-
-export interface CurrencyItem {
-  id: number
-  currencyName: string
-  currencySymbol: string
-  img: string
-  symbol: string
-  color: string
-  sellPrice: string
-  buyPrice: string
-}
-
 export interface BankItem {
   id: number
   name: string
@@ -41,181 +16,8 @@ export interface BankItem {
   rubSell?: string
 }
 
-export interface CreditOffer {
-  id: number
-  name: string
-  logoText?: string
-  logoImg?: string
-  logoColor?: string
-  bgcolor?: string
-  age: string
-  sum: string
-  term: string
-  rate: string
-  responseTime: string
-}
-
-export interface ExchangerItem {
-  id: number
-  name: string
-  address: string
-  usdBuy: string
-  usdSell: string
-  eurBuy: string
-  eurSell: string
-  rubBuy: string
-  rubSell: string
-}
-
 export const useBanksStore = defineStore('banks', {
   state: () => ({
-    selectedCity: 'Алматы',
-    isCityDropdownOpen: false,
-    activeCurrencyTab: 'banks' as 'exchangers' | 'banks',
-    cities: ['Алматы', 'Караганда', 'Шымкент', 'Нур - Султан', 'Темиртау', 'Актау'],
-    menuList: [
-      { id: 1, title: 'Банки Казахстана', path: '/banks' },
-      { id: 2, title: 'Курсы в банках', path: '/rates' },
-      { id: 3, title: 'Обменники', path: '/exchangers' },
-      { id: 4, title: 'НБК', path: '/nbk' },
-      { id: 5, title: 'Кредиты', path: '/credits' },
-      { id: 6, title: 'Микрозаймы', path: '/microloans' },
-      { id: 7, title: 'Вклады физлиц', path: '/deposits' },
-      { id: 8, title: 'Новости', path: '/news' }
-    ] as MenuItem[],
-
-    categoriesList: [
-      {
-        id: 1,
-        title: 'Курсы валют',
-        bgcolor: '#FEF1E2',
-        img: 'rubl.png',
-        path: '/rates'
-      },
-      {
-        id: 2,
-        title: 'Микрозаймы',
-        bgcolor: '#F1FED5',
-        img: 'bag.png',
-        path: '/microloans'
-      },
-      {
-        id: 3,
-        title: 'Кредиты',
-        bgcolor: 'rgba(213, 254, 252, 0.7)',
-        img: 'credit_card.png',
-        path: '/credits'
-      },
-      {
-        id: 4,
-        title: 'Депозиты',
-        bgcolor: '#E2EDFE',
-        img: 'safe_and_coin.png',
-        path: '/deposits'
-      },
-      {
-        id: 5,
-        title: 'Новости',
-        bgcolor: '#FEE2E2',
-        img: 'megaphone.png',
-        path: '/news'
-      },
-      {
-        id: 6,
-        title: 'Банки РК',
-        bgcolor: 'rgba(214, 213, 254, 0.7)',
-        img: 'bank.png',
-        path: '/banks'
-      }
-    ] as CategoryItem[],
-
-    currencyList: [
-      {
-        id: 1,
-        currencyName: 'Доллар',
-        currencySymbol: 'USD',
-        img: 'dollar.svg',
-        symbol: '$',
-        color: '#FF8A16',
-        buyPrice: '430.50',
-        sellPrice: '437.50'
-      },
-      {
-        id: 2,
-        currencyName: 'Евро',
-        currencySymbol: 'EUR',
-        img: 'euro.svg',
-        symbol: '€',
-        color: '#D92365',
-        buyPrice: '430.50',
-        sellPrice: '437.50'
-      },
-      {
-        id: 3,
-        currencyName: 'Рубль',
-        currencySymbol: 'RUR',
-        img: 'ruble.svg',
-        symbol: '₽',
-        color: '#DE251D',
-        buyPrice: '430.50',
-        sellPrice: '437.50'
-      }
-    ] as CurrencyItem[],
-
-    creditOffers: [
-      {
-        id: 1,
-        name: 'Сбербанк',
-        logoText: 'СБЕР БАНК',
-        logoImg: 'sber_logo.png',
-        logoColor: '#21A038',
-        bgcolor: '#EAF8E6',
-        age: 'от 23 лет',
-        sum: '8 000 000',
-        term: '60 мес',
-        rate: '8,00 %',
-        responseTime: '30 мин'
-      },
-      {
-        id: 2,
-        name: 'Kaspi.kz',
-        logoText: 'Kaspi.kz',
-        logoImg: 'kaspi_logo.png',
-        logoColor: '#DE251D',
-        bgcolor: '#FDF2F2',
-        age: 'от 23 лет',
-        sum: '8 000 000',
-        term: '60 мес',
-        rate: '8,00 %',
-        responseTime: '30 мин'
-      },
-      {
-        id: 3,
-        name: 'Bank RBK',
-        logoText: 'BANK RBK',
-        logoImg: 'rbk_logo.png',
-        logoColor: '#00A896',
-        bgcolor: '#E2F8F8',
-        age: 'от 23 лет',
-        sum: '8 000 000',
-        term: '60 мес',
-        rate: '8,00 %',
-        responseTime: '30 мин'
-      },
-      {
-        id: 4,
-        name: 'Kviku',
-        logoText: 'KVIKU',
-        logoColor: '#0094FF',
-        bgcolor: '#EBF5FE',
-        age: 'от 23 лет',
-        sum: '8 000 000',
-        term: '60 мес',
-        rate: '8,00 %',
-        responseTime: '30 мин'
-      }
-    ] as CreditOffer[],
-
     banks: [
       {
         id: 1,
@@ -353,75 +155,14 @@ export const useBanksStore = defineStore('banks', {
         rubBuy: '5.40',
         rubSell: '5.80'
       }
-    ] as BankItem[],
-
-    exchangers: [
-      {
-        id: 1,
-        name: 'TOO "Som Exchange"',
-        address: 'ул. Абая 50, угол Байтурсынова',
-        usdBuy: '430.50',
-        usdSell: '437.50',
-        eurBuy: '430.50',
-        eurSell: '437.50',
-        rubBuy: '430.50',
-        rubSell: '437.50'
-      },
-      {
-        id: 2,
-        name: 'MIRVAN LTD',
-        address: 'пр. Достык 42',
-        usdBuy: '430.50',
-        usdSell: '437.50',
-        eurBuy: '430.50',
-        eurSell: '437.50',
-        rubBuy: '430.50',
-        rubSell: '437.50'
-      },
-      {
-        id: 3,
-        name: 'БАНКА Exchange',
-        address: 'ул. Гоголя 84',
-        usdBuy: '430.50',
-        usdSell: '437.50',
-        eurBuy: '430.50',
-        eurSell: '437.50',
-        rubBuy: '430.50',
-        rubSell: '437.50'
-      },
-      {
-        id: 4,
-        name: 'Som Exchange 2',
-        address: 'ул. Тимирязева 17',
-        usdBuy: '430.50',
-        usdSell: '437.50',
-        eurBuy: '430.50',
-        eurSell: '437.50',
-        rubBuy: '430.50',
-        rubSell: '437.50'
-      }
-    ] as ExchangerItem[]
+    ] as BankItem[]
   }),
 
   getters: {
-    getMenuList: (state) => state.menuList,
-    getCategoriesList: (state) => state.categoriesList,
-    getCurrencyList: (state) => state.currencyList,
     getBanksList: (state) => state.banks,
-    getCreditOffers: (state) => state.creditOffers,
-    getExchangersList: (state) => state.exchangers
-  },
-
-  actions: {
-    setCity(city: string) {
-      this.selectedCity = city
-      this.isCityDropdownOpen = false
-    },
-    toggleCityDropdown() {
-      this.isCityDropdownOpen = !this.isCityDropdownOpen
-    },
-    setCurrencyTab(tab: 'exchangers' | 'banks') {
-      this.activeCurrencyTab = tab
+    getBankById: (state) => (id: number | string) => {
+      const numId = typeof id === 'string' ? parseInt(id, 10) : id
+      return state.banks.find((bank) => bank.id === numId)
     }
   }
 })

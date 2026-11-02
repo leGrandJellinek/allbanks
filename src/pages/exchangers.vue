@@ -4,7 +4,7 @@
       <div class="container exchangers-page__container">
         <!-- Main Title (Figma Frame 47 393:1830 & Mobile Frame 292:1407) -->
         <h1 class="exchangers-page__title">
-          Курс доллара, евро, рубля и юаня в обменниках<br />{{ banksStore.selectedCity }} на
+          Курс доллара, евро, рубля и юаня в обменниках<br />{{ appStore.selectedCity }} на
           сегодня
         </h1>
 
@@ -15,7 +15,7 @@
             class="exchangers-page__city-btn"
             @click.stop="isMobileCityOpen = !isMobileCityOpen"
           >
-            <span>{{ banksStore.selectedCity }}</span>
+            <span>{{ appStore.selectedCity }}</span>
             <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
               <path
                 d="M1 1.5L6 6.5L11 1.5"
@@ -30,10 +30,10 @@
           <!-- Dropdown -->
           <ul v-if="isMobileCityOpen" class="exchangers-page__city-menu">
             <li
-              v-for="city in banksStore.cities"
+              v-for="city in appStore.cities"
               :key="city"
               class="exchangers-page__city-item"
-              :class="{ 'exchangers-page__city-item--active': city === banksStore.selectedCity }"
+              :class="{ 'exchangers-page__city-item--active': city === appStore.selectedCity }"
               @click="selectMobileCity(city)"
             >
               {{ city }}
@@ -59,13 +59,13 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useBanksStore } from '@/stores/banks'
+import { useAppStore } from '@/stores/app'
 import ExchangerRateCards from '@/components/Exchangers/ExchangerRateCards.vue'
 import ExchangerFilter from '@/components/Exchangers/ExchangerFilter.vue'
 import ExchangerTable from '@/components/Exchangers/ExchangerTable.vue'
 import ExchangerSeo from '@/components/Exchangers/ExchangerSeo.vue'
 
-const banksStore = useBanksStore()
+const appStore = useAppStore()
 const isMobileCityOpen = ref(false)
 const mobileCityRef = ref<HTMLElement | null>(null)
 
@@ -84,7 +84,7 @@ onUnmounted(() => {
 })
 
 function selectMobileCity(city: string) {
-  banksStore.setCity(city)
+  appStore.setCity(city)
   isMobileCityOpen.value = false
 }
 

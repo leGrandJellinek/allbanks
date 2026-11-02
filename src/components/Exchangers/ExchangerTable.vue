@@ -5,7 +5,7 @@
 
     <!-- Mobile Title -->
     <h2 class="exchanger-table__title exchanger-table__title--mobile">
-      Курсы валют в обменных пунктах<br />{{ banksStore.selectedCity }} на сегодня
+      Курсы валют в обменных пунктах<br />{{ appStore.selectedCity }} на сегодня
     </h2>
 
     <!-- Mobile Currency Switcher Tabs -->
@@ -253,9 +253,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useBanksStore } from '@/stores/banks'
+import { useAppStore } from '@/stores/app'
 
-const banksStore = useBanksStore()
+const appStore = useAppStore()
 
 const activeMobileTab = ref<'USD' | 'EUR' | 'RUB' | 'CNY'>('USD')
 

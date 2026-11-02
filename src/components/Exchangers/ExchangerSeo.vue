@@ -16,11 +16,11 @@
     <div class="exchanger-seo__text-block">
       <p class="exchanger-seo__text" :class="{ 'exchanger-seo__text--collapsed': isCollapsed }">
         На этой странице Вы можете сравнить курс валют в обменных пунктах
-        {{ banksStore.selectedCity }}. В таблице представлены основные валюты, которые могут Вас
+        {{ appStore.selectedCity }}. В таблице представлены основные валюты, которые могут Вас
         заинтересовать. Курс доллара к тенге на сегодня, а так же курс евро, рубля, юаня и тенге по
         отношению к этим валютам - всё на одной странице и удобно для анализа и выбора. Зелёным
         выделены ячейки с данными, которые являются лучшими предложениями в
-        {{ banksStore.selectedCity }} на данный момент.
+        {{ appStore.selectedCity }} на данный момент.
       </p>
       <button type="button" class="exchanger-seo__more-btn" @click="isCollapsed = !isCollapsed">
         {{ isCollapsed ? 'Читать далее' : 'Свернуть' }}
@@ -31,9 +31,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useBanksStore } from '@/stores/banks'
+import { useAppStore } from '@/stores/app'
 
-const banksStore = useBanksStore()
+const appStore = useAppStore()
 const isCollapsed = ref(true)
 </script>
 

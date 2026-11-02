@@ -13,7 +13,7 @@
               class="exchanger-rate-cards__city-btn"
               @click.stop="isCityDropdownOpen = !isCityDropdownOpen"
             >
-              <span>{{ banksStore.selectedCity }}</span>
+              <span>{{ appStore.selectedCity }}</span>
               <svg
                 class="exchanger-rate-cards__chevron"
                 width="12"
@@ -34,11 +34,11 @@
             <!-- Dropdown -->
             <ul v-if="isCityDropdownOpen" class="exchanger-rate-cards__city-menu">
               <li
-                v-for="city in banksStore.cities"
+                v-for="city in appStore.cities"
                 :key="city"
                 class="exchanger-rate-cards__city-item"
                 :class="{
-                  'exchanger-rate-cards__city-item--active': city === banksStore.selectedCity
+                  'exchanger-rate-cards__city-item--active': city === appStore.selectedCity
                 }"
                 @click="selectCity(city)"
               >
@@ -122,7 +122,7 @@
               class="exchanger-rate-cards__city-btn"
               @click.stop="isCityDropdownOpen2 = !isCityDropdownOpen2"
             >
-              <span>{{ banksStore.selectedCity }}</span>
+              <span>{{ appStore.selectedCity }}</span>
               <svg
                 class="exchanger-rate-cards__chevron"
                 width="12"
@@ -143,11 +143,11 @@
             <!-- Dropdown -->
             <ul v-if="isCityDropdownOpen2" class="exchanger-rate-cards__city-menu">
               <li
-                v-for="city in banksStore.cities"
+                v-for="city in appStore.cities"
                 :key="city"
                 class="exchanger-rate-cards__city-item"
                 :class="{
-                  'exchanger-rate-cards__city-item--active': city === banksStore.selectedCity
+                  'exchanger-rate-cards__city-item--active': city === appStore.selectedCity
                 }"
                 @click="selectCity(city)"
               >
@@ -215,15 +215,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useBanksStore } from '@/stores/banks'
+import { useAppStore } from '@/stores/app'
 
-const banksStore = useBanksStore()
+const appStore = useAppStore()
 
 const isCityDropdownOpen = ref(false)
 const isCityDropdownOpen2 = ref(false)
 
 function selectCity(city: string) {
-  banksStore.setCity(city)
+  appStore.setCity(city)
   isCityDropdownOpen.value = false
   isCityDropdownOpen2.value = false
 }

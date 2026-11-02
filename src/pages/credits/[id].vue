@@ -93,14 +93,14 @@
 import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import CommentsBlock from '@/components/CommentsBlock.vue'
-import { useBanksStore } from '@/stores/banks'
+import { useCreditsStore } from '@/stores/credits'
 
 const route = useRoute()
-const banksStore = useBanksStore()
+const creditsStore = useCreditsStore()
 
 const offerId = computed(() => Number((route.params as { id?: string }).id) || 1)
 const offer = computed(() => {
-  return banksStore.creditOffers.find((o) => o.id === offerId.value) || banksStore.creditOffers[0]
+  return creditsStore.creditOffers.find((o) => o.id === offerId.value) || creditsStore.creditOffers[0]
 })
 
 watch(
