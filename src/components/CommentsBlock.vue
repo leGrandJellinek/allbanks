@@ -39,13 +39,37 @@
 
       <form class="comment-card__form" @submit.prevent="handleSubmit">
         <div class="form-group">
-          <input v-model="formName" type="text" placeholder="Имя" required />
+          <label for="comment-name" class="visually-hidden">Ваше имя</label>
+          <input
+            id="comment-name"
+            v-model="formName"
+            type="text"
+            placeholder="Имя"
+            aria-label="Имя"
+            required
+          />
         </div>
         <div class="form-group">
-          <input v-model="formEmail" type="email" placeholder="Ваш e-mail *" required />
+          <label for="comment-email" class="visually-hidden">Ваш e-mail</label>
+          <input
+            id="comment-email"
+            v-model="formEmail"
+            type="email"
+            placeholder="Ваш e-mail *"
+            aria-label="Ваш e-mail"
+            required
+          />
         </div>
         <div class="form-group">
-          <textarea v-model="formComment" placeholder="Комментарий:" rows="4" required></textarea>
+          <label for="comment-text" class="visually-hidden">Комментарий</label>
+          <textarea
+            id="comment-text"
+            v-model="formComment"
+            placeholder="Комментарий:"
+            aria-label="Комментарий"
+            rows="4"
+            required
+          ></textarea>
         </div>
         <button type="submit" class="comment-submit-btn">Отправить</button>
       </form>
@@ -305,5 +329,16 @@ function alertAuth() {
       background: #e67508;
     }
   }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 </style>
