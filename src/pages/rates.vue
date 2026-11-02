@@ -19,199 +19,15 @@
         <div class="rates-page__heading-row">
           <h2 class="rates-page__subtitle">Лучшие курсы валют</h2>
 
-          <!-- Mobile Currency Selector Tabs (1:1 from Figma Mobile Frame 261:410) -->
-          <div class="rates-mobile-tabs mobile-only">
-            <button
-              class="mobile-tab-btn"
-              :class="{ active: selectedCurrency === 'USD' }"
-              @click="selectedCurrency = 'USD'"
-            >
-              <div class="tab-icon usd">$</div>
-              <span class="tab-label">USD</span>
-              <div class="tab-underline"></div>
-            </button>
-
-            <button
-              class="mobile-tab-btn"
-              :class="{ active: selectedCurrency === 'EUR' }"
-              @click="selectedCurrency = 'EUR'"
-            >
-              <div class="tab-icon eur">€</div>
-              <span class="tab-label">EUR</span>
-              <div class="tab-underline"></div>
-            </button>
-
-            <button
-              class="mobile-tab-btn"
-              :class="{ active: selectedCurrency === 'RUR' }"
-              @click="selectedCurrency = 'RUR'"
-            >
-              <div class="tab-icon rur">₽</div>
-              <span class="tab-label">RUR</span>
-              <div class="tab-underline"></div>
-            </button>
-          </div>
+          <!-- Mobile Currency Selector Tabs -->
+          <RatesMobileTabs v-model="selectedCurrency" />
         </div>
 
-        <!-- Desktop Comprehensive Table (1:1 with Figma Frame 46: 387:3471) -->
-        <div class="desktop-table-container desktop-only">
-          <table class="desktop-table">
-            <thead>
-              <tr class="thead-row">
-                <th class="th-bank">Банк</th>
+        <!-- Desktop Comprehensive Table -->
+        <RatesDesktopTable :banks="desktopBanks" />
 
-                <!-- USD Buy / Sell (Highlighted with Rectangle 2 rounded background) -->
-                <th class="th-curr th-usd th-usd-left">
-                  <div class="curr-header-cell">
-                    <div class="curr-badge usd">$</div>
-                    <div class="curr-titles">
-                      <span class="action-text">Покупка</span>
-                      <span class="sub-text">USD Доллар</span>
-                    </div>
-                  </div>
-                </th>
-                <th class="th-curr th-usd th-usd-right">
-                  <div class="curr-header-cell">
-                    <div class="curr-badge usd">$</div>
-                    <div class="curr-titles">
-                      <span class="action-text">Продажа</span>
-                      <span class="sub-text">USD Доллар</span>
-                    </div>
-                  </div>
-                </th>
-
-                <!-- EUR Buy / Sell -->
-                <th class="th-curr th-eur">
-                  <div class="curr-header-cell">
-                    <div class="curr-badge eur">€</div>
-                    <div class="curr-titles">
-                      <span class="action-text">Покупка</span>
-                      <span class="sub-text">EUR Евро</span>
-                    </div>
-                  </div>
-                </th>
-                <th class="th-curr th-eur">
-                  <div class="curr-header-cell">
-                    <div class="curr-badge eur">€</div>
-                    <div class="curr-titles">
-                      <span class="action-text">Продажа</span>
-                      <span class="sub-text">EUR Евро</span>
-                    </div>
-                  </div>
-                </th>
-
-                <!-- RUB Buy / Sell -->
-                <th class="th-curr th-rub">
-                  <div class="curr-header-cell">
-                    <div class="curr-badge rub">₽</div>
-                    <div class="curr-titles">
-                      <span class="action-text">Покупка</span>
-                      <span class="sub-text">RUB Рубль</span>
-                    </div>
-                  </div>
-                </th>
-                <th class="th-curr th-rub">
-                  <div class="curr-header-cell">
-                    <div class="curr-badge rub">₽</div>
-                    <div class="curr-titles">
-                      <span class="action-text">Продажа</span>
-                      <span class="sub-text">RUB Рубль</span>
-                    </div>
-                  </div>
-                </th>
-
-                <th class="th-time">Время</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(row, idx) in desktopBanks"
-                :key="row.id"
-                class="desktop-row"
-                :class="{ 'is-last': idx === desktopBanks.length - 1 }"
-              >
-                <!-- Bank Title -->
-                <td class="td-bank">
-                  <span class="bank-name">{{ row.name }}</span>
-                </td>
-
-                <!-- USD Buy / Sell -->
-                <td
-                  class="td-rate td-usd td-usd-left"
-                  :class="{ 'is-last-row': idx === desktopBanks.length - 1 }"
-                >
-                  <div class="rate-val-box" :class="{ 'best-rate-pill': row.bestUsdBuy }">
-                    {{ row.usdBuy }}
-                  </div>
-                </td>
-                <td
-                  class="td-rate td-usd td-usd-right"
-                  :class="{ 'is-last-row': idx === desktopBanks.length - 1 }"
-                >
-                  <div class="rate-val-box" :class="{ 'best-rate-pill': row.bestUsdSell }">
-                    {{ row.usdSell }}
-                  </div>
-                </td>
-
-                <!-- EUR Buy / Sell -->
-                <td class="td-rate">
-                  <div class="rate-val-box" :class="{ 'best-rate-pill': row.bestEurBuy }">
-                    {{ row.eurBuy }}
-                  </div>
-                </td>
-                <td class="td-rate">
-                  <div class="rate-val-box" :class="{ 'best-rate-pill': row.bestEurSell }">
-                    {{ row.eurSell }}
-                  </div>
-                </td>
-
-                <!-- RUB Buy / Sell -->
-                <td class="td-rate">
-                  <div class="rate-val-box" :class="{ 'best-rate-pill': row.bestRubBuy }">
-                    {{ row.rubBuy }}
-                  </div>
-                </td>
-                <td class="td-rate">
-                  <div class="rate-val-box" :class="{ 'best-rate-pill': row.bestRubSell }">
-                    {{ row.rubSell }}
-                  </div>
-                </td>
-
-                <!-- Time -->
-                <td class="td-time">
-                  {{ row.time }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Mobile Table (1:1 with Figma Mobile Frame 261:410) -->
-        <div class="mobile-table-wrapper mobile-only">
-          <div class="mobile-table-header">
-            <span class="m-col m-col-bank">Банк</span>
-            <span class="m-col m-col-buy">Покупка</span>
-            <span class="m-col m-col-sell">Продажа</span>
-          </div>
-
-          <div class="mobile-table-body">
-            <div v-for="row in currentMobileBanks" :key="row.id" class="mobile-table-row">
-              <div class="m-col m-col-bank">
-                <span class="m-bank-name">{{ row.name }}</span>
-              </div>
-              <div class="m-col m-col-buy">
-                <span class="m-rate-val" :class="{ 'best-pill': row.isBestBuy }">
-                  {{ row.buy }}
-                </span>
-              </div>
-              <div class="m-col m-col-sell">
-                <span class="m-rate-val" :class="{ 'best-pill': row.isBestSell }">
-                  {{ row.sell }}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- Mobile Table -->
+        <RatesMobileTable :banks="currentMobileBanks" />
 
         <!-- Pagination (1:1 with Figma Frame 46: 393:1790-393:1800 & Frame 261:410) -->
         <div class="rates-pagination">
@@ -231,12 +47,19 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import RatesDesktopTable, {
+  type DesktopBankRate
+} from '@/components/Rates/RatesDesktopTable.vue'
+import RatesMobileTabs, { type RateCurrency } from '@/components/Rates/RatesMobileTabs.vue'
+import RatesMobileTable, {
+  type MobileBankRate
+} from '@/components/Rates/RatesMobileTable.vue'
 
 // Currency tab on mobile: USD | EUR | RUR
-const selectedCurrency = ref<'USD' | 'EUR' | 'RUR'>('USD')
+const selectedCurrency = ref<RateCurrency>('USD')
 
 // Desktop banks data (exact 8 banks from Figma Desktop Frame 46: 387:3471)
-const desktopBanks = ref([
+const desktopBanks = ref<DesktopBankRate[]>([
   {
     id: 1,
     name: 'Bank RBK',
@@ -376,7 +199,7 @@ const desktopBanks = ref([
 ])
 
 // Mobile banks data (exact 8 banks from Figma Mobile Frame 261:410: "Курс в банках")
-const mobileBanksUsd = [
+const mobileBanksUsd: MobileBankRate[] = [
   { id: 1, name: 'Bank RBK', buy: '430.50', sell: '437.50', isBestBuy: false, isBestSell: false },
   { id: 2, name: 'Halyk Bank', buy: '430.50', sell: '437.50', isBestBuy: true, isBestSell: false }, // Rectangle 129
   { id: 3, name: 'Банк Китая', buy: '430.50', sell: '437.50', isBestBuy: false, isBestSell: false },
@@ -408,7 +231,7 @@ const mobileBanksUsd = [
   }
 ]
 
-const currentMobileBanks = computed(() => {
+const currentMobileBanks = computed<MobileBankRate[]>(() => {
   return mobileBanksUsd
 })
 </script>
@@ -514,339 +337,6 @@ const currentMobileBanks = computed(() => {
   }
 }
 
-/* Mobile Currency Selector Tabs (1:1 with Figma Mobile Frame 261:410) */
-.rates-mobile-tabs {
-  display: flex;
-  width: 100%;
-  border-bottom: 1px solid #b8b8b8;
-
-  .mobile-tab-btn {
-    flex: 1 1 0;
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding-bottom: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    margin-bottom: -1px;
-
-    .tab-icon {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #b8b8b8;
-      color: #ffffff;
-      font-size: 11px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
-    .tab-label {
-      font-size: 14px;
-      font-weight: 500;
-      color: #b8b8b8;
-      line-height: 1;
-    }
-
-    .tab-underline {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: #b8b8b8;
-    }
-
-    &.active {
-      .tab-icon {
-        background: #ff8a16;
-      }
-
-      .tab-label {
-        color: #ff8a16;
-        font-weight: 700;
-      }
-
-      .tab-underline {
-        background: #ff8a16;
-        height: 2px;
-      }
-    }
-  }
-}
-
-/* Desktop Comprehensive Table (1:1 with Figma Desktop Frame 46: 387:3471) */
-.desktop-table-container {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.desktop-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-
-  thead {
-    tr.thead-row {
-      th {
-        padding: 8px 10px 14px 10px;
-        vertical-align: middle;
-
-        &.th-bank {
-          text-align: left;
-          font-size: 14px;
-          font-weight: 500;
-          color: #000000;
-          width: 170px;
-          padding-left: 2px;
-        }
-
-        &.th-curr {
-          text-align: center;
-          width: 135px;
-        }
-
-        &.th-time {
-          text-align: center;
-          font-size: 14px;
-          font-weight: 500;
-          color: #000000;
-          width: 140px;
-        }
-
-        /* USD Column Highlight Top (Figma Rectangle 2: x=2290, w=270, cornerRadius=18) */
-        &.th-usd {
-          background: rgba(235, 235, 235, 0.4);
-
-          &.th-usd-left {
-            border-top-left-radius: 18px;
-            padding-left: 18px;
-          }
-
-          &.th-usd-right {
-            border-top-right-radius: 18px;
-            padding-right: 18px;
-          }
-        }
-      }
-    }
-  }
-
-  .curr-header-cell {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    text-align: left;
-
-    .curr-badge {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      color: #ffffff;
-      font-size: 14px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      line-height: 1;
-
-      &.usd {
-        background: #ff8a16;
-      }
-      &.eur {
-        background: #d92365;
-      }
-      &.rub {
-        background: #e41f18;
-      }
-    }
-
-    .curr-titles {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.15;
-
-      .action-text {
-        font-size: 14px;
-        font-weight: 700;
-        color: #000000;
-      }
-
-      .sub-text {
-        font-size: 10px;
-        color: #000000;
-        margin-top: 1px;
-      }
-    }
-  }
-
-  tbody {
-    tr.desktop-row {
-      td {
-        padding: 13px 10px;
-        vertical-align: middle;
-        border-bottom: 1px solid #ebebeb;
-
-        &.td-bank {
-          padding-left: 2px;
-          .bank-name {
-            font-size: 15px;
-            font-weight: 700;
-            color: #000000;
-            line-height: 1.25;
-            display: block;
-            max-width: 140px;
-          }
-        }
-
-        &.td-rate {
-          text-align: center;
-          font-size: 18px;
-          font-weight: 400;
-          color: #000000;
-        }
-
-        &.td-time {
-          text-align: center;
-          font-size: 14px;
-          color: #000000;
-        }
-
-        /* USD Column Highlight Body (Figma Rectangle 2) */
-        &.td-usd {
-          background: rgba(235, 235, 235, 0.4);
-
-          &.td-usd-left {
-            padding-left: 18px;
-          }
-
-          &.td-usd-right {
-            padding-right: 18px;
-          }
-
-          &.is-last-row {
-            &.td-usd-left {
-              border-bottom-left-radius: 18px;
-            }
-            &.td-usd-right {
-              border-bottom-right-radius: 18px;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .rate-val-box {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 64px;
-    height: 27px;
-    font-size: 18px;
-    font-weight: 400;
-    color: #000000;
-
-    &.best-rate-pill {
-      width: 84px;
-      background: #fef2e3;
-      border-radius: 3px;
-    }
-  }
-}
-
-/* Mobile Table Styles (1:1 with Figma Mobile Frame 261:410) */
-.mobile-table-wrapper {
-  width: 100%;
-  margin-top: 14px;
-}
-
-.mobile-table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ebebeb;
-
-  .m-col {
-    font-size: 13px;
-    font-weight: 500;
-    color: #000000;
-
-    &-bank {
-      width: 44%;
-      text-align: left;
-    }
-
-    &-buy {
-      width: 28%;
-      text-align: center;
-    }
-
-    &-sell {
-      width: 28%;
-      text-align: right;
-    }
-  }
-}
-
-.mobile-table-body {
-  .mobile-table-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 0;
-    border-bottom: 1px solid #ebebeb;
-
-    .m-col {
-      &-bank {
-        width: 44%;
-        text-align: left;
-
-        .m-bank-name {
-          font-size: 13px;
-          font-weight: 700;
-          color: #000000;
-          line-height: 1.25;
-          display: block;
-        }
-      }
-
-      &-buy {
-        width: 28%;
-        text-align: center;
-      }
-
-      &-sell {
-        width: 28%;
-        text-align: right;
-      }
-    }
-
-    .m-rate-val {
-      font-size: 15px;
-      font-weight: 500;
-      color: #000000;
-      display: inline-block;
-
-      &.best-pill {
-        background: #fef2e3;
-        border-radius: 3px;
-        padding: 3px 8px;
-      }
-    }
-  }
-}
-
 /* Pagination (1:1 with Figma Frame 46: 393:1790-393:1800 & Frame 261:410) */
 .rates-pagination {
   display: flex;
@@ -907,27 +397,6 @@ const currentMobileBanks = computed(() => {
     font-size: 12px;
     color: #b8b8b8;
     line-height: 1;
-  }
-}
-
-/* Visibility helpers */
-.desktop-only {
-  display: block;
-  @media (max-width: 991px) {
-    display: none !important;
-  }
-}
-
-.mobile-only {
-  display: none;
-  @media (max-width: 991px) {
-    display: flex;
-  }
-}
-
-.mobile-table-wrapper.mobile-only {
-  @media (max-width: 991px) {
-    display: block;
   }
 }
 </style>
