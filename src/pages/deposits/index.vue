@@ -23,10 +23,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useHead } from '@unhead/vue'
+import { useToastStore } from '@/stores/toast'
 import DepositFilters from '@/components/Deposits/DepositFilters.vue'
 import DepositCard from '@/components/Deposits/DepositCard.vue'
 import DepositPagination from '@/components/Deposits/DepositPagination.vue'
 import { DEPOSIT_LIST } from '@/data/deposits'
+
+const toast = useToastStore()
+const currentPage = ref(1)
 
 useHead({
   title: 'Вклады и депозиты для физических лиц в Казахстане - AllBanks.kz',
@@ -47,11 +51,13 @@ useHead({
 })
 
 function handleSearch(filters: Record<string, string>) {
-  console.log('Поиск депозитов:', filters)
+  const currency = filters.currency || 'KZT'
+  toast.info(`Применен фильтр по вкладам (${currency})`)
 }
 
 function handlePageChange(page: number) {
-  console.log('Page changed to:', page)
+  currentPage.value = page
+  toast.info(`Переход на страницу ${page}`)
 }
 
 const depositList = ref(DEPOSIT_LIST)

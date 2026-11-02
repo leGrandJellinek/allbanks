@@ -114,7 +114,7 @@ function handleSearch(filters: {
 }
 
 function handlePageChange(page: number) {
-  console.log('Page changed to:', page)
+  toast.info(`Переход на страницу ${page}`)
 }
 
 // Best Offers Data (Figma Desktop Frame 49 has 5 cards, Mobile Frame 284:660 has 4)

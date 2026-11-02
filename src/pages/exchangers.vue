@@ -61,12 +61,14 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useHead } from '@unhead/vue'
 import { useAppStore } from '@/stores/app'
+import { useToastStore } from '@/stores/toast'
 import ExchangerRateCards from '@/components/Exchangers/ExchangerRateCards.vue'
 import ExchangerFilter from '@/components/Exchangers/ExchangerFilter.vue'
 import ExchangerTable from '@/components/Exchangers/ExchangerTable.vue'
 import ExchangerSeo from '@/components/Exchangers/ExchangerSeo.vue'
 
 const appStore = useAppStore()
+const toast = useToastStore()
 
 useHead(() => ({
   title: `Курсы валют в обменных пунктах (${appStore.selectedCity}) - AllBanks.kz`,
@@ -109,15 +111,16 @@ function selectMobileCity(city: string) {
 }
 
 function handleFilter(filterData: Record<string, string>) {
-  console.log('Filter applied:', filterData)
+  const curr = filterData.currency || 'USD'
+  toast.info(`Применен фильтр по обменникам (${curr})`)
 }
 
 function handleShowMap() {
-  console.log('Show on map triggered')
+  toast.info('Отображение обменных пунктов на карте Казахстана')
 }
 
 function handleReset() {
-  console.log('Filter reset')
+  toast.info('Фильтры обменников сброшены')
 }
 </script>
 
